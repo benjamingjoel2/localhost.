@@ -1,0 +1,2 @@
+import{t as e}from"./rolldown-runtime.Dh6celcD.mjs";function t(e,t){return{description:`Make an invite in seconds, share one link anywhere, and keep everyone in the loop with RSVPs, reminders and group texts. Kickback is free to use.`,favicon:`https://framerusercontent.com/assets/e1YjvBlBw5EezWgZDyJIgN6o.png`,robots:`max-image-preview:large`,socialImage:`https://framerusercontent.com/assets/nmEtO7Or6QjCxmQSTLDrLUZ9A.png`,title:`Kickback - Invites, RSVPs and group texts`}}var n=e((()=>{}));export{t as n,n as t};
+//# sourceMappingURL=siteMetadata.DZqai4T3.mjs.map
