@@ -43,3 +43,5 @@ Four home-page directions to choose from, each a standalone page at the repo roo
 | `design-b-partiful.html` | partiful.com | White, pastel blobs, heavy black type, rounded pills, tilted cards |
 | `design-c-buildspace.html` | buildspace.so | Near-black with grain, Manrope extra-bold in lowercase, narrow column, lots of space |
 | `design-d-founders.html` | f.inc | White, Instrument Serif headlines, blue tag, gray pills, polaroids, essay column |
+| `design-e-c-plus-a.html` | C + A, dark | Buildspace's lowercase Manrope voice and grain over Norrsken's giant type, photos and outlined cells |
+| `design-f-c-plus-b.html` | C + B, daylight | The same lowercase voice and a faint grain over Partiful's white page, rounded cards, customizer and template fan |
