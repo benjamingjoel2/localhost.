@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout · Localhost</title>
+<meta name="description" content="Ticket checkout on Localhost.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='10' y='46' font-family='Helvetica,Arial,sans-serif' font-size='40' font-weight='700' fill='%23fff'%3E%3E_%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="fonts/inter/inter.css">
+<link rel="stylesheet" href="assets/site.css">
+<style></style>
+</head>
+<body>
+<header class="hdr">
+  <a class="logo" href="index.html">&gt;localhost</a>
+  <nav aria-label="Primary"><a href="explore.html">Explore</a><a href="community.html">Communities</a><a href="pricing.html">Pricing</a><a href="dashboard.html">Host dashboard</a></nav>
+  <div class="acts"><a class="btn ghost" href="login.html">Log in</a><a class="btn" href="create.html">Create event</a><button class="btn dark" id="menuBtn" aria-controls="menu" aria-expanded="false" style="border:1px solid #fff">Menu</button></div>
+</header>
+<div class="menu" id="menu" aria-label="Site menu">
+  <button class="btn dark close" id="menuClose" style="border:1px solid #fff">Close</button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="explore.html">Explore events</a></li>
+    <li><a href="city.html">Cities</a></li>
+    <li><a href="community.html">Communities</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="dashboard.html">Host dashboard</a></li>
+    <li><a href="login.html">Log in</a></li>
+  </ul>
+  <div class="foot"><a class="btn" href="create.html">Create event</a><a class="btn ghost" href="event.html">Sample event</a></div>
+</div>
+<main>
+
+<div class="crumbs"><b>localhost</b>/berlin/ai-tinkerers-oct · checkout</div>
+<div class="page-title" style="padding-top:20px"><h1 style="font-size:clamp(2.2rem,6vw,4.6rem)">Get tickets</h1></div>
+<div class="sec side" style="padding-top:24px">
+  <div>
+    <div class="steps"><span class="done">1 Tickets</span><span aria-current="step">2 Your details</span><span>3 Payment</span><span>4 Done</span></div>
+    <form onsubmit="event.preventDefault();location.href='ticket.html'" class="stack" style="gap:28px">
+      <div class="box">
+        <div class="row" style="margin-bottom:12px"><b>Tickets</b><a href="event.html" class="small" style="text-decoration:underline">Change</a></div>
+        <div class="tier"><div><b>General</b><small>AI Tinkerers Berlin — Show &amp; Tell #14 · 14 Oct</small></div><span class="price" id="p1">€15</span><div class="qty"><button type="button" aria-label="Fewer" data-d="-1">−</button><output id="q1">1</output><button type="button" aria-label="More" data-d="1">+</button></div></div>
+      </div>
+      <div class="box">
+        <b style="display:block;margin-bottom:12px">Your details</b>
+        <div class="stack" style="gap:12px">
+          <div class="fields2"><div class="field"><label>First name</label><input placeholder="Amara" required></div><div class="field"><label>Last name</label><input placeholder="Okafor" required></div></div>
+          <div class="field"><label>Email · ticket and receipt go here</label><input type="email" placeholder="amara@company.com" required></div>
+          <div class="fields2"><div class="field"><label>Company</label><input placeholder="Zalando"></div><div class="field"><label>Role</label><input placeholder="ML engineer"></div></div>
+          <div class="stack tight" style="margin-top:6px">
+            <label class="check"><input type="checkbox" checked> Show me on the guest list with role and company</label>
+            <label class="check"><input type="checkbox"> I'm hiring · shows on my badge</label>
+            <label class="check"><input type="checkbox"> I'm looking · shows on my badge</label>
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="row" style="margin-bottom:12px"><b>Payment</b><div class="seg" data-seg id="cur" style="width:200px"><button type="button" aria-pressed="true" data-c="EUR" data-r="1" data-s="€">EUR</button><button type="button" aria-pressed="false" data-c="USD" data-r="1.09" data-s="$">USD</button><button type="button" aria-pressed="false" data-c="GBP" data-r="0.86" data-s="£">GBP</button></div></div>
+        <div class="stack" style="gap:12px">
+          <div class="seg" data-seg><button type="button" aria-pressed="true">Card</button><button type="button" aria-pressed="false">Apple Pay</button><button type="button" aria-pressed="false">Google Pay</button><button type="button" aria-pressed="false">SEPA</button></div>
+          <div class="field"><label>Card number</label><input inputmode="numeric" placeholder="4242 4242 4242 4242"></div>
+          <div class="fields2"><div class="field"><label>Expiry</label><input placeholder="MM / YY"></div><div class="field"><label>CVC</label><input inputmode="numeric" placeholder="123"></div></div>
+          <details><summary class="small" style="cursor:pointer;font-weight:600">Add company details for the receipt (VAT invoice)</summary><div class="fields2" style="margin-top:12px"><div class="field"><label>Company legal name</label><input placeholder="Zalando SE"></div><div class="field"><label>VAT number</label><input placeholder="DE 123 456 789"></div></div></details>
+        </div>
+      </div>
+      <div class="row"><label class="check"><input type="checkbox" required> I agree to the <a href="#" style="text-decoration:underline">ticket terms</a> and the host's refund policy (refunds until 12 October).</label></div>
+      <button class="btn" type="submit" style="width:100%;font-size:17px;min-height:60px" id="pay">Pay €15</button>
+      <p class="note">Secure checkout. One flat platform fee is included in the price shown; there is no separate service charge. Receipts are emailed instantly.</p>
+    </form>
+  </div>
+  <aside class="sticky">
+    <div class="box fill">
+      <div class="small" style="font-weight:600">Order summary</div>
+      <b style="display:block;font-size:20px;letter-spacing:-.03em;margin-top:8px">AI Tinkerers Berlin — Show &amp; Tell #14</b>
+      <div style="font-size:13px;margin-top:4px">Tue 14 Oct · 19:00 · Factory Berlin</div>
+      <div class="stack tight" style="margin-top:18px;font-size:14px">
+        <div class="row"><span id="l1">1 × General</span><span id="s1">€15.00</span></div>
+        <div class="row" style="color:#555"><span>Platform fee (included)</span><span id="fee">€0.83</span></div>
+        <div class="row" style="border-top:1px solid #000;padding-top:10px;font-weight:700;font-size:18px"><span>Total</span><span id="total">€15.00</span></div>
+      </div>
+      <p style="font-size:12px;color:#555;margin-top:14px">Charged in <span id="curName">EUR</span>. Rates shown are indicative.</p>
+    </div>
+  </aside>
+</div>
+</main>
+<footer>
+  <div class="fcols">
+    <ul><li>Members</li><li><a href="login.html">Members portal</a></li><li><a href="#">Press</a></li><li><a href="#">Event policy</a></li><li><a href="#">Sitemap</a></li></ul>
+    <ul><li>Media</li><li><a href="#">Blog</a></li><li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">YouTube</a></li><li><a href="#">X</a></li></ul>
+    <ul><li>Product</li><li><a href="index.html">Home</a></li><li><a href="city.html">Cities</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="explore.html">Events</a></li><li><a href="dashboard.html">Host dashboard</a></li></ul>
+    <ul><li>Company</li><li><a href="#">About</a></li><li><a href="#">Partners</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li></ul>
+  </div>
+  <div class="pad fsub">
+    <p>Join 75,000 builders and get this week's tech events in your city</p>
+    <form onsubmit="event.preventDefault()"><input type="email" placeholder="Enter your e-mail" aria-label="E-mail"><button class="btn" type="submit">Subscribe</button></form>
+    <label><input type="checkbox"> I agree with the <a href="#">Privacy Policy</a>.</label>
+    <div class="fbot"><span>Copyright © 2026 <b>Localhost</b> · prototype: events, people and numbers are sample data</span><a href="#"><b>Privacy Policy</b></a></div>
+  </div>
+</footer>
+<script src="assets/site.js"></script>
+<script>
+(() => { let q = 1, r = 1, sym = '€', cur = 'EUR'; const price = 15;
+  const paint = () => { const t = q * price * r; document.getElementById('q1').textContent = q; document.getElementById('l1').textContent = q + ' × General'; document.getElementById('p1').textContent = sym + Math.round(price * r); document.getElementById('s1').textContent = sym + t.toFixed(2); document.getElementById('fee').textContent = sym + (t * 0.035 + 0.3 * r * q).toFixed(2); document.getElementById('total').textContent = sym + t.toFixed(2); document.getElementById('pay').textContent = 'Pay ' + sym + t.toFixed(2); document.getElementById('curName').textContent = cur; };
+  document.querySelectorAll('.qty button').forEach(b => b.addEventListener('click', () => { q = Math.max(1, Math.min(10, q + Number(b.dataset.d))); paint(); }));
+  document.querySelectorAll('#cur button').forEach(b => b.addEventListener('click', () => { r = Number(b.dataset.r); sym = b.dataset.s; cur = b.dataset.c; paint(); }));
+  paint(); })();</script>
+</body>
+</html>

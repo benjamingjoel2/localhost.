@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create event · Localhost</title>
+<meta name="description" content="Create a tech event on Localhost.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='10' y='46' font-family='Helvetica,Arial,sans-serif' font-size='40' font-weight='700' fill='%23fff'%3E%3E_%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="fonts/inter/inter.css">
+<link rel="stylesheet" href="assets/site.css">
+<style></style>
+</head>
+<body>
+<header class="hdr">
+  <a class="logo" href="index.html">&gt;localhost</a>
+  <nav aria-label="Primary"><a href="explore.html">Explore</a><a href="community.html">Communities</a><a href="pricing.html">Pricing</a><a href="dashboard.html">Host dashboard</a></nav>
+  <div class="acts"><a class="btn ghost" href="login.html">Log in</a><a class="btn" href="create.html">Create event</a><button class="btn dark" id="menuBtn" aria-controls="menu" aria-expanded="false" style="border:1px solid #fff">Menu</button></div>
+</header>
+<div class="menu" id="menu" aria-label="Site menu">
+  <button class="btn dark close" id="menuClose" style="border:1px solid #fff">Close</button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="explore.html">Explore events</a></li>
+    <li><a href="city.html">Cities</a></li>
+    <li><a href="community.html">Communities</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="dashboard.html">Host dashboard</a></li>
+    <li><a href="login.html">Log in</a></li>
+  </ul>
+  <div class="foot"><a class="btn" href="create.html">Create event</a><a class="btn ghost" href="event.html">Sample event</a></div>
+</div>
+<main>
+
+<div class="page-title"><h1>Create event</h1><p>Pick a type, fill in the basics, publish. Free events are free. Paid tickets carry one flat fee. You can edit everything after publishing.</p></div>
+<div class="sec side" style="padding-top:28px">
+  <form onsubmit="event.preventDefault();location.href='dashboard.html'" class="stack" style="gap:28px">
+    <div class="steps"><span aria-current="step">1 Type</span><span>2 Basics</span><span>3 Tickets</span><span>4 Programme</span><span>5 Publish</span></div>
+    <div class="box">
+      <b style="display:block;margin-bottom:12px">1 · What kind of event?</b>
+      <div class="cells cols4" data-seg id="typePick">
+        <button type="button" class="cell" aria-pressed="true" style="min-height:120px"><h3 style="font-size:1.1rem">Meetup</h3><span class="mute" style="font-size:12px">Talks, recurring</span></button>
+        <button type="button" class="cell" aria-pressed="false" style="min-height:120px"><h3 style="font-size:1.1rem">Hackathon</h3><span class="mute" style="font-size:12px">Teams, judging</span></button>
+        <button type="button" class="cell" aria-pressed="false" style="min-height:120px"><h3 style="font-size:1.1rem">Conference</h3><span class="mute" style="font-size:12px">Tracks, sponsors</span></button>
+        <button type="button" class="cell" aria-pressed="false" style="min-height:120px"><h3 style="font-size:1.1rem">Demo day</h3><span class="mute" style="font-size:12px">Slots, approvals</span></button>
+        <button type="button" class="cell" aria-pressed="false" style="min-height:120px"><h3 style="font-size:1.1rem">Workshop</h3><span class="mute" style="font-size:12px">Capacity, materials</span></button>
+        <button type="button" class="cell" aria-pressed="false" style="min-height:120px"><h3 style="font-size:1.1rem">Launch party</h3><span class="mute" style="font-size:12px">Countdown, blasts</span></button>
+        <button type="button" class="cell" aria-pressed="false" style="min-height:120px"><h3 style="font-size:1.1rem">Founder dinner</h3><span class="mute" style="font-size:12px">Private, approvals</span></button>
+        <button type="button" class="cell" aria-pressed="false" style="min-height:120px"><h3 style="font-size:1.1rem">Other tech</h3><span class="mute" style="font-size:12px">Office hours, job fair</span></button>
+      </div>
+      <p class="note" style="margin-top:10px">Localhost is for tech events only. Anything else is declined at review.</p>
+    </div>
+    <div class="box stack" style="gap:12px">
+      <b>2 · Basics</b>
+      <div class="field"><label>Event title</label><input id="title" placeholder="Demo Night #13 — agents that ship" required></div>
+      <div class="fields2"><div class="field"><label>Community (host)</label><select><option>Berlin Builders</option><option>Personal · Lena M.</option><option>+ New community</option></select></div><div class="field"><label>City</label><select id="city"><option value="berlin">Berlin</option><option value="san-francisco">San Francisco</option><option value="new-york">New York</option><option value="london">London</option><option value="kigali">Kigali</option><option value="cape-town">Cape Town</option></select></div></div>
+      <div class="fields2"><div class="field"><label>Starts</label><input type="datetime-local" value="2026-11-06T18:30"></div><div class="field"><label>Ends</label><input type="datetime-local" value="2026-11-06T22:00"></div></div>
+      <div class="field"><label>Venue</label><input placeholder="Factory Berlin, Lohmühlenstraße 65"></div>
+      <div class="field"><label>Description</label><textarea placeholder="What happens, who it's for, what to bring."></textarea></div>
+      <div class="field"><label>Poster look</label><div class="seg" data-seg><button type="button" aria-pressed="true">White</button><button type="button" aria-pressed="false">Black</button><button type="button" aria-pressed="false">Photo</button><button type="button" aria-pressed="false">Upload</button></div></div>
+    </div>
+    <div class="box stack" style="gap:12px">
+      <div class="row"><b>3 · Tickets</b><div class="seg" data-seg style="width:200px"><button type="button" aria-pressed="true">EUR</button><button type="button" aria-pressed="false">USD</button><button type="button" aria-pressed="false">GBP</button></div></div>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Tier</th><th>Price</th><th>Capacity</th><th>Sales window</th><th></th></tr></thead><tbody>
+        <tr><td><input value="Early bird" aria-label="Tier name" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:100%"></td><td><input value="9" inputmode="decimal" aria-label="Price" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:80px"></td><td><input value="60" inputmode="numeric" aria-label="Capacity" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:80px"></td><td class="mute">Until 30 Oct</td><td><button type="button" class="pill">Remove</button></td></tr>
+        <tr><td><input value="General" aria-label="Tier name" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:100%"></td><td><input value="15" inputmode="decimal" aria-label="Price" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:80px"></td><td><input value="140" inputmode="numeric" aria-label="Capacity" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:80px"></td><td class="mute">Until doors</td><td><button type="button" class="pill">Remove</button></td></tr>
+        <tr><td><input value="Student / unemployed" aria-label="Tier name" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:100%"></td><td><input value="0" inputmode="decimal" aria-label="Price" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:80px"></td><td><input value="40" inputmode="numeric" aria-label="Capacity" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:80px"></td><td class="mute">Verify email</td><td><button type="button" class="pill">Remove</button></td></tr>
+      </tbody></table></div>
+      <div class="chips"><button type="button" class="pill">+ Add tier</button><button type="button" class="pill">+ Promo code</button><button type="button" class="pill">+ Hidden tier</button><button type="button" class="pill">+ Sponsor slot</button></div>
+      <div class="stack tight"><label class="check"><input type="checkbox" checked> Followers get the link 24h before it goes public</label><label class="check"><input type="checkbox" checked> Refunds until 2 days before</label><label class="check"><input type="checkbox"> Approve each attendee manually (invite-only)</label></div>
+      <p class="note">Free tiers are free. Paid tiers: 3.5% + €0.30 per ticket, shown to buyers as included in the price. Payouts to your bank 2 days after the event.</p>
+    </div>
+    <div class="box stack" style="gap:12px">
+      <b>4 · Programme</b>
+      <div class="stack tight"><label class="check"><input type="checkbox" checked> Agenda block · add talks and times</label><label class="check"><input type="checkbox" checked> Call for proposals · open until <input type="date" value="2026-10-30" aria-label="CFP deadline" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:4px 8px"></label><label class="check"><input type="checkbox"> Sponsor slots · sold on the page</label><label class="check"><input type="checkbox"> Hackathon mode · teams, submissions, judging</label><label class="check"><input type="checkbox" checked> Guest list · opt-in, role and company</label><label class="check"><input type="checkbox" checked> Wall · comments and reactions</label><label class="check"><input type="checkbox" checked> Recording and files drop on this link after</label></div>
+    </div>
+    <div class="box stack" style="gap:12px">
+      <b>5 · Publish</b>
+      <div class="field"><label>Your link</label><div class="box" style="padding:12px 14px;font-weight:600" id="urlPreview">localhost/berlin/demo-night-13-agents-that-ship</div></div>
+      <div class="seg" data-seg><button type="button" aria-pressed="true">Public · listed in Berlin</button><button type="button" aria-pressed="false">Unlisted · link only</button><button type="button" aria-pressed="false">Invite-only</button></div>
+      <div class="chips" style="gap:8px"><button class="btn" type="submit">Publish</button><button class="btn ghost" type="button">Save draft</button><button class="btn ghost" type="button">Preview</button></div>
+    </div>
+  </form>
+  <aside class="sticky stack">
+    <div class="box fill"><div class="small" style="font-weight:600">Preview</div><b id="pvTitle" style="display:block;font-size:22px;letter-spacing:-.03em;line-height:1.05;margin-top:8px">Demo Night #13 — agents that ship</b><div style="font-size:13px;margin-top:8px">Fri 6 Nov · 18:30 · Berlin</div><div class="chips" style="margin-top:10px"><span class="chip">Meetup</span><span class="chip">€0–15</span><span class="chip">CFP open</span></div></div>
+    <div class="box"><div class="small mute">What happens next</div><ol style="margin:8px 0 0;padding-left:18px;font-size:14px;line-height:1.6"><li>Followers of Berlin Builders get a text and email.</li><li>Listed in <b>localhost/berlin</b> and Monday's city email.</li><li>Rich previews in Slack, WhatsApp, X, LinkedIn.</li><li>Door scanner login for your crew, badges print on the spot.</li></ol></div>
+    <div class="box"><div class="small mute">Or script it</div><p style="font-size:13px;margin-top:6px">Recurring meetup? Create next month's from the API or the Slack bot with <code>/localhost repeat</code>.</p></div>
+  </aside>
+</div>
+</main>
+<footer>
+  <div class="fcols">
+    <ul><li>Members</li><li><a href="login.html">Members portal</a></li><li><a href="#">Press</a></li><li><a href="#">Event policy</a></li><li><a href="#">Sitemap</a></li></ul>
+    <ul><li>Media</li><li><a href="#">Blog</a></li><li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">YouTube</a></li><li><a href="#">X</a></li></ul>
+    <ul><li>Product</li><li><a href="index.html">Home</a></li><li><a href="city.html">Cities</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="explore.html">Events</a></li><li><a href="dashboard.html">Host dashboard</a></li></ul>
+    <ul><li>Company</li><li><a href="#">About</a></li><li><a href="#">Partners</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li></ul>
+  </div>
+  <div class="pad fsub">
+    <p>Join 75,000 builders and get this week's tech events in your city</p>
+    <form onsubmit="event.preventDefault()"><input type="email" placeholder="Enter your e-mail" aria-label="E-mail"><button class="btn" type="submit">Subscribe</button></form>
+    <label><input type="checkbox"> I agree with the <a href="#">Privacy Policy</a>.</label>
+    <div class="fbot"><span>Copyright © 2026 <b>Localhost</b> · prototype: events, people and numbers are sample data</span><a href="#"><b>Privacy Policy</b></a></div>
+  </div>
+</footer>
+<script src="assets/site.js"></script>
+<script>
+(() => { const t = document.getElementById('title'), c = document.getElementById('city'), u = document.getElementById('urlPreview'), pv = document.getElementById('pvTitle');
+  const slug = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'your-event';
+  const paint = () => { u.textContent = 'localhost/' + c.value + '/' + slug(t.value || 'Demo Night #13 — agents that ship'); pv.textContent = t.value || 'Demo Night #13 — agents that ship'; };
+  t.addEventListener('input', paint); c.addEventListener('change', paint); })();</script>
+</body>
+</html>
