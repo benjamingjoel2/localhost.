@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Create event · Localhost</title>
 <meta name="description" content="Create a tech event on Localhost.">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#f5f4f0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='10' y='46' font-family='Helvetica,Arial,sans-serif' font-size='40' font-weight='700' fill='%23fff'%3E%3E_%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="fonts/inter/inter.css">
+<link rel="stylesheet" href="fonts/manrope/manrope.css">
 <link rel="stylesheet" href="assets/site.css">
 <style></style>
 </head>
@@ -15,10 +15,10 @@
 <header class="hdr">
   <a class="logo" href="index.html">&gt;localhost</a>
   <nav aria-label="Primary"><a href="explore.html">Explore</a><a href="community.html">Communities</a><a href="pricing.html">Pricing</a><a href="dashboard.html">Host dashboard</a></nav>
-  <div class="acts"><a class="btn ghost" href="login.html">Log in</a><a class="btn" href="create.html">Create event</a><button class="btn dark" id="menuBtn" aria-controls="menu" aria-expanded="false" style="border:1px solid #fff">Menu</button></div>
+  <div class="acts"><a class="btn ghost" href="login.html">Log in</a><a class="btn" href="create.html">Create event</a><button class="btn dark" id="menuBtn" aria-controls="menu" aria-expanded="false" style="border:1px solid #0d0d0d">Menu</button></div>
 </header>
 <div class="menu" id="menu" aria-label="Site menu">
-  <button class="btn dark close" id="menuClose" style="border:1px solid #fff">Close</button>
+  <button class="btn dark close" id="menuClose" style="border:1px solid #0d0d0d">Close</button>
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="explore.html">Explore events</a></li>
@@ -62,9 +62,9 @@
     <div class="box stack" style="gap:12px">
       <div class="row"><b>3 · Tickets</b><div class="seg" data-seg style="width:200px"><button type="button" aria-pressed="true">EUR</button><button type="button" aria-pressed="false">USD</button><button type="button" aria-pressed="false">GBP</button></div></div>
       <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Tier</th><th>Price</th><th>Capacity</th><th>Sales window</th><th></th></tr></thead><tbody>
-        <tr><td><input value="Early bird" aria-label="Tier name" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:100%"></td><td><input value="9" inputmode="decimal" aria-label="Price" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:80px"></td><td><input value="60" inputmode="numeric" aria-label="Capacity" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:80px"></td><td class="mute">Until 30 Oct</td><td><button type="button" class="pill">Remove</button></td></tr>
-        <tr><td><input value="General" aria-label="Tier name" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:100%"></td><td><input value="15" inputmode="decimal" aria-label="Price" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:80px"></td><td><input value="140" inputmode="numeric" aria-label="Capacity" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:80px"></td><td class="mute">Until doors</td><td><button type="button" class="pill">Remove</button></td></tr>
-        <tr><td><input value="Student / unemployed" aria-label="Tier name" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:100%"></td><td><input value="0" inputmode="decimal" aria-label="Price" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:80px"></td><td><input value="40" inputmode="numeric" aria-label="Capacity" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:8px;width:80px"></td><td class="mute">Verify email</td><td><button type="button" class="pill">Remove</button></td></tr>
+        <tr><td><input value="Early bird" aria-label="Tier name" style="background:#f5f4f0;border:1px solid #0d0d0d;color:#0d0d0d;font:inherit;padding:8px;width:100%"></td><td><input value="9" inputmode="decimal" aria-label="Price" style="background:#f5f4f0;border:1px solid #0d0d0d;color:#0d0d0d;font:inherit;padding:8px;width:80px"></td><td><input value="60" inputmode="numeric" aria-label="Capacity" style="background:#f5f4f0;border:1px solid #0d0d0d;color:#0d0d0d;font:inherit;padding:8px;width:80px"></td><td class="mute">Until 30 Oct</td><td><button type="button" class="pill">Remove</button></td></tr>
+        <tr><td><input value="General" aria-label="Tier name" style="background:#f5f4f0;border:1px solid #0d0d0d;color:#0d0d0d;font:inherit;padding:8px;width:100%"></td><td><input value="15" inputmode="decimal" aria-label="Price" style="background:#f5f4f0;border:1px solid #0d0d0d;color:#0d0d0d;font:inherit;padding:8px;width:80px"></td><td><input value="140" inputmode="numeric" aria-label="Capacity" style="background:#f5f4f0;border:1px solid #0d0d0d;color:#0d0d0d;font:inherit;padding:8px;width:80px"></td><td class="mute">Until doors</td><td><button type="button" class="pill">Remove</button></td></tr>
+        <tr><td><input value="Student / unemployed" aria-label="Tier name" style="background:#f5f4f0;border:1px solid #0d0d0d;color:#0d0d0d;font:inherit;padding:8px;width:100%"></td><td><input value="0" inputmode="decimal" aria-label="Price" style="background:#f5f4f0;border:1px solid #0d0d0d;color:#0d0d0d;font:inherit;padding:8px;width:80px"></td><td><input value="40" inputmode="numeric" aria-label="Capacity" style="background:#f5f4f0;border:1px solid #0d0d0d;color:#0d0d0d;font:inherit;padding:8px;width:80px"></td><td class="mute">Verify email</td><td><button type="button" class="pill">Remove</button></td></tr>
       </tbody></table></div>
       <div class="chips"><button type="button" class="pill">+ Add tier</button><button type="button" class="pill">+ Promo code</button><button type="button" class="pill">+ Hidden tier</button><button type="button" class="pill">+ Sponsor slot</button></div>
       <div class="stack tight"><label class="check"><input type="checkbox" checked> Followers get the link 24h before it goes public</label><label class="check"><input type="checkbox" checked> Refunds until 2 days before</label><label class="check"><input type="checkbox"> Approve each attendee manually (invite-only)</label></div>
@@ -72,7 +72,7 @@
     </div>
     <div class="box stack" style="gap:12px">
       <b>4 · Programme</b>
-      <div class="stack tight"><label class="check"><input type="checkbox" checked> Agenda block · add talks and times</label><label class="check"><input type="checkbox" checked> Call for proposals · open until <input type="date" value="2026-10-30" aria-label="CFP deadline" style="background:#000;border:1px solid #fff;color:#fff;font:inherit;padding:4px 8px"></label><label class="check"><input type="checkbox"> Sponsor slots · sold on the page</label><label class="check"><input type="checkbox"> Hackathon mode · teams, submissions, judging</label><label class="check"><input type="checkbox" checked> Guest list · opt-in, role and company</label><label class="check"><input type="checkbox" checked> Wall · comments and reactions</label><label class="check"><input type="checkbox" checked> Recording and files drop on this link after</label></div>
+      <div class="stack tight"><label class="check"><input type="checkbox" checked> Agenda block · add talks and times</label><label class="check"><input type="checkbox" checked> Call for proposals · open until <input type="date" value="2026-10-30" aria-label="CFP deadline" style="background:#f5f4f0;border:1px solid #0d0d0d;color:#0d0d0d;font:inherit;padding:4px 8px"></label><label class="check"><input type="checkbox"> Sponsor slots · sold on the page</label><label class="check"><input type="checkbox"> Hackathon mode · teams, submissions, judging</label><label class="check"><input type="checkbox" checked> Guest list · opt-in, role and company</label><label class="check"><input type="checkbox" checked> Wall · comments and reactions</label><label class="check"><input type="checkbox" checked> Recording and files drop on this link after</label></div>
     </div>
     <div class="box stack" style="gap:12px">
       <b>5 · Publish</b>
