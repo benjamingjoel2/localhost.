@@ -45,3 +45,5 @@ Four home-page directions to choose from, each a standalone page at the repo roo
 | `design-d-founders.html` | f.inc | White, Instrument Serif headlines, blue tag, gray pills, polaroids, essay column |
 | `design-e-c-plus-a.html` | C + A, dark | Buildspace's lowercase Manrope voice and grain over Norrsken's giant type, photos and outlined cells |
 | `design-f-c-plus-b.html` | C + B, daylight | The same lowercase voice and a faint grain over Partiful's white page, rounded cards, customizer and template fan |
+| `design-g-c-foundation.html` | C foundation + A, dark | C's hero kept as is; A's photo grid, statement, city tiles and outlined cells underneath, with pictures that colorize on hover, a photo strip that pauses under the cursor, city tiles that reveal their next event, and an event-types list that swaps the photo |
+| `design-h-c-foundation-daylight.html` | C foundation + A, daylight | The same page on warm off-white |
