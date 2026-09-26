@@ -93,6 +93,56 @@ h2{font-size:1.5rem;letter-spacing:-.03em;margin:0 0 14px;font-weight:800}
 .msg .re{margin-top:8px;display:flex;gap:6px}
 .msg .re span{font-size:.8rem;padding:3px 8px;border-radius:999px;background:var(--card2);border:1px solid var(--line)}
 footer{margin:70px 0 40px;border-top:1px solid var(--line);padding-top:20px;font-family:var(--mono);font-size:.72rem;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* ---- Norrsken-style overrides: black page, white outlines, no radius ---- */
+:root{--bg:#000;--bg2:#000;--card:#000;--card2:#111;--line:#fff;--line2:#fff;--text:#fff;--muted:#8a8a8a;--dim:#6a6a6a;--lime:#fff;--violet:#fff;--pink:#fff;--cyan:#fff;--amber:#fff;--ink:#fff;--shadow:none;--r:0;--display:"Helvetica Neue",Helvetica,"Inter",Arial,sans-serif}
+*{border-radius:0!important;box-shadow:none!important}
+body{font-size:15.5px}
+.topbar{background:#000;backdrop-filter:none;border-bottom:1px solid #fff}
+.logo{font-family:var(--display);font-weight:700;font-size:1.3rem;letter-spacing:-.04em}
+.btn{border:1px solid #fff;background:#000;color:#fff;font-weight:600}
+.btn.primary{background:#fff;color:#000}
+.crumb{font-family:var(--display);font-size:12px;text-transform:uppercase;letter-spacing:.01em;color:#8a8a8a}
+.crumb b{color:#fff}
+.poster{background:#fff;color:#000;border:0;aspect-ratio:16/9}
+.poster::before{display:none}
+.poster .path{color:#000;font-family:var(--display);font-size:12px;text-transform:uppercase;font-weight:600}
+.poster h1{color:#000;font-weight:700;letter-spacing:-.05em;font-size:clamp(2.4rem,5.4vw,4.4rem)}
+.poster .chips span{background:#000;color:#fff;font-family:var(--display);font-weight:700;font-size:12px;text-transform:none;backdrop-filter:none;padding:3px 7px}
+.av{background:#fff!important;color:#000!important;font-family:var(--display);font-weight:700}
+.hosts a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.fact{border:1px solid #fff;background:#000}
+.fact .ic{background:transparent;border:1px solid #fff}
+.fact a{color:#fff;font-family:var(--display);font-weight:700;font-size:12px}
+h2{font-weight:700;letter-spacing:-.04em;font-size:clamp(1.8rem,3.4vw,2.6rem);margin:0 0 16px}
+.sec{margin-top:56px}
+.slot{border:1px solid #fff;background:#000;margin-top:-1px}
+.slot time{color:#fff;font-family:var(--display);font-weight:700}
+.slot .who{color:#8a8a8a;font-family:var(--display)}
+.slot.cfp{border-style:solid;background:#111}
+.sp{border:1px solid #fff;background:#000}
+.sp .av{border-radius:0}
+.sp .talk{color:#fff}
+.spn{border:1px solid #fff;background:#000;color:#fff}
+.spn.open{border-style:dashed;color:#fff;font-family:var(--display)}
+.filters button{border:1px solid #fff;background:#000;color:#fff;font-weight:600}
+.filters button[aria-pressed="true"]{background:#fff;color:#000}
+.pp{border:1px solid #fff;background:#000}
+.pp .tag{border:1px solid #fff;color:#fff;font-family:var(--display);font-weight:700;font-size:11px}
+.msg{border:1px solid #fff;background:#000}
+.msg.host{background:#111}
+.msg .m{font-family:var(--display);font-size:11px;text-transform:uppercase;color:#8a8a8a}
+.msg .re span{background:#000;border:1px solid #fff}
+.tickets{border:1px solid #fff;background:#000;top:84px}
+.tickets .mono{font-family:var(--display);font-size:12px;font-weight:700;text-transform:uppercase;color:#fff}
+.tier{border:1px solid #fff;background:#000}
+.tier small,.tier .p{font-family:var(--display)}
+.tier small{color:#8a8a8a;font-weight:600}
+.qty{border:1px solid #fff}
+.note{font-family:var(--display);font-size:11px;color:#8a8a8a}
+.going .stack i{border-color:#000;background:#fff!important}
+footer{border-top:1px solid #fff;font-family:var(--display);font-size:12px;color:#8a8a8a}
+footer a{color:#fff}
 </style>
 </head>
 <body>
@@ -201,7 +251,7 @@ footer{margin:70px 0 40px;border-top:1px solid var(--line);padding-top:20px;font
   }));
   document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', 'false')); b.setAttribute('aria-pressed', 'true'); }));
   const saved = (() => { try { return localStorage.getItem('lh-theme'); } catch (e) { return null; } })();
-  if (saved === 'dark') document.documentElement.dataset.theme = 'dark';
+  
 })();
 </script>
 </body>
