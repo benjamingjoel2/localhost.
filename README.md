@@ -32,3 +32,14 @@ Shared styles and behaviour live in `assets/`. Photos are free-licensed from Wik
 - [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md): how the product works for hosts and attendees, the money flow, and notes towards a YC application
 
 All events, people, communities and numbers on the pages are sample data.
+
+## Design directions
+
+Four home-page directions to choose from, each a standalone page at the repo root:
+
+| File | Reference | Character |
+|---|---|---|
+| `design-a-norrsken.html` | norrsken.org | Black, giant Helvetica-style type, photos, outlined cells (the current site) |
+| `design-b-partiful.html` | partiful.com | White, pastel blobs, heavy black type, rounded pills, tilted cards |
+| `design-c-buildspace.html` | buildspace.so | Near-black with grain, Manrope extra-bold in lowercase, narrow column, lots of space |
+| `design-d-founders.html` | f.inc | White, Instrument Serif headlines, blue tag, gray pills, polaroids, essay column |
