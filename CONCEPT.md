@@ -104,10 +104,10 @@ One line: **"Tech happens IRL."** Sub-line: *The event platform built only for t
 - **Name:** Localhost. Domain idea: `localhost.events` (also `lclhst.app`). Alternates considered: *Offline* ("go offline"), *Commit*, *Standup*, *Stackd*. Localhost wins because the URLs are the brand.
 - **Wordmark:** `>localhost_` in a monospace with a blinking cursor. Black on white.
 - **Voice:** Partiful's warmth and cheek, minus the party-girl register; dev humour without gatekeeping. Short sentences. Emoji allowed, sparingly. "Tech happens IRL." "Sell out. Not just RSVP." "Everything is a link. Everything has an API."
-- **Look:** follows Partiful's language: white page, soft pastel blobs, black type, black and white rounded buttons, white cards with soft shadows, tilted poster fans. The tech flavour comes from content and small touches, not from a dark neon palette.
-- **Type:** Inter (heavy weights, tight tracking) for display and body, IBM Plex Mono for paths, small labels and numbers.
-- **Colour:** white `#ffffff`, black `#000000`, gray `#6f6f6f`; pastel blobs lavender `#e4dcff`, sky `#d7ecff`, pink `#ffe0ee`, mint `#dbf7ec`. Poster colours are flat: black, yellow `#ffd23f`, blue `#1a73e8`, paper `#f7f3ea`, pink `#ff5c8a`. Dark mode is opt-in.
-- **Motifs:** URL paths as labels, a prompt in the wordmark, flat typographic posters with dot or stripe patterns.
+- **Look:** editorial and stark, after norrsken.org: black page, white Helvetica-style type at very large sizes with tight tracking, split headings ("Our … Cities"), full-bleed photography, outlined grid cells, white tag chips, square corners, no shadows, no gradients. Partiful supplies the structure and the product ideas; Norrsken supplies the visual register.
+- **Type:** Helvetica Neue where installed, Inter as the open fallback. No monospace on the marketing page; the wordmark's `>` and cursor carry the tech signal.
+- **Colour:** black `#000000`, white `#ffffff`, gray `#8a8a8a`, one red dot `#ff2a1a` for "news". Photography provides all other colour.
+- **Motifs:** a giant `>localhost_` wordmark sitting on the hero photo's bottom edge, a small white news card top-left, a Menu button top-right, white chips on photos, numbered outlined cells.
 
 ## 8. App strategy
 
@@ -117,9 +117,10 @@ One line: **"Tech happens IRL."** Sub-line: *The event platform built only for t
 
 ## 9. What is in this repository
 
-- `index.html` — the Localhost landing page, structured section by section after partiful.com (announcement bar, nav, hero with event card, one-click page customizer, template fan, feature rows, host-needs cards, share and after, explore, communities, app CTA, blog, footer). Original copy and CSS-only artwork.
+- `index.html` — the Localhost landing page in the Norrsken register: photo hero with the wordmark, "This week" event grid, statement, subscribe, Our Cities, Our Tools, Event types, Our Hosts, footer. Original copy. Photos are free-licensed from Wikimedia Commons and credited in the footer. The earlier Partiful-style version is in git history.
 - `event.html` — a sample event page (AI Tinkerers Berlin) showing agenda, speakers, sponsors, CFP, who's going, wall and the ticket rail.
-- `fonts/` — Inter and IBM Plex Mono (both open licence).
+- `fonts/` — Inter (open licence). IBM Plex Mono is kept for the sample event page's small labels.
+- `img/` — hero, hackathon and city photos from Wikimedia Commons with their licences listed in `img/CREDITS.md`.
 - Everything on the pages is sample data. No copy, imagery, scripts or assets from partiful.com are used.
 
 ## 10. MVP scope (first 8 weeks)
