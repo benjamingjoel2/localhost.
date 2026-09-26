@@ -6,36 +6,38 @@
 <title>AI Tinkerers Berlin — Show &amp; Tell #14 · Localhost</title>
 <meta name="description" content="Sample Localhost event page: tiers, agenda, speakers, sponsors, CFP and who's going, for a tech meetup in Berlin.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0c12'/%3E%3Ctext x='12' y='46' font-family='monospace' font-size='38' font-weight='700' fill='%23c6ff4a'%3E%3E_%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="fonts/bricolage/bricolage.css">
+<link rel="stylesheet" href="fonts/inter/inter.css">
 <link rel="stylesheet" href="fonts/plex-mono/plex-mono.css">
 <style>
-:root{--bg:#0a0c12;--bg2:#0f1219;--card:#141827;--card2:#1a1f31;--line:rgba(255,255,255,.09);--line2:rgba(255,255,255,.16);--text:#f2f4f8;--muted:#9aa3b5;--dim:#6b7386;--lime:#c6ff4a;--violet:#8b7cff;--pink:#ff6fb5;--cyan:#5de4ff;--amber:#ffc34d;--ink:#0a0c12;--shadow:0 30px 80px rgba(0,0,0,.55);--r:20px;
---display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:dark}
-:root[data-theme="light"]{--bg:#f6f6f2;--bg2:#fff;--card:#fff;--card2:#f1f2ee;--line:rgba(10,12,18,.10);--line2:rgba(10,12,18,.18);--text:#0d0f16;--muted:#5b6274;--dim:#8a91a3;--shadow:0 30px 80px rgba(20,24,40,.18);color-scheme:light}
+:root{--bg:#ffffff;--bg2:#ffffff;--card:#ffffff;--card2:#f3f3f3;--line:#e9e9e9;--line2:#d9d9d9;--text:#111111;--muted:#6f6f6f;--dim:#9a9a9a;--lime:#1a73e8;--violet:#7c5cff;--pink:#ff5c8a;--cyan:#1a73e8;--amber:#ffd23f;--ink:#000;--shadow:0 12px 40px rgba(0,0,0,.10);--r:20px;
+--display:"Inter",ui-sans-serif,system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+:root[data-theme="dark"]{--bg:#0f0f10;--bg2:#0f0f10;--card:#161617;--card2:#1f1f21;--line:#262626;--line2:#333;--text:#f2f2f2;--muted:#a3a3a3;--dim:#7a7a7a;--shadow:0 12px 40px rgba(0,0,0,.5);color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--display);font-size:16.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer}
 .wrap{width:min(1120px,100% - 32px);margin-inline:auto}
 .mono{font-family:var(--mono);font-size:.76rem;letter-spacing:.02em;text-transform:uppercase;color:var(--muted)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 20px;font-weight:700;border:1px solid var(--line2);background:var(--card)}
-.btn.primary{background:var(--lime);color:var(--ink);border-color:transparent}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 20px;font-weight:600;border:1px solid var(--line);background:var(--card)}
+.btn.primary{background:var(--ink);color:#fff;border-color:transparent}
 .btn.small{padding:8px 13px;font-size:.9rem}
 .topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;gap:16px;height:62px}
-.logo{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:1.1rem;font-weight:700}
-.logo .prompt{color:var(--lime)}
+.logo{display:flex;align-items:center;gap:0;font-family:var(--mono);font-size:1.15rem;font-weight:700;letter-spacing:-.03em}
+.logo .prompt{color:var(--text)}
 .nav .right{margin-left:auto;display:flex;gap:10px}
 .crumb{font-family:var(--mono);font-size:.78rem;color:var(--dim);margin:22px 0 14px}
-.crumb b{color:var(--lime);font-weight:400}
+.crumb b{color:var(--text);font-weight:400}
 .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
 @media (max-width:900px){.hero{grid-template-columns:1fr}}
-.poster{border-radius:26px;aspect-ratio:16/9;background:#050806;position:relative;overflow:hidden;padding:26px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid var(--line2);box-shadow:var(--shadow)}
-.poster::before{content:"$ localhost create --city berlin\A> AI Tinkerers · Oct 14 · 19:00\A> tiers: early-bird general student\A> cfp: open · 6 slots · closes Oct 7\A> status: selling █";white-space:pre;position:absolute;top:24px;left:26px;color:var(--lime);font-family:var(--mono);font-size:.82rem;line-height:1.65;opacity:.9}
-.poster h1{margin:0;font-size:clamp(2rem,4.6vw,3.6rem);letter-spacing:-.035em;line-height:.98;color:#fff}
-.poster .chips{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.poster{border-radius:26px;aspect-ratio:16/9;background:#111;position:relative;overflow:hidden;padding:26px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid var(--line2);box-shadow:var(--shadow)}
+.poster::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 1px 1px,rgba(255,255,255,.22) 1px,transparent 1.5px) 0 0/14px 14px}
+.poster h1{margin:0;font-size:clamp(2.2rem,5vw,4rem);letter-spacing:-.045em;line-height:.95;color:#fff;font-weight:800;position:relative}
+.poster .path{position:absolute;top:22px;left:26px;font-family:var(--mono);font-size:.78rem;color:rgba(255,255,255,.75)}
+.poster .chips{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap;position:relative}
 .poster .chips span{font-family:var(--mono);font-size:.7rem;padding:5px 9px;border-radius:8px;background:rgba(255,255,255,.12);color:#fff;backdrop-filter:blur(6px)}
 .hosts{display:flex;align-items:center;gap:12px;margin:20px 0 6px;color:var(--muted);font-size:.95rem;flex-wrap:wrap}.hosts>span:last-child{flex:1 1 220px}
-.av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:.72rem;font-weight:700;color:var(--ink)}
+.av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:.72rem;font-weight:700;color:#fff}
+.av[style*="amber"],.av[style*="card2"]{color:#111}
 .facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}
 @media (max-width:560px){.facts{grid-template-columns:1fr}}
 .fact{display:flex;gap:12px;padding:14px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
@@ -44,7 +46,7 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:po
 .fact a{color:var(--lime);font-family:var(--mono);font-size:.74rem;text-transform:uppercase}
 .about{color:var(--muted);font-size:1.02rem;max-width:66ch}
 .about p+p{margin-top:12px}
-h2{font-size:1.45rem;letter-spacing:-.025em;margin:0 0 14px}
+h2{font-size:1.5rem;letter-spacing:-.03em;margin:0 0 14px;font-weight:800}
 .sec{margin-top:44px}
 .tickets{position:sticky;top:80px;border-radius:24px;background:var(--card);border:1px solid var(--line2);padding:22px;box-shadow:var(--shadow)}
 .tier{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px;border-radius:14px;background:var(--card2);border:1px solid var(--line);margin-top:8px}
@@ -60,7 +62,7 @@ h2{font-size:1.45rem;letter-spacing:-.025em;margin:0 0 14px}
 .going .stack{display:flex}.going .stack i{width:26px;height:26px;border-radius:50%;border:2px solid var(--card);margin-left:-7px}
 .agenda{display:grid;gap:8px}
 .slot{display:grid;grid-template-columns:90px 1fr auto;gap:14px;padding:14px;border-radius:14px;background:var(--card);border:1px solid var(--line);align-items:center}
-@media (max-width:560px){.slot{grid-template-columns:70px 1fr}.slot .who{grid-column:2;text-align:left}.slot .btn{grid-column:2;justify-self:start}.poster{aspect-ratio:auto;padding-top:170px}.poster::before{font-size:.72rem}}
+@media (max-width:560px){.slot{grid-template-columns:70px 1fr}.slot .who{grid-column:2;text-align:left}.slot .btn{grid-column:2;justify-self:start}.poster{aspect-ratio:4/3}}
 .slot time{font-family:var(--mono);font-size:.8rem;color:var(--lime)}
 .slot b{display:block}.slot span{color:var(--muted);font-size:.9rem}
 .slot .who{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-transform:uppercase;text-align:right}
@@ -87,7 +89,7 @@ h2{font-size:1.45rem;letter-spacing:-.025em;margin:0 0 14px}
 .wall{display:grid;gap:8px}
 .msg{padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);font-size:.95rem}
 .msg .m{font-family:var(--mono);font-size:.72rem;color:var(--dim);margin-bottom:4px}
-.msg.host{border-color:rgba(198,255,74,.4)}
+.msg.host{border-color:var(--text)}
 .msg .re{margin-top:8px;display:flex;gap:6px}
 .msg .re span{font-size:.8rem;padding:3px 8px;border-radius:999px;background:var(--card2);border:1px solid var(--line)}
 footer{margin:70px 0 40px;border-top:1px solid var(--line);padding-top:20px;font-family:var(--mono);font-size:.72rem;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
@@ -102,6 +104,7 @@ footer{margin:70px 0 40px;border-top:1px solid var(--line);padding-top:20px;font
   <div class="hero">
     <div>
       <div class="poster">
+        <span class="path">localhost/berlin/ai-tinkerers-oct</span>
         <h1>AI Tinkerers Berlin<br>Show &amp; Tell #14</h1>
         <div class="chips"><span>meetup</span><span>ai / ml</span><span>cfp open</span><span>in person</span></div>
       </div>
@@ -179,7 +182,7 @@ footer{margin:70px 0 40px;border-top:1px solid var(--line);padding-top:20px;font
       <div class="tier"><div><b>Student / unemployed</b><small>free · verify email</small></div><div style="display:flex;gap:10px;align-items:center"><span class="p">€0</span><div class="qty"><button data-d="-1" data-s aria-label="Fewer">−</button><output id="qs">0</output><button data-d="1" data-s aria-label="More">+</button></div></div></div>
       <div class="total"><span>Total</span><span id="tot">€15</span></div>
       <a class="btn primary" href="#" style="width:100%;justify-content:center">Get tickets</a>
-      <div class="note">Company &amp; VAT on receipt · refunds until Oct 12 · QR ticket + badge · adds to calendar</div>
+      <div class="note">Pay in EUR, USD or GBP · company &amp; VAT on receipt · refunds until Oct 12 · QR ticket + badge</div>
       <div class="going"><div class="stack"><i style="background:var(--lime)"></i><i style="background:var(--cyan)"></i><i style="background:var(--pink)"></i><i style="background:var(--amber)"></i></div>Amara, Jan and 210 others are going</div>
     </aside>
   </div>
@@ -198,7 +201,7 @@ footer{margin:70px 0 40px;border-top:1px solid var(--line);padding-top:20px;font
   }));
   document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', 'false')); b.setAttribute('aria-pressed', 'true'); }));
   const saved = (() => { try { return localStorage.getItem('lh-theme'); } catch (e) { return null; } })();
-  if (saved) document.documentElement.dataset.theme = saved;
+  if (saved === 'dark') document.documentElement.dataset.theme = 'dark';
 })();
 </script>
 </body>

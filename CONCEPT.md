@@ -19,7 +19,7 @@ Partiful made hosting a party feel like sending a text: one link, a good-looking
 | Hackathon tooling | No | No | No | No | **Teams, submissions, judging, prizes** |
 | Sponsors | No | No | No | No | **Sponsor tiers sold on the page** |
 | Badges + scan-to-connect | No | No | No | No | **Yes** |
-| Payments | US-centric | Stripe | Global-ish | Stripe | **Cards + SEPA + M-Pesa / MTN MoMo, multi-currency payouts** |
+| Payments | US-centric | Stripe | Global-ish | Stripe | **Cards, Apple Pay, Google Pay, SEPA · USD, EUR, GBP** |
 | Receipts for expensing | No | Basic | Yes | No | **Company + VAT on every receipt** |
 | API | No | Yes | Yes | Limited | **API + webhooks + embed, dev-first** |
 
@@ -51,8 +51,8 @@ One line: **"Tech happens IRL."** Sub-line: *The event platform built only for t
 - Promo codes, community early access (followers get the link first), waitlists, approvals.
 - Group / team purchase: one checkout, many names, one receipt.
 - Receipts carry company name and VAT / tax ID so attendees can expense them.
-- Currencies at launch: USD, EUR, GBP, ZAR, KES, RWF, NGN. Payouts in the host's currency.
-- Payment methods: cards, Apple Pay, Google Pay, SEPA, M-Pesa, MTN MoMo (Rwanda, Ghana, Uganda), Paystack/Flutterwave rails for Nigeria.
+- Currencies: USD, EUR and GBP. Hosts price in one of the three; buyers pay by card from anywhere. Payouts in the host's currency.
+- Payment methods: cards, Apple Pay, Google Pay, SEPA. Local rails for other regions are a later addition, not a launch requirement.
 - QR tickets, QR check-in from any phone, a scanner-only login for door staff, badge printing with name / company / role / "hiring" or "looking" flags.
 - Refund policy set per event; automatic refunds on cancellation.
 
@@ -97,16 +97,17 @@ One line: **"Tech happens IRL."** Sub-line: *The event platform built only for t
 2. **City hubs open on demand.** A community claims a city; we help them fill the first month.
 3. **Hackathon season.** Sponsor student hackathons with the hackathon mode; every participant becomes a user.
 4. **DevRel teams** on tour (SF → NYC → London → Berlin) are the first paid customers: multiple cities, multi-currency, CRM sync.
-5. **Africa is a first-class market, not a "later".** Kigali, Cape Town, Lagos and Nairobi ship at launch with mobile money. Nobody else does this well.
+5. **Launch where the scenes are.** SF, NYC, London and Berlin first; Kigali, Cape Town, Lagos and Nairobi open as soon as an anchor community claims them.
 
 ## 7. Brand
 
 - **Name:** Localhost. Domain idea: `localhost.events` (also `lclhst.app`). Alternates considered: *Offline* ("go offline"), *Commit*, *Standup*, *Stackd*. Localhost wins because the URLs are the brand.
-- **Wordmark:** `>localhost_` in a monospace with a blinking cursor. Green prompt on near-black.
+- **Wordmark:** `>localhost_` in a monospace with a blinking cursor. Black on white.
 - **Voice:** Partiful's warmth and cheek, minus the party-girl register; dev humour without gatekeeping. Short sentences. Emoji allowed, sparingly. "Tech happens IRL." "Sell out. Not just RSVP." "Everything is a link. Everything has an API."
-- **Type:** Bricolage Grotesque for display, IBM Plex Mono for labels, paths and numbers.
-- **Colour:** near-black canvas `#0a0c12`; lime `#c6ff4a`, cyan `#5de4ff`, violet `#8b7cff`, pink `#ff6fb5`, amber `#ffc34d`. Light theme supported.
-- **Motifs:** URL paths as headings, terminal prompts, grid backgrounds, neon posters. Poster looks give hosts personality without leaving the tech register.
+- **Look:** follows Partiful's language: white page, soft pastel blobs, black type, black and white rounded buttons, white cards with soft shadows, tilted poster fans. The tech flavour comes from content and small touches, not from a dark neon palette.
+- **Type:** Inter (heavy weights, tight tracking) for display and body, IBM Plex Mono for paths, small labels and numbers.
+- **Colour:** white `#ffffff`, black `#000000`, gray `#6f6f6f`; pastel blobs lavender `#e4dcff`, sky `#d7ecff`, pink `#ffe0ee`, mint `#dbf7ec`. Poster colours are flat: black, yellow `#ffd23f`, blue `#1a73e8`, paper `#f7f3ea`, pink `#ff5c8a`. Dark mode is opt-in.
+- **Motifs:** URL paths as labels, a prompt in the wordmark, flat typographic posters with dot or stripe patterns.
 
 ## 8. App strategy
 
@@ -116,15 +117,15 @@ One line: **"Tech happens IRL."** Sub-line: *The event platform built only for t
 
 ## 9. What is in this repository
 
-- `index.html` — the Localhost landing page. Original layout, copy and CSS-only artwork. Interactive: poster look switcher, live ticker, topic filter for city hubs, multi-currency checkout demo, light/dark toggle.
+- `index.html` — the Localhost landing page, structured section by section after partiful.com (announcement bar, nav, hero with event card, one-click page customizer, template fan, feature rows, host-needs cards, share and after, explore, communities, app CTA, blog, footer). Original copy and CSS-only artwork.
 - `event.html` — a sample event page (AI Tinkerers Berlin) showing agenda, speakers, sponsors, CFP, who's going, wall and the ticket rail.
-- `fonts/` — Bricolage Grotesque and IBM Plex Mono (both open licence).
+- `fonts/` — Inter and IBM Plex Mono (both open licence).
 - Everything on the pages is sample data. No copy, imagery, scripts or assets from partiful.com are used.
 
 ## 10. MVP scope (first 8 weeks)
 
 1. Auth, communities, event create flow with types and looks.
-2. Event page with tickets (free + paid, Stripe for cards; Paystack for NGN, KES, RWF, ZAR incl. mobile money), promo codes, receipts with company + VAT.
+2. Event page with tickets (free + paid via Stripe in USD, EUR, GBP), promo codes, receipts with company + VAT.
 3. QR tickets, phone check-in, printable badge PDF.
 4. Agenda, speakers, sponsors, CFP blocks. Who's going with opt-in and filters. Wall.
 5. Blasts: SMS, email, WhatsApp (Business API), Slack / Discord webhooks.
