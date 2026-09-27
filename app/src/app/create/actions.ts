@@ -9,7 +9,7 @@ const Form = z.object({
   communityId: z.string().optional(), communityName: z.string().optional(),
   title: z.string().min(2), city: z.string().min(1), type: z.enum(["MEETUP", "HACKATHON", "CONFERENCE", "DEMO_DAY", "WORKSHOP", "LAUNCH", "DINNER", "OTHER"]),
   startsAt: z.string().min(1), endsAt: z.string().optional(), venue: z.string().optional(), address: z.string().optional(), description: z.string().optional(),
-  currency: z.enum(["USD", "EUR", "GBP"]),
+  currency: z.enum(["USD", "EUR", "GBP"]), cover: z.string().optional(),
   tierName: z.array(z.string()), tierPrice: z.array(z.string()), tierCap: z.array(z.string()),
 });
 
@@ -35,6 +35,7 @@ export async function createEvent(fd: FormData) {
     data: {
       slug, city: data.city, title: data.title, type: data.type, description: data.description || null, venue: data.venue || null, address: data.address || null,
       startsAt: new Date(data.startsAt), endsAt: data.endsAt ? new Date(data.endsAt) : null, currency: data.currency, checkinPin: pin(), communityId,
+      cover: data.cover?.trim() || ({ HACKATHON: "/img/hack.jpg", CONFERENCE: "/img/hall2.jpg", DEMO_DAY: "/img/crowd.jpg", MEETUP: "/img/crowd2.jpg" } as Record<string, string>)[data.type] || "/img/hero.jpg",
       tiers: { create: tiers.length ? tiers : [{ name: "general", priceMinor: 0, order: 0 }] },
     },
   });

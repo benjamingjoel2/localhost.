@@ -1,9 +1,10 @@
 import { signIn } from "@/auth";
+import { Shell } from "@/components/shell";
 
 export default async function Login({ searchParams }: { searchParams: Promise<{ sent?: string; next?: string }> }) {
   const sp = await searchParams;
   return (
-    <main className="wrap" style={{ maxWidth: 480 }}>
+    <Shell current="/settings"><main style={{ maxWidth: 480 }}>
       <h1>log in</h1>
       <p className="dim" style={{ marginTop: 8 }}>no passwords. we email you a link.</p>
       {sp.sent ? (
@@ -14,6 +15,6 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
           <button className="btn" type="submit">send magic link</button>
         </form>
       )}
-    </main>
+    </main></Shell>
   );
 }

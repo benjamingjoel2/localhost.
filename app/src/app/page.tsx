@@ -1,41 +1,43 @@
 import Link from "next/link";
 import { prisma } from "@/lib/db";
+import { currentUser } from "@/lib/session";
 import { CITIES, cityName, fmtDate, money } from "@/lib/util";
+import { Shell } from "@/components/shell";
 
-export default async function Home() {
+const TYPES = [["all", "all"], ["MEETUP", "meetups"], ["HACKATHON", "hackathons"], ["DEMO_DAY", "demo days"], ["CONFERENCE", "conferences"], ["WORKSHOP", "workshops"]] as const;
+
+export default async function Home({ searchParams }: { searchParams: Promise<{ city?: string; type?: string; q?: string; free?: string }> }) {
+  const sp = await searchParams;
+  const user = await currentUser();
+  const city = sp.city ?? user?.city ?? "berlin";
+  const type = sp.type && sp.type !== "all" ? sp.type : undefined;
   const events = await prisma.event.findMany({
-    where: { published: true, startsAt: { gte: new Date() } },
-    orderBy: { startsAt: "asc" },
-    take: 12,
-    include: { community: true, tiers: { orderBy: { order: "asc" } } },
+    where: { published: true, startsAt: { gte: new Date() }, ...(city !== "all" ? { city } : {}), ...(type ? { type: type as never } : {}), ...(sp.q ? { title: { contains: sp.q, mode: "insensitive" } } : {}) },
+    orderBy: { startsAt: "asc" }, take: 30,
+    include: { community: true, tiers: { orderBy: { order: "asc" } }, _count: { select: { tickets: true } } },
   });
-  const counts = await prisma.event.groupBy({ by: ["city"], where: { published: true, startsAt: { gte: new Date() } }, _count: true });
-  const count = (slug: string) => counts.find((c) => c.city === slug)?._count ?? 0;
+  const follows = user ? await prisma.follow.findMany({ where: { userId: user.id }, include: { community: { include: { events: { where: { published: true, startsAt: { gte: new Date() } }, orderBy: { startsAt: "asc" }, take: 1 } } } } }) : [];
+  const q = (o: Record<string, string | undefined>) => "/?" + new URLSearchParams(Object.fromEntries(Object.entries({ city, type: sp.type, q: sp.q, ...o }).filter(([, v]) => v)) as Record<string, string>).toString();
   return (
-    <main className="wrap">
-      <h1>tech events, irl.</h1>
-      <p className="dim" style={{ marginTop: 10, maxWidth: "48ch" }}>meetups, hackathons, demo days and the communities behind them. free if it&apos;s free.</p>
-      <section className="sec">
-        <div className="split"><h2>this week</h2><Link className="arrow" href="/create">host one</Link></div>
-        <div className="list">
-          {events.length === 0 && <div><span className="dim">nothing published yet.</span></div>}
-          {events.map((e) => (
-            <Link key={e.id} href={`/${e.city}/${e.slug}`}>
-              <div className="when">{fmtDate(e.startsAt)}</div>
-              <div className="what"><b>{e.title}</b><span>{cityName(e.city)} / {e.community.name}</span></div>
-              <div className="chips"><span className="chip">{e.type.toLowerCase().replace("_", " ")}</span><span className="chip">{e.tiers[0] ? money(Math.min(...e.tiers.map((t) => t.priceMinor)), e.currency) : "free"}</span></div>
-            </Link>
-          ))}
+    <Shell current="/" user={user}>
+      <div className="h"><div><h1>this week in {city === "all" ? "every city" : cityName(city)}</h1><p>{events.length} upcoming · tech only{follows.length ? ` · ${follows.length} communities you follow` : ""}</p></div>
+        <div className="chips" style={{ gap: 8 }}>{CITIES.slice(0, 4).map((c) => <Link key={c.slug} className={"pill"} href={q({ city: c.slug })} style={city === c.slug ? { background: "var(--ink)", color: "var(--paper)" } : {}}>{c.name}</Link>)}<Link className="pill" href={q({ city: "all" })}>all cities</Link></div></div>
+      <div className="seg" style={{ maxWidth: 720, marginBottom: 18 }}>{TYPES.map(([v, n]) => <Link key={v} href={q({ type: v })} aria-current={(sp.type ?? "all") === v ? "page" : undefined}>{n}</Link>)}</div>
+      {events.length === 0 && <p className="ok">nothing published here yet. <Link href="/create" style={{ textDecoration: "underline" }}>host the first one.</Link></p>}
+      <div className="cardgrid">
+        {events.map((e) => (
+          <Link key={e.id} className="ecard" href={`/${e.city}/${e.slug}`}>
+            <div className="ph">{e.cover ? <img src={e.cover} alt="" /> : null}<span className="chip">{e.type.toLowerCase().replace("_", " ")}</span></div>
+            <div className="b"><b>{e.title}</b><span>{cityName(e.city)} · {fmtDate(e.startsAt)} · {e.community.name}</span><div className="row"><span className="small">{e._count.tickets} going</span><span className="chip o">{e.tiers.length ? money(Math.min(...e.tiers.map((t) => t.priceMinor)), e.currency) : "free"}</span></div></div>
+          </Link>
+        ))}
+      </div>
+      {follows.length > 0 && (
+        <div className="two-col" style={{ marginTop: 24 }}>
+          <div className="panel"><div className="ph"><span>communities you follow</span><Link className="small" href="/communities">all</Link></div><div className="pb">{follows.map((f) => <div className="person" key={f.communityId}><span className="avatar">{f.community.name.slice(0, 2)}</span><div><b>{f.community.name}</b><span>{f.community.events[0] ? `next: ${f.community.events[0].title}` : "nothing scheduled"}</span></div><Link className="pill" href={`/c/${f.community.slug}`}>open</Link></div>)}</div></div>
+          <div className="panel"><div className="ph"><span>monday email</span><span className="small">weekly</span></div><div className="pb"><p style={{ fontSize: 14 }}>every monday 08:00: this week&apos;s tech events in {cityName(city)}, from the communities you follow first.</p><Link className="btn ghost sm" href="/settings" style={{ marginTop: 10 }}>manage in settings</Link></div></div>
         </div>
-      </section>
-      <section className="sec">
-        <h2>cities</h2>
-        <div className="grid" style={{ marginTop: 18 }}>
-          {CITIES.map((c) => (
-            <Link className="cell" key={c.slug} href={`/${c.slug}`}><span className="small">localhost/{c.slug}</span><h3>{c.name}</h3><span className="dim">{count(c.slug)} upcoming</span></Link>
-          ))}
-        </div>
-      </section>
-    </main>
+      )}
+    </Shell>
   );
 }
