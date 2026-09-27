@@ -19,7 +19,6 @@ python3 -m http.server 8000
 | `checkout.html` | Ticket checkout: tiers, attendee details, guest-list and badge options, EUR/USD/GBP payment, VAT receipt |
 | `ticket.html` | Confirmation: QR ticket, wallet and calendar, pre-event options, who else is going, refunds |
 | `create.html` | Host flow: type, basics, ticket tiers, programme blocks, publish with live URL preview |
-| `dashboard.html` | Host dashboard: sales, check-ins, attendees, blasts, door PIN, payout |
 | `community.html` | A community profile (Berlin Builders): follow, upcoming, past, hosts, sponsors |
 | `pricing.html` | Free for free events; 3.5% + €0.30 per paid ticket |
 | `login.html` | Magic-link sign in |
