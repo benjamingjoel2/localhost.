@@ -69,7 +69,7 @@ section{padding-block:clamp(56px,8vw,120px)}
 
 /* statement */
 .statement{padding-block:clamp(60px,10vw,140px)}
-.statement p{font-weight:800;font-size:clamp(2.6rem,6vw,4.4rem);letter-spacing:-.03em;line-height:1.05;max-width:22ch}
+.statement p{font-weight:800;font-size:clamp(1.5rem,2.8vw,2.2rem);letter-spacing:-.03em;line-height:1.2;max-width:34ch}
 .statement p span{display:block;text-align:left;padding-left:8%}
 @media (max-width:700px){.statement p,.statement p span{text-align:left;padding-left:0}}
 
