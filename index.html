@@ -209,8 +209,8 @@ body::before{opacity:.05;mix-blend-mode:multiply}
 </head>
 <body>
 <header class="top">
-  <a class="logo" href="#">&gt;localhost<i aria-hidden="true"></i></a>
-  <nav><a href="explore.html">explore</a><a href="city.html">cities</a><a href="community.html">communities</a><a href="pricing.html">pricing</a><a href="login.html">log in</a></nav>
+  <a class="logo" href="index.html">&gt;localhost<i aria-hidden="true"></i></a>
+  <nav><a href="explore.html">explore</a><a href="cities.html">cities</a><a href="community.html">communities</a><a href="pricing.html">pricing</a><a href="about.html">about</a><a href="login.html">log in</a></nav>
 </header>
 
 <main>
@@ -266,14 +266,14 @@ body::before{opacity:.05;mix-blend-mode:multiply}
   <div class="wrap">
     <div class="head2 reveal"><h2>our</h2><h2>cities</h2></div>
     <div class="cities">
-      <div class="lead reveal">a city opens when a community claims it. every city has a page, a monday email, and the communities behind it. hover a city for what's next.<br><a class="arrow" href="explore.html">all 15 cities</a></div>
+      <div class="lead reveal">a city opens when a community claims it. every city has a page, a monday email, and the communities behind it. hover a city for what's next.<br><a class="arrow" href="cities.html">all 15 cities</a></div>
       <a class="city reveal" href="explore.html"><img src="img/sf.jpg" alt="san francisco" loading="lazy"><span class="chip tag">san francisco<small>184 events this month</small></span><div class="next"><b>sf demo night — hardware edition</b>thu 9 oct · 18:00 · sf demo night</div></a>
       <a class="city reveal" href="explore.html"><img src="img/nyc.jpg" alt="new york" loading="lazy"><span class="chip tag">new york<small>151 events this month</small></span><div class="next"><b>fintech founders dinner</b>wed 15 oct · 18:30 · nyc fintech circle</div></a>
       <a class="city reveal" href="explore.html"><img src="img/london.jpg" alt="london" loading="lazy"><span class="chip tag">london<small>139 events this month</small></span><div class="next"><b>london rust meetup</b>tue 7 oct · 19:00 · rust london</div></a>
       <a class="city reveal" href="city.html"><img src="img/berlin.jpg" alt="berlin" loading="lazy"><span class="chip tag">berlin<small>97 events this month</small></span><div class="next"><b>demo night #12 — ai agents in production</b>thu 9 oct · 18:30 · berlin builders</div></a>
       <a class="city reveal" href="explore.html"><img src="img/kigali.jpg" alt="kigali" loading="lazy"><span class="chip tag">kigali<small>23 events this month</small></span><div class="next"><b>kigali devs build night #23</b>sat 11 oct · 09:00 · kigali devs</div></a>
       <a class="city reveal" href="explore.html"><img src="img/capetown.jpg" alt="cape town" loading="lazy"><span class="chip tag">cape town<small>41 events this month</small></span><div class="next"><b>fintech &amp; payments summit</b>fri 17 oct · 09:00 · cape town fintech</div></a>
-      <a class="city reveal" href="#" style="display:flex;align-items:center;padding:16px;aspect-ratio:auto;min-height:120px"><span class="chip">amsterdam · paris · lisbon · austin · toronto · lagos · nairobi · bangalore · singapore<small style="display:block;font-weight:500;opacity:.8">cities open when a community claims them</small></span></a>
+      <a class="city reveal" href="cities.html" style="display:flex;align-items:center;padding:16px;aspect-ratio:auto;min-height:120px"><span class="chip">amsterdam · paris · lisbon · austin · toronto · lagos · nairobi · bangalore · singapore<small style="display:block;font-weight:500;opacity:.8">cities open when a community claims them</small></span></a>
     </div>
   </div>
 </section>
@@ -318,7 +318,7 @@ body::before{opacity:.05;mix-blend-mode:multiply}
 
 <section id="hosts">
   <div class="wrap grid2">
-    <div class="reveal"><div class="kick">for hosts</div><h2 style="margin-top:12px">free if it's free.<br>3.5% + €0.30 if it isn't.</h2><p class="dim" style="margin-top:14px;max-width:34ch">no plan to buy, no service-fee page for your attendees, no surprise at checkout. payouts two days after the event.</p><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px"><a class="btn" href="create.html">create an event</a><a class="btn ghost" href="community.html">claim a community</a></div></div>
+    <div class="reveal"><div class="kick">for hosts</div><h2 style="margin-top:12px">free if it's free.<br>3.5% + €0.30 if it isn't.</h2><p class="dim" style="margin-top:14px;max-width:34ch">no plan to buy, no service-fee page for your attendees, no surprise at checkout. payouts two days after the event.</p><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px"><a class="btn" href="create.html">create an event</a><a class="btn ghost" href="create.html">claim a community</a></div></div>
     <div class="faq reveal">
       <details open><summary>is it really free?</summary><p>yes. free events cost you nothing, forever, with unlimited attendees. we make money on paid tickets and sponsor slots.</p></details>
       <details><summary>why tech only?</summary><p>because discovery only works when the feed isn't polluted. a city page with 97 events is useful when all 97 are for builders.</p></details>
@@ -332,15 +332,16 @@ body::before{opacity:.05;mix-blend-mode:multiply}
 <footer>
   <div class="wrap">
     <div class="fcols">
-      <div><a class="logo" href="#">&gt;localhost</a><p class="dim" style="margin-top:10px;max-width:28ch;font-size:15px">the event platform built only for tech.</p><form class="sub" onsubmit="event.preventDefault()"><input type="email" placeholder="you@company.com" aria-label="email"><button class="btn" type="submit" style="min-height:0;padding:12px 18px;font-size:15px">get monday's email</button></form></div>
-      <ul><li>product</li><li><a href="explore.html">events</a></li><li><a href="city.html">cities</a></li><li><a href="pricing.html">tickets &amp; pricing</a></li><li><a href="community.html">communities</a></li></ul>
-      <ul><li>company</li><li><a href="#">about</a></li><li><a href="#">blog</a></li><li><a href="#">careers</a></li><li><a href="#">contact</a></li></ul>
-      <ul><li>social</li><li><a href="#">x</a></li><li><a href="#">instagram</a></li><li><a href="#">linkedin</a></li><li><a href="#">youtube</a></li></ul>
+      <div><a class="logo" href="index.html">&gt;localhost</a><p class="dim" style="margin-top:10px;max-width:28ch;font-size:15px">the event platform built only for tech.</p><form class="sub" data-subscribe><input type="email" placeholder="you@company.com" aria-label="email"><button class="btn" type="submit" style="min-height:0;padding:12px 18px;font-size:15px">get monday's email</button></form></div>
+      <ul><li>product</li><li><a href="explore.html">events</a></li><li><a href="cities.html">cities</a></li><li><a href="pricing.html">tickets &amp; pricing</a></li><li><a href="community.html">communities</a></li><li><a href="api.html">api</a></li></ul>
+      <ul><li>company</li><li><a href="about.html">about</a></li><li><a href="blog.html">blog</a></li><li><a href="careers.html">careers</a></li><li><a href="contact.html">contact</a></li><li><a href="press.html">press</a></li><li><a href="faq.html">faq</a></li></ul>
+      <ul><li>social</li><li><a href="https://x.com/localhostevents" target="_blank" rel="noopener">x</a></li><li><a href="https://instagram.com/localhost.events" target="_blank" rel="noopener">instagram</a></li><li><a href="https://www.linkedin.com/company/localhost-events" target="_blank" rel="noopener">linkedin</a></li><li><a href="https://www.youtube.com/@localhostevents" target="_blank" rel="noopener">youtube</a></li><li><a href="terms.html">terms</a></li><li><a href="privacy.html">privacy</a></li></ul>
     </div>
-    <div class="fbot"><span>© 2026 localhost · prototype, sample data · photos via wikimedia commons: leonhard lenz (cc0), gaelle berton (cc by-sa 3.0), e bailey (cc by-sa 4.0), christian david (cc by-sa 4.0), it's no game (cc by 2.0), dietmar rabich (cc by-sa 4.0), adrien k (cc by 2.0), daniel case (cc by-sa 3.0)</span><a href="#">privacy</a></div>
+    <div class="fbot"><span>© 2026 localhost · prototype, sample data · photos via wikimedia commons: leonhard lenz (cc0), gaelle berton (cc by-sa 3.0), e bailey (cc by-sa 4.0), christian david (cc by-sa 4.0), it's no game (cc by 2.0), dietmar rabich (cc by-sa 4.0), adrien k (cc by 2.0), daniel case (cc by-sa 3.0)</span><a href="privacy.html">privacy</a></div>
   </div>
 </footer>
 
+<script src="assets/site.js"></script>
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;

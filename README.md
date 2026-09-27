@@ -22,13 +22,22 @@ python3 -m http.server 8000
 | `community.html` | A community profile (Berlin Builders): follow, upcoming, past, hosts, sponsors |
 | `pricing.html` | Free for free events; 3.5% + €0.30 per paid ticket |
 | `login.html` | Magic-link sign in |
+| `cities.html` | All 15 cities |
+| `about.html`, `blog.html` (+3 posts), `careers.html`, `contact.html`, `press.html`, `partners.html`, `faq.html`, `api.html` | Company pages |
+| `terms.html`, `privacy.html`, `event-policy.html`, `sitemap.html` | Legal and sitemap |
 
 Shared styles and behaviour live in `assets/`. Photos are free-licensed from Wikimedia Commons and credited in `img/CREDITS.md`.
+
+## Platform
+
+The working product scaffold lives in [`app/`](app/README.md): Next.js, Prisma + Postgres, magic-link auth, Stripe checkout, QR tickets, door scanner, blasts, communities.
 
 ## Docs
 
 - [`CONCEPT.md`](CONCEPT.md): brand, positioning, product, business model, go-to-market, MVP scope
-- [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md): how the product works for hosts and attendees, the money flow, and notes towards a YC application
+- [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md): how the product works for hosts and attendees, the money flow
+- [`docs/YC-APPLICATION.md`](docs/YC-APPLICATION.md): application draft
+- [`docs/STATUS.md`](docs/STATUS.md): what is there, what was fixed, what is missing, what comes next
 
 All events, people, communities and numbers on the pages are sample data.
 

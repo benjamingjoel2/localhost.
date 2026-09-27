@@ -14,7 +14,7 @@
 <body>
 <header class="hdr">
   <a class="logo" href="index.html">&gt;localhost</a>
-  <nav aria-label="Primary"><a href="explore.html">Explore</a><a href="community.html">Communities</a><a href="pricing.html">Pricing</a></nav>
+  <nav aria-label="Primary"><a href="explore.html">Explore</a><a href="cities.html">Cities</a><a href="community.html">Communities</a><a href="pricing.html">Pricing</a><a href="about.html">About</a></nav>
   <div class="acts"><a class="btn ghost" href="login.html">Log in</a><a class="btn" href="create.html">Create event</a><button class="btn dark" id="menuBtn" aria-controls="menu" aria-expanded="false" style="border:1px solid #0d0d0d">Menu</button></div>
 </header>
 <div class="menu" id="menu" aria-label="Site menu">
@@ -22,9 +22,13 @@
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="explore.html">Explore events</a></li>
-    <li><a href="city.html">Cities</a></li>
+    <li><a href="cities.html">Cities</a></li>
     <li><a href="community.html">Communities</a></li>
     <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="contact.html">Contact</a></li>
     <li><a href="login.html">Log in</a></li>
   </ul>
   <div class="foot"><a class="btn" href="create.html">Create event</a><a class="btn ghost" href="event.html">Sample event</a></div>
@@ -40,8 +44,8 @@
     </div>
     <div class="row" style="margin:18px 0;justify-content:flex-start;gap:12px"><div style="display:flex"><span class="avatar">AT</span><span class="avatar" style="margin-left:-6px;outline:2px solid #f5f4f0">LM</span><span class="avatar" style="margin-left:-6px;outline:2px solid #f5f4f0">DK</span></div><span>Hosted by <a href="community.html" style="font-weight:700;text-decoration:underline;text-underline-offset:3px">AI Tinkerers Berlin</a> · Lena M. and Daniel K.</span><a class="btn ghost" href="community.html" style="padding:8px 14px;min-height:0;font-size:13px">Follow</a></div>
     <div class="two" style="gap:12px">
-      <div class="box"><div class="small mute">When</div><b style="font-size:17px;display:block;margin-top:6px">Tuesday, 14 October</b><span class="mute">19:00 – 22:00 CEST · doors 18:30</span><br><a href="#" class="pill" style="margin-top:10px">Add to calendar</a></div>
-      <div class="box"><div class="small mute">Where</div><b style="font-size:17px;display:block;margin-top:6px">Factory Berlin, Görlitzer Park</b><span class="mute">Lohmühlenstraße 65, 12435 Berlin</span><br><a href="#" class="pill" style="margin-top:10px">Open in maps</a></div>
+      <div class="box"><div class="small mute">When</div><b style="font-size:17px;display:block;margin-top:6px">Tuesday, 14 October</b><span class="mute">19:00 – 22:00 CEST · doors 18:30</span><br><a href="event.ics" class="pill" style="margin-top:10px" download>Add to calendar</a></div>
+      <div class="box"><div class="small mute">Where</div><b style="font-size:17px;display:block;margin-top:6px">Factory Berlin, Görlitzer Park</b><span class="mute">Lohmühlenstraße 65, 12435 Berlin</span><br><a href="https://www.google.com/maps/search/?api=1&query=Factory+Berlin+Lohm%C3%BChlenstra%C3%9Fe+65+Berlin" class="pill" style="margin-top:10px" target="_blank" rel="noopener">Open in maps</a></div>
       <div class="box"><div class="small mute">Who</div><b style="font-size:17px;display:block;margin-top:6px">212 going · 38 companies</b><span class="mute">Guest list is opt-in and visible to ticket holders</span></div>
       <div class="box"><div class="small mute">After</div><b style="font-size:17px;display:block;margin-top:6px">Recording on this link</b><span class="mute">Talks are recorded and drop here within 48h</span></div>
     </div>
@@ -53,7 +57,7 @@
       <div><div class="when">19:00</div><div class="what"><b>Agents in prod: what broke</b><span>Twelve weeks of running tool-calling agents for real customers.</span></div><span class="small mute">Tobi A.</span></div>
       <div><div class="when">19:20</div><div class="what"><b>Local-first RAG on a laptop</b><span>Embeddings, SQLite, no cloud bill.</span></div><span class="small mute">Maya R.</span></div>
       <div><div class="when">19:40</div><div class="what"><b>An inference server in Rust</b><span>Why, how, and the numbers.</span></div><span class="small mute">Jonas W.</span></div>
-      <div style="background:#e9e8e3"><div class="when">20:00</div><div class="what"><b>3 open slots — submit a demo</b><span>CFP closes 7 October. Hosts vote, accepted talks auto-publish here.</span></div><a class="btn ghost" href="#" style="padding:8px 14px;min-height:0;font-size:13px">Propose a talk</a></div>
+      <div style="background:#e9e8e3"><div class="when">20:00</div><div class="what"><b>3 open slots — submit a demo</b><span>CFP closes 7 October. Hosts vote, accepted talks auto-publish here.</span></div><a class="btn ghost" href="contact.html?topic=cfp" style="padding:8px 14px;min-height:0;font-size:13px">Propose a talk</a></div>
       <div><div class="when">21:00</div><div class="what"><b>Open mic + pizza</b><span>Five minutes each, no slides needed.</span></div><span class="small mute">Everyone</span></div>
     </div>
 
@@ -67,7 +71,7 @@
 
     <h2 class="mid" style="margin:36px 0 14px">Sponsors</h2>
     <div class="cells cols4">
-      <div class="cell" style="min-height:96px;justify-content:center;align-items:center"><b>Kelvin Labs</b></div><div class="cell" style="min-height:96px;justify-content:center;align-items:center"><b>Pendel</b></div><div class="cell" style="min-height:96px;justify-content:center;align-items:center"><b>Factory Berlin</b></div><a class="cell" href="#" style="min-height:96px;justify-content:center;align-items:center;border-style:dashed;text-align:center"><span class="small">1 slot open<br>€1,200 · logo + 2 min</span></a>
+      <div class="cell" style="min-height:96px;justify-content:center;align-items:center"><b>Kelvin Labs</b></div><div class="cell" style="min-height:96px;justify-content:center;align-items:center"><b>Pendel</b></div><div class="cell" style="min-height:96px;justify-content:center;align-items:center"><b>Factory Berlin</b></div><a class="cell" href="contact.html?topic=sponsor" style="min-height:96px;justify-content:center;align-items:center;border-style:dashed;text-align:center"><span class="small">1 slot open<br>€1,200 · logo + 2 min</span></a>
     </div>
 
     <h2 class="mid" style="margin:36px 0 14px">Who's going</h2>
@@ -102,22 +106,22 @@
         <div class="row" style="margin-top:14px;justify-content:flex-start;gap:8px"><div style="display:flex"><span class="avatar" style="width:26px;height:26px;font-size:10px">A</span><span class="avatar" style="width:26px;height:26px;font-size:10px;margin-left:-5px;outline:2px solid #f5f4f0">J</span><span class="avatar" style="width:26px;height:26px;font-size:10px;margin-left:-5px;outline:2px solid #f5f4f0">R</span></div><span class="mute" style="font-size:13px">Amara, Jan and 210 others are going</span></div>
       </div>
     </div>
-    <div class="box" style="margin-top:12px"><div class="small mute">Share</div><div class="chips" style="margin-top:8px"><a class="chip" href="#">Copy link</a><a class="chip" href="#">WhatsApp</a><a class="chip" href="#">Slack</a><a class="chip" href="#">X</a><a class="chip" href="#">LinkedIn</a></div></div>
+    <div class="box" style="margin-top:12px"><div class="small mute">Share</div><div class="chips" style="margin-top:8px"><button class="chip" type="button" data-copy>Copy link</button><a class="chip" href="https://wa.me/?text=AI%20Tinkerers%20Berlin%20%E2%80%94%20Show%20%26%20Tell%20%2314%20on%20localhost" target="_blank" rel="noopener">WhatsApp</a><a class="chip" href="https://x.com/intent/tweet?text=AI%20Tinkerers%20Berlin%20%E2%80%94%20Show%20%26%20Tell%20%2314%20on%20localhost" target="_blank" rel="noopener">X</a><a class="chip" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Flocalhost.events%2Fberlin%2Fai-tinkerers-oct" target="_blank" rel="noopener">LinkedIn</a></div></div>
   </aside>
 </div>
 </main>
 <footer>
   <div class="fcols">
-    <ul><li>Members</li><li><a href="login.html">Members portal</a></li><li><a href="#">Press</a></li><li><a href="#">Event policy</a></li><li><a href="#">Sitemap</a></li></ul>
-    <ul><li>Media</li><li><a href="#">Blog</a></li><li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">YouTube</a></li><li><a href="#">X</a></li></ul>
-    <ul><li>Product</li><li><a href="index.html">Home</a></li><li><a href="city.html">Cities</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="explore.html">Events</a></li></ul>
-    <ul><li>Company</li><li><a href="#">About</a></li><li><a href="#">Partners</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li></ul>
+    <ul><li>Members</li><li><a href="login.html">Members portal</a></li><li><a href="press.html">Press</a></li><li><a href="event-policy.html">Event policy</a></li><li><a href="sitemap.html">Sitemap</a></li></ul>
+    <ul><li>Media</li><li><a href="blog.html">Blog</a></li><li><a href="https://instagram.com/localhost.events" rel="noopener" target="_blank">Instagram</a></li><li><a href="https://www.linkedin.com/company/localhost-events" rel="noopener" target="_blank">LinkedIn</a></li><li><a href="https://www.youtube.com/@localhostevents" rel="noopener" target="_blank">YouTube</a></li><li><a href="https://x.com/localhostevents" rel="noopener" target="_blank">X</a></li></ul>
+    <ul><li>Product</li><li><a href="index.html">Home</a></li><li><a href="cities.html">Cities</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="explore.html">Events</a></li><li><a href="api.html">API</a></li></ul>
+    <ul><li>Company</li><li><a href="about.html">About</a></li><li><a href="partners.html">Partners</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li></ul>
   </div>
   <div class="pad fsub">
     <p>Join 75,000 builders and get this week's tech events in your city</p>
-    <form onsubmit="event.preventDefault()"><input type="email" placeholder="Enter your e-mail" aria-label="E-mail"><button class="btn" type="submit">Subscribe</button></form>
-    <label><input type="checkbox"> I agree with the <a href="#">Privacy Policy</a>.</label>
-    <div class="fbot"><span>Copyright © 2026 <b>Localhost</b> · prototype: events, people and numbers are sample data</span><a href="#"><b>Privacy Policy</b></a></div>
+    <form data-subscribe><input type="email" placeholder="Enter your e-mail" aria-label="E-mail" required><button class="btn" type="submit">Subscribe</button></form>
+    <label><input type="checkbox" required> I agree with the <a href="privacy.html">Privacy Policy</a>.</label>
+    <div class="fbot"><span>Copyright © 2026 <b>Localhost</b> · prototype: events, people and numbers are sample data</span><a href="privacy.html"><b>Privacy Policy</b></a></div>
   </div>
 </footer>
 <script src="assets/site.js"></script>
