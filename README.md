@@ -59,3 +59,5 @@ Four home-page directions to choose from, each a standalone page at the repo roo
 ## Platform preview
 
 Clickable screens of the logged-in product in `platform/` (open `platform/index.html`). Sidebar on desktop, tab bar on phones. Attendee: explore, tickets, ticket with QR, communities, notifications, settings. Host: host home, manage event, door scanner, manage community, create event. These are the spec for the build in `app/`.
+
+Three alternative platform directions, four screens each (explore, tickets, host, manage): `platform-b-console/` (dark, dense, data-first), `platform-c-feed/` (mobile-first feed, rounded cards), `platform-d-split/` (master-detail, serif, editorial).
