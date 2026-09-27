@@ -311,3 +311,20 @@ button,.small,.list .when,.tbl th,.stat .k,.field label,.steps span,.post .m,.no
 .hero-box h1{font-size:clamp(2.6rem,6vw,4.4rem)!important}
 
 h1{font-size:clamp(2.6rem,6vw,4.4rem)}
+
+/* ===== prose and faq ===== */
+.prose{max-width:72ch;font-size:16px;line-height:1.6}
+.prose h2{font-size:clamp(1.3rem,2.4vw,1.7rem);margin:32px 0 10px;letter-spacing:-.03em}
+.prose p+p{margin-top:12px}
+.prose ul{padding-left:20px;margin:10px 0}
+.prose li{margin:6px 0}
+.prose-list{padding-left:18px;margin:0;font-size:14px;line-height:1.6}
+.faqs details{border-bottom:1px solid var(--line)}
+.faqs details:first-child{border-top:1px solid var(--line)}
+.faqs summary{list-style:none;display:flex;justify-content:space-between}
+.faqs summary::after{content:"+";color:var(--dim)}
+.faqs details[open] summary::after{content:"–"}
+.ev .ph img{transition:filter .4s,transform .8s}
+.ev:hover .ph img{transform:scale(1.03)}
+.cell{padding-top:52px}
+.ev h3{text-transform:lowercase;letter-spacing:-.01em;font-weight:700}
