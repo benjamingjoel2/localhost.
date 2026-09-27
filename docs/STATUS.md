@@ -43,6 +43,10 @@ The marketing site is complete: 26 pages, one design system, every link resolves
 
 ## What was fixed today
 
+- Colour system replaces the monochrome: warm paper, deep ink, electric blue accent, yellow/green/pink tags, colour photography everywhere.
+- Photos added to every page that lacked them (about, careers, contact, pricing, FAQ, API, partners, press, explore, create, community, login, event poster); twelve free-licensed photos now.
+- Smooth navigation: cross-page fade via the View Transitions API with a JS fallback, staggered section reveals, hover motion on cards, rows, buttons and images.
+
 - Every placeholder `#` link on the ten original pages, roughly 170 of them, now goes somewhere real.
 - Host dashboard removed from the site as asked.
 - Statement block shrunk; all headings on one scale.

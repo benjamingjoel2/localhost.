@@ -328,3 +328,103 @@ h1{font-size:clamp(2.6rem,6vw,4.4rem)}
 .ev:hover .ph img{transform:scale(1.03)}
 .cell{padding-top:52px}
 .ev h3{text-transform:lowercase;letter-spacing:-.01em;font-weight:700}
+
+/* =====================================================================
+   colour system (overrides the monochrome defaults above)
+   paper + ink + electric blue accent, yellow / green / pink for tags
+   ===================================================================== */
+:root{--bg:#f4f1ea;--fg:#17160f;--paper:#f4f1ea;--ink:#17160f;--mute:#6a675c;--line:#d9d4c7;--panel:#eae6dc;
+  --accent:#2f4bff;--accent-deep:#1f36d6;--accent-soft:#e3e7ff;--yellow:#ffd23f;--green:#19a56a;--pink:#ff5c8a;--red:#ff4d1f;
+  --dim:rgba(23,22,15,.62);--dim2:rgba(23,22,15,.42)}
+body{background:var(--paper);color:var(--ink)}
+a{transition:color .2s}
+.hdr{background:rgba(244,241,234,.86);backdrop-filter:blur(10px);position:sticky;top:0;z-index:40;border-bottom-color:var(--line)}
+.hdr nav a{position:relative}
+.hdr nav a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.hdr nav a:hover{text-decoration:none}
+.hdr nav a:hover::after{transform:scaleX(1)}
+.btn{background:var(--accent);color:#fff;border-color:var(--accent);transition:transform .18s,background .2s,box-shadow .2s,border-color .2s}
+.btn:hover{background:var(--accent-deep);border-color:var(--accent-deep);transform:translateY(-1px);box-shadow:0 8px 20px rgba(47,75,255,.22);opacity:1}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper);box-shadow:none}
+.btn.dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.hdr .acts .btn.dark{background:transparent;color:var(--ink)}
+.hdr .acts .btn.dark:hover{background:var(--ink);color:var(--paper)}
+.chip{background:var(--accent);color:#fff;transition:transform .15s}
+.chips .chip:nth-child(2){background:var(--ink);color:var(--paper)}
+.chips .chip:nth-child(3){background:var(--yellow);color:var(--ink)}
+.chips .chip:nth-child(4){background:var(--green);color:#fff}
+.chips .chip:nth-child(5){background:var(--pink);color:#fff}
+.city .chip.tag,.ev .ph .chip,.strip figcaption{background:var(--paper);color:var(--ink)}
+.ev .ph .chip.type{background:var(--accent);color:#fff}
+.box,.list,.cells,.cell,.stat,.tier,.person,.post,.slot,.sp,.pp,.qty,.seg,.steps,.faqs details{border-color:var(--line)}
+.box.fill{background:var(--ink);color:var(--paper)}
+.box.fill .chip{background:var(--yellow);color:var(--ink)}
+.box.fill .btn{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+.box.fill .btn:hover{background:#ffe07a;border-color:#ffe07a}
+.list>a,.cell,.city,.ev,.stat,.box{transition:background .25s,color .25s,transform .25s,box-shadow .25s,border-color .25s}
+.list>a:hover{background:var(--accent-soft);color:var(--ink);transform:translateX(4px)}
+.list>a:hover .chip:first-child{background:var(--accent);color:#fff}
+.list>a:hover .mute,.list>a:hover .dim{color:var(--dim)}
+.cell:hover{background:var(--accent);color:#fff;transform:translateY(-3px);box-shadow:0 16px 36px rgba(47,75,255,.22)}
+.cell:hover .chip{background:#fff;color:var(--accent)}
+.cell:hover .idx,.cell:hover .live,.cell:hover .mute,.cell:hover .small{color:rgba(255,255,255,.8)}
+.stat:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(23,22,15,.08)}
+.stat .v{color:var(--accent)}
+.pill{border-color:var(--ink);transition:background .2s,color .2s}
+.pill:hover{background:var(--ink);color:var(--paper)}
+.seg [aria-pressed="true"],.seg [aria-current],.steps span[aria-current],.filters button[aria-pressed="true"]{background:var(--accent);color:#fff}
+.tab[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.field input:focus,.field select:focus,.field textarea:focus,.fsub input:focus,.sub input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.check input:checked,.fsub input[type=checkbox]:checked,.sub input[type=checkbox]:checked{background:var(--accent);border-color:var(--accent)}
+.ok{background:var(--accent-soft);color:var(--ink)}
+.post.host,.slot.cfp{background:var(--accent-soft)}
+.crumbs b,.small b{color:var(--accent)}
+.arrow{color:var(--accent)}
+.arrow:hover{text-decoration:underline;text-underline-offset:4px}
+.prose a,.note a{color:var(--accent)}
+.faqs summary::after{color:var(--accent)}
+.fsub .btn,.sub .btn{background:var(--accent);border-color:var(--accent);color:#fff}
+.city img,.ev .ph img,.strip img,.hero img{filter:saturate(1.05) contrast(1.02)}
+.city::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(transparent,rgba(23,22,15,.45));pointer-events:none}
+.city:hover img{transform:scale(1.05)}
+.ev .ph .go{background:var(--accent);color:#fff}
+.hero-photo{position:relative;overflow:hidden;background:var(--panel);border-radius:0}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05)}
+.band{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+.band>div{aspect-ratio:4/3;overflow:hidden;background:var(--panel);position:relative}
+.band img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.band>div:hover img{transform:scale(1.05)}
+.band span{position:absolute;left:10px;bottom:10px;background:var(--paper);color:var(--ink);font-size:12px;font-weight:700;padding:3px 7px}
+@media (max-width:700px){.band{grid-template-columns:1fr 1fr}}
+.page-hero{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:end;margin-bottom:8px}
+@media (max-width:900px){.page-hero{grid-template-columns:1fr}}
+.page-hero .hero-photo{aspect-ratio:16/10}
+.page-title{padding-bottom:0}
+footer{background:var(--panel)}
+footer ul li:first-child{color:var(--accent)}
+.fbot{color:var(--dim2)}
+.marquee .track span::before{background:var(--accent)}
+.wordmark{color:#fff}
+
+/* =====================================================================
+   motion: cross-page transitions, staggered reveals, reduced-motion safe
+   ===================================================================== */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:vt-out .22s ease both}
+::view-transition-new(root){animation:vt-in .32s ease both}
+@keyframes vt-out{to{opacity:0;transform:translateY(-8px)}}
+@keyframes vt-in{from{opacity:0;transform:translateY(10px)}}
+html.is-leaving body{opacity:0;transform:translateY(-8px);transition:opacity .22s ease,transform .22s ease}
+html.js-enter body{animation:page-in .38s ease both}
+@keyframes page-in{from{opacity:0;transform:translateY(10px)}}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+.btn:active{transform:translateY(0) scale(.98)}
+.chip:hover{transform:translateY(-1px)}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html.is-leaving body,html.js-enter body{animation:none;transition:none;opacity:1;transform:none}
+  ::view-transition-old(root),::view-transition-new(root){animation:none}
+  .list>a,.cell,.city,.ev,.stat,.box,.btn{transition:none}
+}
