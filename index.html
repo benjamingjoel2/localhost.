@@ -22,7 +22,7 @@ h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.03em;line-height:1.05}
 h1{font-size:clamp(2.6rem,6vw,4.4rem)}
 h2{font-size:clamp(1.7rem,3.4vw,2.6rem)}
 h3{font-size:1.15rem;letter-spacing:-.01em}
-.giant{font-size:clamp(3.2rem,9vw,7.6rem);letter-spacing:-.045em;line-height:.9}
+.giant{font-size:clamp(2.6rem,6vw,4.4rem);letter-spacing:-.03em;line-height:1.05}
 .dim{color:var(--dim)}
 .kick{font-size:13px;font-weight:700;color:var(--dim2);letter-spacing:.02em}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#000;font-weight:700;font-size:17px;padding:14px 26px;min-height:52px}
@@ -39,8 +39,8 @@ section{padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--line)}
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 .split{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
-.head2{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:32px}
-.head2 h2{font-size:clamp(3rem,8.6vw,7.4rem);letter-spacing:-.045em;line-height:.9}
+.head2{display:flex;justify-content:flex-start;align-items:baseline;gap:.28em;margin-bottom:32px}
+.head2 h2{font-size:clamp(2.6rem,6vw,4.4rem);letter-spacing:-.03em;line-height:1.05}
 
 /* top */
 .top{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:22px clamp(16px,2.6vw,40px);mix-blend-mode:difference}
@@ -84,9 +84,8 @@ section{padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--line)}
 .ev .meta b{color:#fff;margin-right:6px}
 
 /* statement (A) */
-.statement p{font-weight:800;font-size:clamp(1.9rem,6vw,5.4rem);letter-spacing:-.045em;line-height:.98;text-align:right;text-wrap:balance}
-.statement p span{display:block;text-align:left;padding-left:8%;color:var(--dim2)}
-@media (max-width:700px){.statement p,.statement p span{text-align:left;padding-left:0}}
+.statement p{font-weight:800;font-size:clamp(2.6rem,6vw,4.4rem);letter-spacing:-.03em;line-height:1.05;max-width:22ch}
+.statement p span{color:var(--dim2)}
 
 /* photo strip: auto-scrolls, pauses on hover, colorizes tile under cursor */
 .strip{overflow:hidden;border-block:1px solid var(--line);padding:18px 0}
@@ -125,7 +124,7 @@ section{padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--line)}
 .cell:hover{background:#fff;color:#000}
 .cell:hover .chip{background:#000;color:#fff}
 .cell:hover .idx,.cell:hover .live{color:#000}
-.cell h3{font-size:clamp(1.5rem,2.6vw,2.2rem);letter-spacing:-.04em}
+.cell h3{font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-.03em}
 .cell .idx{position:absolute;top:18px;left:22px;font-size:12px;font-weight:700;color:var(--dim2)}
 .cell .live{position:absolute;top:18px;right:22px;font-size:12px;font-weight:700;color:var(--dim2);font-variant-numeric:tabular-nums}
 .cell .thumb{position:absolute;right:-30px;top:-30px;width:150px;height:150px;object-fit:cover;filter:grayscale(1);opacity:.18;transform:rotate(6deg);transition:.4s}
@@ -135,7 +134,7 @@ section{padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--line)}
 .types{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 @media (max-width:900px){.types{grid-template-columns:1fr}}
 .types ul{list-style:none;margin:28px 0 0;padding:0}
-.types li button{display:block;font-weight:800;font-size:clamp(1.8rem,4.2vw,3.4rem);letter-spacing:-.04em;line-height:1.15;text-align:left;color:#fff;opacity:.35;transition:opacity .2s}
+.types li button{display:block;font-weight:800;font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-.03em;line-height:1.3;text-align:left;color:#fff;opacity:.35;transition:opacity .2s}
 .types li button[aria-selected="true"],.types li button:hover{opacity:1}
 .types .frame{position:sticky;top:90px;aspect-ratio:4/3;background:#161616;overflow:hidden;position:relative}
 @media (max-width:900px){.types .frame{position:static}}
@@ -239,7 +238,7 @@ body::before{opacity:.05;mix-blend-mode:multiply}
 </section>
 
 <section class="statement">
-  <div class="wrap"><p class="reveal"><span>localhost is the event platform</span> built only for tech: meetups, hackathons, conferences and demo days, and the communities behind them, in the cities where people build.</p></div>
+  <div class="wrap"><p class="reveal"><span>localhost is the event platform</span><br>built only for tech: meetups, hackathons, conferences and demo days, and the communities behind them, in the cities where people build.</p></div>
 </section>
 
 <div class="strip" aria-hidden="true">
