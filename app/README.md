@@ -16,6 +16,10 @@ Without `RESEND_API_KEY`, magic links and ticket emails are printed to the serve
 
 Free hosted Postgres: Neon or Supabase. Deploy: Vercel, set the same env vars, add a Stripe webhook for `checkout.session.completed` pointing at `/api/stripe/webhook`.
 
+## Design
+
+Design A from the platform preview: paper and ink, one terracotta accent, Manrope, lowercase, sidebar on desktop and a five-tab bar on phones. Shell lives in `src/components/shell.tsx`, tokens and components in `src/app/globals.css`.
+
 ## What works
 
 | Route | What |
@@ -28,7 +32,11 @@ Free hosted Postgres: Neon or Supabase. Deploy: Vercel, set the same env vars, a
 | `/create` | create a community and an event with tiers (login required) |
 | `/host/[id]` | host view: stats, attendees, email blast, door pin, publish (emails followers) |
 | `/host/[id]/scan` | door scanner: pin + camera (BarcodeDetector) or typed code |
-| `/me` | your tickets and events you host |
+| `/tickets` | your tickets, next-up wallet card with QR |
+| `/host` | host home: KPIs, upcoming / drafts / past, orders sparkline, your communities |
+| `/communities` | following · you run · in your city |
+| `/settings` | profile, home city, guest-list defaults, badge flag, log out |
+| `/notifications` | events posted by communities you follow, your tickets |
 
 ## Money
 

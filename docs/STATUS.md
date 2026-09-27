@@ -78,6 +78,10 @@ Built today, type-checks and `next build` passes. Not yet run against a database
 - Seed script with three communities and four events; door PIN 4821.
 - README with setup and deploy notes.
 
+## Platform build, day one
+
+Design A chosen. The app now wears it: shell with sidebar and tab bar, explore with city and type filters, tickets with a wallet card, host home with KPIs and a sparkline, communities in three tabs, settings that save, notifications, and every existing page (city, event, ticket, community, create, manage, door, login) moved into the shell. Schema gained `User.city`, `onGuestList`, `badge` and `Event.cover`; the create flow assigns a cover by type. Type-checks and builds. Still not run against a live database in this environment (no Postgres here); that is the first thing to do on a machine with one.
+
 ## What needs to be there next (tomorrow onward)
 
 **Week 1: make it real**

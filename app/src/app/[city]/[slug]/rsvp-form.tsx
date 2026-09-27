@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 type Tier = { id: string; name: string; priceMinor: number; left: number | null; label: string };
-export function RsvpForm({ eventId, tiers, stripeOn, defaultEmail }: { eventId: string; tiers: Tier[]; currency: string; stripeOn: boolean; defaultEmail: string }) {
+export function RsvpForm({ eventId, tiers, stripeOn, defaultEmail, defaults }: { eventId: string; tiers: Tier[]; currency: string; stripeOn: boolean; defaultEmail: string; defaults?: { name: string; company: string; role: string } }) {
   const [tierId, setTierId] = useState(tiers.find((t) => t.left !== 0)?.id ?? "");
   const [qty, setQty] = useState(1);
   const [busy, setBusy] = useState(false);
@@ -31,9 +31,9 @@ export function RsvpForm({ eventId, tiers, stripeOn, defaultEmail }: { eventId: 
         ))}
       </div>
       <div className="field"><label>how many</label><input type="number" min={1} max={10} value={qty} onChange={(e) => setQty(Number(e.target.value))} /></div>
-      <div className="field"><label>name</label><input name="name" required placeholder="amara okafor" /></div>
+      <div className="field"><label>name</label><input name="name" required defaultValue={defaults?.name} placeholder="amara okafor" /></div>
       <div className="field"><label>email · ticket goes here</label><input name="email" type="email" required defaultValue={defaultEmail} placeholder="amara@company.com" /></div>
-      <div className="fields2"><div className="field"><label>company</label><input name="company" /></div><div className="field"><label>role</label><input name="role" /></div></div>
+      <div className="fields2"><div className="field"><label>company</label><input name="company" defaultValue={defaults?.company} /></div><div className="field"><label>role</label><input name="role" defaultValue={defaults?.role} /></div></div>
       <label style={{ display: "flex", gap: 8, fontSize: 14 }}><input type="checkbox" name="guest" defaultChecked /> show me on the guest list</label>
       {paid && !stripeOn && <p className="err">paid tickets need stripe keys on the server. free tiers still work.</p>}
       {err && <p className="err">{err}</p>}

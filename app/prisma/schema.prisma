@@ -33,6 +33,9 @@ model User {
   image         String?
   company       String?
   role          String?
+  city          String?   @default("berlin")
+  onGuestList   Boolean   @default(true)
+  badge         String?
   accounts      Account[]
   sessions      Session[]
   communities   Community[]       @relation("owner")
@@ -116,6 +119,7 @@ model Event {
   startsAt    DateTime
   endsAt      DateTime?
   currency    Currency     @default(EUR)
+  cover       String?
   published   Boolean      @default(false)
   checkinPin  String
   communityId String

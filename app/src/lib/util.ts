@@ -26,6 +26,7 @@ export const pin = () => String(Math.floor(1000 + Math.random() * 9000));
 const symbol: Record<Currency, string> = { USD: "$", EUR: "€", GBP: "£" };
 export const money = (minor: number, cur: Currency) =>
   minor === 0 ? "free" : `${symbol[cur]}${(minor / 100).toFixed(minor % 100 ? 2 : 0)}`;
+export const sum = (minor: number, cur: Currency) => `${symbol[cur]}${(minor / 100).toLocaleString("en-US", { minimumFractionDigits: minor % 100 ? 2 : 0, maximumFractionDigits: 2 })}`;
 
 export const fmtDate = (d: Date) =>
   d.toLocaleString("en-GB", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }).toLowerCase();

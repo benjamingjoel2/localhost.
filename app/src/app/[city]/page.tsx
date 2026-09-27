@@ -1,17 +1,20 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
+import { Shell } from "@/components/shell";
+import { currentUser } from "@/lib/session";
 import { CITIES, cityName, fmtDate, money } from "@/lib/util";
 
 export default async function City({ params }: { params: Promise<{ city: string }> }) {
   const { city } = await params;
   if (!CITIES.some((c) => c.slug === city)) notFound();
+  const user = await currentUser();
   const [events, communities] = await Promise.all([
     prisma.event.findMany({ where: { city, published: true, startsAt: { gte: new Date() } }, orderBy: { startsAt: "asc" }, include: { community: true, tiers: true } }),
     prisma.community.findMany({ where: { city }, include: { _count: { select: { followers: true, events: true } } } }),
   ]);
   return (
-    <main className="wrap">
+    <Shell current="/" user={user}><main>
       <span className="small">localhost/{city}</span>
       <h1>{cityName(city)}</h1>
       <section className="sec"><div className="split"><h2>upcoming</h2><Link className="arrow" href="/create">host one here</Link></div>
@@ -26,6 +29,6 @@ export default async function City({ params }: { params: Promise<{ city: string 
           <Link className="cell" href="/create" style={{ borderStyle: "dashed" }}><span className="small">free forever</span><h3>start one</h3></Link>
         </div>
       </section>
-    </main>
+    </main></Shell>
   );
 }
