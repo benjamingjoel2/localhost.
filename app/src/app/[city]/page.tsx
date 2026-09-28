@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { Shell } from "@/components/shell";
 import { currentUser } from "@/lib/session";
-import { CITIES, cityName, fmtDate, money } from "@/lib/util";
+import { CITIES, cityName, fmtDate, priceLabel } from "@/lib/util";
 
 export default async function City({ params }: { params: Promise<{ city: string }> }) {
   const { city } = await params;
@@ -20,7 +20,7 @@ export default async function City({ params }: { params: Promise<{ city: string 
       <section className="sec"><div className="split"><h2>upcoming</h2><Link className="arrow" href="/create">host one here</Link></div>
         <div className="list">
           {events.length === 0 && <div><span className="dim">no events yet. be the first community to claim {cityName(city)}.</span></div>}
-          {events.map((e) => <Link key={e.id} href={`/${city}/${e.slug}`}><div className="when">{fmtDate(e.startsAt)}</div><div className="what"><b>{e.title}</b><span>{e.venue ?? "venue tba"} / {e.community.name}</span></div><div className="chips"><span className="chip">{e.type.toLowerCase().replace("_", " ")}</span><span className="chip">{e.tiers[0] ? money(Math.min(...e.tiers.map((t) => t.priceMinor)), e.currency) : "free"}</span></div></Link>)}
+          {events.map((e) => <Link key={e.id} href={`/${city}/${e.slug}`}><div className="when">{fmtDate(e.startsAt)}</div><div className="what"><b>{e.title}</b><span>{e.venue ?? "venue tba"} / {e.community.name}</span></div><div className="chips"><span className="chip">{e.type.toLowerCase().replace("_", " ")}</span>{e.source === "LUMA" && <span className="chip src">luma</span>}<span className="chip">{priceLabel(e)}</span></div></Link>)}
         </div>
       </section>
       <section className="sec"><h2>communities</h2>
