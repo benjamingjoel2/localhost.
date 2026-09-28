@@ -22,7 +22,7 @@ Two things get deployed: the **platform** (`app/`, Next.js + Postgres) and the *
 
 4. Click **Deploy**. First build takes 2–3 minutes. You get `https://<project>.vercel.app`.
 5. Go to *Settings → Environment Variables*, set `AUTH_URL` and `NEXT_PUBLIC_BASE_URL` to that URL, then *Deployments → Redeploy*.
-6. Seed sample data once (optional). Locally, with the Neon URL in `app/.env`: `cd app && npm install && npm run db:seed`. Host login `host@localhost.events`, door PIN 4821.
+6. Sample data seeds itself on every Vercel build (the seed is idempotent, so it never duplicates). Host login `host@localhost.events`, door PIN 4821. To seed by hand instead: `cd app && npm run db:seed` with the Neon URL in `app/.env`.
 
 Since the repo is connected, every push to the branch Vercel is watching redeploys automatically. Point it at `main` after the PR merges, or at `claude/youthful-euler-p3fn0e` now (Settings → Git → Production Branch).
 
