@@ -45,3 +45,16 @@ Platform fee 3.5% + 0.30 per paid ticket, included in the displayed price (`plat
 ## Next
 
 Stripe Connect for host payouts · CFP and sponsor slots · WhatsApp/SMS blasts · iCal feeds · a public API · the marketing site's design on the app shell.
+
+## luma import (city-wide index)
+
+`src/lib/sources/luma.ts` mirrors the public Luma "discover" feed for SF, NYC, London and Berlin into the same `Event` table
+(`source = LUMA`). Each Luma calendar becomes a `Community` (`source = LUMA`) so "hosted by" and follow work the same way.
+Mirrored events link out to Luma for registration; nothing is sold here for them.
+
+- tech filter: `isTech()` in the same file. One strong signal in the title or host (ai, founders, hackathon, saas, …) keeps an
+  event; a small deny list (yoga, book club, festival, …) drops it; a blurb alone needs several signals. Tune the lists there.
+- runs: on every Vercel build (`npm run import:luma`, never fails the build) and daily at 05:00 UTC via the cron in `vercel.json`,
+  which calls `GET /api/import/luma`. Set `CRON_SECRET` in Vercel to lock that route; Vercel sends it automatically.
+- events that disappear upstream before they happen are unpublished, not deleted.
+- `npm run import:luma` locally to refresh.

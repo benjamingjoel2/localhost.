@@ -13,6 +13,10 @@ enum Currency {
   GBP
 }
 
+enum Source {
+  LOCALHOST
+  LUMA
+}
 enum EventType {
   MEETUP
   HACKATHON
@@ -84,6 +88,10 @@ model Community {
   description String?
   ownerId     String
   owner       User              @relation("owner", fields: [ownerId], references: [id])
+  source      Source            @default(LOCALHOST)
+  sourceId    String?           @unique
+  externalUrl String?
+  avatar      String?
   members     CommunityMember[]
   followers   Follow[]
   events      Event[]
@@ -122,6 +130,12 @@ model Event {
   cover       String?
   published   Boolean      @default(false)
   checkinPin  String
+  source      Source       @default(LOCALHOST)
+  sourceId    String?      @unique
+  externalUrl String?
+  priceMinor  Int?
+  going       Int?
+  lastSeenAt  DateTime?
   communityId String
   community   Community    @relation(fields: [communityId], references: [id])
   tiers       TicketTier[]
@@ -131,6 +145,7 @@ model Event {
   createdAt   DateTime     @default(now())
   @@unique([city, slug])
   @@index([city, startsAt])
+  @@index([source, lastSeenAt])
 }
 
 model AgendaItem {
