@@ -1,0 +1,187 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Currency {
+  USD
+  EUR
+  GBP
+}
+
+enum EventType {
+  MEETUP
+  HACKATHON
+  CONFERENCE
+  DEMO_DAY
+  WORKSHOP
+  LAUNCH
+  DINNER
+  OTHER
+}
+
+// ---- Auth.js models ----
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  company       String?
+  role          String?
+  city          String?   @default("berlin")
+  onGuestList   Boolean   @default(true)
+  badge         String?
+  accounts      Account[]
+  sessions      Session[]
+  communities   Community[]       @relation("owner")
+  memberships   CommunityMember[]
+  follows       Follow[]
+  orders        Order[]
+  createdAt     DateTime  @default(now())
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @id
+  userId       String
+  expires      DateTime
+  user         User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+  @@id([identifier, token])
+}
+
+// ---- Localhost ----
+model Community {
+  id          String            @id @default(cuid())
+  slug        String            @unique
+  name        String
+  city        String
+  description String?
+  ownerId     String
+  owner       User              @relation("owner", fields: [ownerId], references: [id])
+  members     CommunityMember[]
+  followers   Follow[]
+  events      Event[]
+  createdAt   DateTime          @default(now())
+}
+
+model CommunityMember {
+  communityId String
+  userId      String
+  community   Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@id([communityId, userId])
+}
+
+model Follow {
+  communityId String
+  userId      String
+  community   Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  @@id([communityId, userId])
+}
+
+model Event {
+  id          String       @id @default(cuid())
+  slug        String
+  city        String
+  title       String
+  type        EventType    @default(MEETUP)
+  description String?
+  venue       String?
+  address     String?
+  startsAt    DateTime
+  endsAt      DateTime?
+  currency    Currency     @default(EUR)
+  cover       String?
+  published   Boolean      @default(false)
+  checkinPin  String
+  communityId String
+  community   Community    @relation(fields: [communityId], references: [id])
+  tiers       TicketTier[]
+  orders      Order[]
+  tickets     Ticket[]
+  agenda      AgendaItem[]
+  createdAt   DateTime     @default(now())
+  @@unique([city, slug])
+  @@index([city, startsAt])
+}
+
+model AgendaItem {
+  id       String @id @default(cuid())
+  eventId  String
+  event    Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  time     String
+  title    String
+  speaker  String?
+  order    Int    @default(0)
+}
+
+model TicketTier {
+  id         String   @id @default(cuid())
+  eventId    String
+  event      Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  name       String
+  priceMinor Int      @default(0) // 0 = free; otherwise minor units of event.currency
+  capacity   Int?
+  order      Int      @default(0)
+  tickets    Ticket[]
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  eventId         String
+  event           Event    @relation(fields: [eventId], references: [id])
+  userId          String?
+  user            User?    @relation(fields: [userId], references: [id])
+  email           String
+  name            String
+  company         String?
+  role            String?
+  onGuestList     Boolean  @default(true)
+  amountMinor     Int      @default(0)
+  currency        Currency
+  stripeSessionId String?  @unique
+  paid            Boolean  @default(false)
+  tickets         Ticket[]
+  createdAt       DateTime @default(now())
+}
+
+model Ticket {
+  id          String     @id @default(cuid())
+  code        String     @unique
+  orderId     String
+  order       Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  eventId     String
+  event       Event      @relation(fields: [eventId], references: [id])
+  tierId      String
+  tier        TicketTier @relation(fields: [tierId], references: [id])
+  checkedInAt DateTime?
+  createdAt   DateTime   @default(now())
+}
