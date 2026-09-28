@@ -51,17 +51,17 @@ Four home-page directions to choose from, each a standalone page at the repo roo
 
 | File | Reference | Character |
 |---|---|---|
-| `design-a-norrsken.html` | norrsken.org | Black, giant Helvetica-style type, photos, outlined cells (the current site) |
-| `design-b-partiful.html` | partiful.com | White, pastel blobs, heavy black type, rounded pills, tilted cards |
-| `design-c-buildspace.html` | buildspace.so | Near-black with grain, Manrope extra-bold in lowercase, narrow column, lots of space |
-| `design-d-founders.html` | f.inc | White, Instrument Serif headlines, blue tag, gray pills, polaroids, essay column |
-| `design-e-c-plus-a.html` | C + A, dark | Buildspace's lowercase Manrope voice and grain over Norrsken's giant type, photos and outlined cells |
-| `design-f-c-plus-b.html` | C + B, daylight | The same lowercase voice and a faint grain over Partiful's white page, rounded cards, customizer and template fan |
-| `design-g-c-foundation.html` | C foundation + A, dark | C's hero kept as is; A's photo grid, statement, city tiles and outlined cells underneath, with pictures that colorize on hover, a photo strip that pauses under the cursor, city tiles that reveal their next event, and an event-types list that swaps the photo |
-| `design-h-c-foundation-daylight.html` | C foundation + A, daylight | The same page on warm off-white |
+| `explorations/design-a-norrsken.html` | norrsken.org | Black, giant Helvetica-style type, photos, outlined cells (the current site) |
+| `explorations/design-b-partiful.html` | partiful.com | White, pastel blobs, heavy black type, rounded pills, tilted cards |
+| `explorations/design-c-buildspace.html` | buildspace.so | Near-black with grain, Manrope extra-bold in lowercase, narrow column, lots of space |
+| `explorations/design-d-founders.html` | f.inc | White, Instrument Serif headlines, blue tag, gray pills, polaroids, essay column |
+| `explorations/design-e-c-plus-a.html` | C + A, dark | Buildspace's lowercase Manrope voice and grain over Norrsken's giant type, photos and outlined cells |
+| `explorations/design-f-c-plus-b.html` | C + B, daylight | The same lowercase voice and a faint grain over Partiful's white page, rounded cards, customizer and template fan |
+| `explorations/design-g-c-foundation.html` | C foundation + A, dark | C's hero kept as is; A's photo grid, statement, city tiles and outlined cells underneath, with pictures that colorize on hover, a photo strip that pauses under the cursor, city tiles that reveal their next event, and an event-types list that swaps the photo |
+| `explorations/design-h-c-foundation-daylight.html` | C foundation + A, daylight | The same page on warm off-white |
 
 ## Platform preview
 
-Clickable screens of the logged-in product in `platform/` (open `platform/index.html`). Sidebar on desktop, tab bar on phones. Attendee: explore, tickets, ticket with QR, communities, notifications, settings. Host: host home, manage event, door scanner, manage community, create event. These are the spec for the build in `app/`.
+Clickable screens of the logged-in product in `explorations/platform/` (open `explorations/platform/index.html`). Sidebar on desktop, tab bar on phones. Attendee: explore, tickets, ticket with QR, communities, notifications, settings. Host: host home, manage event, door scanner, manage community, create event. These are the spec for the build in `app/`.
 
-Three alternative platform directions, four screens each (explore, tickets, host, manage): `platform-b-console/` (dark, dense, data-first), `platform-c-feed/` (mobile-first feed, rounded cards), `platform-d-split/` (master-detail, serif, editorial).
+Three alternative platform directions, four screens each (explore, tickets, host, manage): `explorations/platform-b-console/` (dark, dense, data-first), `explorations/platform-c-feed/` (mobile-first feed, rounded cards), `explorations/platform-d-split/` (master-detail, serif, editorial).
