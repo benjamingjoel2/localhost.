@@ -32,6 +32,10 @@ Shared styles and behaviour live in `assets/`. Photos are free-licensed from Wik
 
 The working product scaffold lives in [`app/`](app/README.md): Next.js, Prisma + Postgres, magic-link auth, Stripe checkout, QR tickets, door scanner, blasts, communities.
 
+## Deploy
+
+See [`docs/DEPLOY.md`](docs/DEPLOY.md): Neon for Postgres, Vercel for the app (root directory `app`) and a second Vercel project for the static site.
+
 ## Docs
 
 - [`CONCEPT.md`](CONCEPT.md): brand, positioning, product, business model, go-to-market, MVP scope
