@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Localhost · Design D</title>
+<meta name="description" content="Localhost: where the tech scene meets. Meetups, hackathons, demo days and the communities behind them.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23fff'/%3E%3Ctext x='10' y='46' font-family='Georgia,serif' font-size='42' fill='%23000'%3E%3E_%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../fonts/instrument/instrument.css">
+<style>
+:root{--bg:#fff;--fg:#000;--gray:#6b6b6b;--gray2:#9a9a9a;--tile:#f0f0f0;--pill:#f1f1f1;--blue:#1900ff;--line:#e6e6e6;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;--sans:"Instrument Sans",Inter,ui-sans-serif,system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+p{margin:0}
+h1,h2,h3{margin:0;font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1}
+h1{font-size:clamp(2.8rem,6.6vw,4.6rem)}
+h2{font-size:clamp(2.2rem,4.6vw,3.6rem);text-align:center}
+h3{font-family:var(--sans);font-weight:500;font-size:16px;letter-spacing:0}
+.wrap{width:min(1120px,100% - 48px);margin-inline:auto}
+@media (max-width:600px){.wrap{width:calc(100% - 32px)}}
+.center{text-align:center}
+.gray{color:var(--gray)}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:100px;padding:12px 22px;background:var(--pill);color:#000;font-weight:500;font-size:15px;border:1px solid #e3e3e3;transition:background .2s}
+.pill:hover{background:#e6e6e6}
+.pill.dark{background:#2b2b2b;color:#fff;border-color:transparent}
+.pill.dark:hover{background:#000}
+.tag{display:inline-block;background:var(--blue);color:#fff;font-weight:600;font-size:14px;padding:2px 8px}
+.cat{display:inline-block;padding:1px 5px;font-size:13px;font-weight:500;margin-left:6px}
+.cat.ai{background:#fde3e3}.cat.dev{background:#fbe4f4}.cat.fin{background:#e3ecfb}.cat.hw{background:#e3eefb}.cat.fnd{background:#fdf3d8}.cat.des{background:#e4f6e4}
+section{padding:clamp(56px,8vw,110px) 0}
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* nav */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-size:15px;font-weight:500}
+.nav .links{display:flex;gap:22px;align-items:center}
+.nav .links a:hover{text-decoration:underline;text-underline-offset:4px}
+@media (max-width:800px){.nav .links a:not(.pill){display:none}}
+.logo{font-family:var(--serif);font-size:1.35rem;letter-spacing:-.02em}
+
+/* hero */
+.hero{text-align:center;padding:clamp(56px,9vw,120px) 0 40px}
+.hero p.lead{max-width:44ch;margin:20px auto 30px;font-size:17px}
+.polaroids{position:relative;height:460px;max-width:1000px;margin:40px auto 0}
+@media (max-width:800px){.polaroids{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 8px}}
+@media (max-width:500px){.polaroids{grid-template-columns:1fr}}
+.pol{position:absolute;top:0;width:290px;background:#fbf9f4;padding:12px 12px 44px;box-shadow:0 14px 34px rgba(0,0,0,.14),0 2px 6px rgba(0,0,0,.08);transform:rotate(var(--r));transition:transform .35s}
+.pol:hover{transform:rotate(0) translateY(-6px);z-index:3}
+.pol img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:contrast(1.05) saturate(.9) sepia(.12)}
+.pol span{position:absolute;left:12px;right:12px;bottom:14px;font-family:var(--serif);font-size:17px;text-align:center;color:#333}
+.pol::before{content:"";position:absolute;top:-12px;left:50%;width:90px;height:26px;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.06);transform:translateX(-50%) rotate(-3deg);backdrop-filter:blur(1px)}
+.pol.a{left:2%;--r:-5deg}.pol.b{left:50%;margin-left:-145px;--r:2deg;top:10px}.pol.c{right:2%;--r:5deg}
+@media (max-width:800px){.pol{position:static;width:auto;margin:0;--r:0deg}.pol.b{margin-left:0}}
+
+/* video-ish panel */
+.panel{background:var(--tile);aspect-ratio:16/8;display:grid;place-items:center;position:relative;overflow:hidden}
+.panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+.panel .play{position:relative;width:64px;height:44px;border-radius:12px;background:#2b2b2b;display:grid;place-items:center}
+.panel .play::after{content:"";border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px}
+
+/* essay */
+.essay{max-width:480px;margin:0 auto;font-size:17px;line-height:1.6;display:grid;gap:18px}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+@media (max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+.card{display:block}
+.card .tile{background:var(--tile);aspect-ratio:1.36;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px}
+.card .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .tile .live{position:absolute;top:14px;left:16px;font-size:14px;font-weight:500;display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.85);padding:3px 8px;border-radius:100px}
+.card .tile .live::before{content:"";width:9px;height:9px;border-radius:50%;background:#ff3b30}
+.card .tile .big{position:relative;font-family:var(--serif);font-size:2rem;line-height:1;letter-spacing:-.02em}
+.card .row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.card .desc{color:var(--gray2);font-size:15px;margin-top:4px}
+.card:hover h3{text-decoration:underline;text-underline-offset:4px}
+
+/* cities strip */
+.cities{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:36px}
+@media (max-width:900px){.cities{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.cities{grid-template-columns:1fr 1fr}}
+.city{background:var(--tile);padding:18px;display:flex;flex-direction:column;gap:26px;min-height:150px}
+.city b{font-family:var(--serif);font-weight:400;font-size:1.5rem;letter-spacing:-.02em}
+.city span{font-size:14px;color:var(--gray)}
+
+/* cta + footer */
+.cta{text-align:center;border-top:1px dashed #cfcfcf}
+.cta p{max-width:46ch;margin:16px auto 28px;font-size:17px}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+footer{border-top:1px dashed #cfcfcf;padding:56px 0 40px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+@media (max-width:800px){.foot{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.foot{grid-template-columns:1fr}}
+.foot>*{min-width:0}
+@media (max-width:500px){.pol img{aspect-ratio:4/3}}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px;font-size:15px}
+footer a:hover{text-decoration:underline;text-underline-offset:4px}
+.sub{display:flex;gap:8px;margin-top:18px;max-width:340px;flex-wrap:wrap}
+.sub input{flex:1 1 120px;width:100%;border:0;background:var(--pill);border-radius:100px;padding:12px 16px;font:inherit;font-size:15px;min-width:0}
+.made{margin-top:40px;font-size:14px;text-align:right;color:var(--gray)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a class="logo" href="#">&gt;localhost</a>
+    <div class="links"><a href="#events">Events</a><a href="#cities">Cities</a><a href="#hosts">For hosts</a><a href="#">Pricing</a><a href="#">Log in</a><a class="pill" href="#hosts">Create event</a></div>
+  </nav>
+</div>
+
+<main>
+<section class="hero wrap">
+  <span class="tag">Demo Night #12 · Berlin · starts October 9 →</span>
+  <h1 style="margin-top:14px">The place where<br>the tech scene meets</h1>
+  <p class="lead gray">Localhost is the event platform built only for tech. Meetups, hackathons, demo days and the communities behind them, in fifteen cities. Free for free events.</p>
+  <div class="btns"><a class="pill" href="#hosts">Create an event</a><a class="pill" href="#events">See what's on</a></div>
+  <div class="polaroids">
+    <div class="pol a"><img src="../img/hack.jpg" alt="Hackathon participants"><span>Hack night, 2am</span></div>
+    <div class="pol b"><img src="../img/hero.jpg" alt="Conference hall"><span>Doors, 18:30</span></div>
+    <div class="pol c"><img src="../img/berlin.jpg" alt="Berlin"><span>Berlin, Kreuzberg</span></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2 class="reveal">What is<br>Localhost?</h2>
+  <div class="panel reveal" style="margin:40px 0 56px"><img src="../img/sf.jpg" alt=""><span class="play" aria-hidden="true"></span></div>
+  <div class="essay reveal">
+    <p>This is the tool we wanted at 2am the night before our own meetup. A page that knows what a speaker is. A ticket that carries the company name so people can expense it. A door that scans from any phone.</p>
+    <p>That's what we built at Localhost.</p>
+    <p>Every event gets a link under its city. Every community gets a home with followers who hear first. Every attendee can see who else is in the room before they decide, and gets the recording if they can't make it.</p>
+    <p>AI, dev tools, hardware, fintech, design. It doesn't matter what you're building. What matters is that you show up.</p>
+    <p>Free if it's free. One flat fee if it isn't. See you at the door.</p>
+  </div>
+</section>
+
+<section class="wrap" id="events">
+  <h2 class="reveal">This week, in the room.</h2>
+  <div class="grid">
+    <a class="card reveal" href="#"><div class="tile"><img src="../img/hack.jpg" alt=""><span class="live">Selling</span></div><div class="row"><h3>Agents Hack Night</h3><span><span class="cat ai">AI/ML</span><span class="cat dev">DevTools</span></span></div><p class="desc">Berlin · Sat 11 Oct · Berlin Builders · €12</p></a>
+    <a class="card reveal" href="#"><div class="tile"><span class="big">London<br>Rust Meetup</span></div><div class="row"><h3>London Rust Meetup</h3><span><span class="cat dev">DevTools</span></span></div><p class="desc">London · Tue 7 Oct · Rust London · Free</p></a>
+    <a class="card reveal" href="#"><div class="tile"><img src="../img/sf.jpg" alt=""><span class="live">Selling</span></div><div class="row"><h3>SF Demo Night</h3><span><span class="cat hw">Hardware</span><span class="cat fnd">Founders</span></span></div><p class="desc">San Francisco · Thu 9 Oct · SF Demo Night · $15</p></a>
+    <a class="card reveal" href="#"><div class="tile"><span class="big">AI Infra<br>Summit</span></div><div class="row"><h3>AI Infra Summit</h3><span><span class="cat ai">AI/ML</span></span></div><p class="desc">New York · Oct 21–22 · AI Infra Collective · $290</p></a>
+    <a class="card reveal" href="#"><div class="tile"><img src="../img/kigali.jpg" alt=""></div><div class="row"><h3>Kigali Devs Build Night #23</h3><span><span class="cat fin">Fintech</span><span class="cat dev">DevTools</span></span></div><p class="desc">Kigali · Sat 11 Oct · Kigali Devs · Free</p></a>
+    <a class="card reveal" href="#"><div class="tile"><img src="../img/capetown.jpg" alt=""></div><div class="row"><h3>Fintech &amp; Payments Summit</h3><span><span class="cat fin">Fintech</span></span></div><p class="desc">Cape Town · Fri 17 Oct · Cape Town Fintech · $120</p></a>
+  </div>
+  <div class="btns reveal" style="margin-top:36px"><a class="pill" href="#">View all events</a><a class="pill" href="#cities">See the cities</a></div>
+</section>
+
+<section class="wrap" id="cities">
+  <h2 class="reveal">Fifteen cities.<br>One kind of event.</h2>
+  <div class="cities">
+    <div class="city reveal"><b>San Francisco</b><span>184 events this month</span></div>
+    <div class="city reveal"><b>New York</b><span>151 events this month</span></div>
+    <div class="city reveal"><b>London</b><span>139 events this month</span></div>
+    <div class="city reveal"><b>Berlin</b><span>97 events this month</span></div>
+    <div class="city reveal"><b>Kigali</b><span>23 events this month</span></div>
+  </div>
+  <p class="center gray reveal" style="margin-top:22px;font-size:15px">Also Amsterdam, Paris, Lisbon, Austin, Toronto, Lagos, Nairobi, Cape Town, Bangalore and Singapore. A city opens when a community claims it.</p>
+</section>
+
+<section class="cta wrap" id="hosts">
+  <h2 class="reveal">Want to host with us?</h2>
+  <p class="gray reveal">Tell us what you're running and get a community page, an event link under your city, tickets in USD, EUR or GBP, and a door that scans from any phone. Free events are free, forever.</p>
+  <div class="btns reveal"><a class="pill dark" href="#">Create an event</a><a class="pill" href="#">Claim a community</a></div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><a class="logo" href="#" style="font-size:2rem">&gt;localhost</a><p class="gray" style="margin-top:10px;max-width:24ch">Where the tech scene meets.</p><form class="sub" onsubmit="event.preventDefault()"><input type="email" placeholder="hello@example.com" aria-label="Email"><button class="pill dark" type="submit">Get updates</button></form></div>
+      <ul><li><a href="#">Events</a></li><li><a href="#">Cities</a></li><li><a href="#">Communities</a></li><li><a href="#">Pricing</a></li><li><a href="#">API</a></li></ul>
+      <ul><li><a href="#">About</a></li><li><a href="#">Team</a></li><li><a href="#">Contact</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms</a></li></ul>
+      <ul><li><a href="#">X</a></li><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li><li><a href="#">LinkedIn</a></li></ul>
+    </div>
+    <p class="made">Design D (Founders, Inc. reference) · sample data · photos via Wikimedia Commons: Leonhard Lenz (CC0), Gaelle Berton (CC BY-SA 3.0), Dietmar Rabich (CC BY-SA 4.0), E bailey (CC BY-SA 4.0), Adrien K (CC BY 2.0), Daniel Case (CC BY-SA 3.0).</p>
+  </div>
+</footer>
+<script>
+(() => { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .1 }); document.querySelectorAll('.reveal').forEach(el => io.observe(el)); })();
+</script>
+</body>
+</html>
