@@ -11,9 +11,10 @@
     "db:seed": "tsx prisma/seed.ts",
     "db:studio": "prisma studio",
     "postinstall": "prisma generate",
-    "import:luma": "tsx scripts/import-luma.ts"
+    "import:sources": "tsx scripts/import-sources.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.129.0",
     "@auth/prisma-adapter": "^2.11.3",
     "@modelcontextprotocol/server": "^2.2.0",
     "@prisma/client": "^6.19.3",

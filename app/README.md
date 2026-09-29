@@ -46,15 +46,32 @@ Platform fee 3.5% + 0.30 per paid ticket, included in the displayed price (`plat
 
 Stripe Connect for host payouts · CFP and sponsor slots · WhatsApp/SMS blasts · iCal feeds · a public API · the marketing site's design on the app shell.
 
-## luma import (city-wide index)
+## the city index (luma, meetup, eventbrite)
 
-`src/lib/sources/luma.ts` mirrors the public Luma "discover" feed for SF, NYC, London and Berlin into the same `Event` table
-(`source = LUMA`). Each Luma calendar becomes a `Community` (`source = LUMA`) so "hosted by" and follow work the same way.
-Mirrored events link out to Luma for registration; nothing is sold here for them.
+`src/lib/sources/` mirrors public listings into the same `Event` table with `source = LUMA | MEETUP | EVENTBRITE`. Each upstream
+host or calendar becomes a `Community` with the same `source`, so "hosted by", follow and the digest work unchanged. Mirrored
+events show an "on luma / meetup / eventbrite" badge and link out for registration; nothing is sold here for them.
 
-- tech filter: `isTech()` in the same file. One strong signal in the title or host (ai, founders, hackathon, saas, …) keeps an
-  event; a small deny list (yoga, book club, festival, …) drops it; a blurb alone needs several signals. Tune the lists there.
-- runs: on every Vercel build (`npm run import:luma`, never fails the build) and daily at 05:00 UTC via the cron in `vercel.json`,
-  which calls `GET /api/import/luma`. Set `CRON_SECRET` in Vercel to lock that route; Vercel sends it automatically.
+- `common.ts`: the tech filter (`isTech`: one strong signal in title or host keeps an event, a short deny list drops it, a blurb
+  alone needs several signals), `classify` (title → event type), and the shared upsert / unpublish logic.
+- `luma.ts`: Luma's discover feed per city. `meetup.ts`: Meetup's public GraphQL (`recommendedEvents`, topic 546 = technology,
+  25 km radius). `eventbrite.ts`: the science-and-tech city listing pages (results are embedded as JSON).
+- runs on every Vercel build (`npm run import:sources`, never fails the build) and daily at 05:00 UTC via the cron in
+  `vercel.json` calling `GET /api/import` (`?only=luma,meetup` to limit). Set `CRON_SECRET` in Vercel to lock the route.
 - events that disappear upstream before they happen are unpublished, not deleted.
-- `npm run import:luma` locally to refresh.
+- locally: `npm run import:sources [luma|meetup|eventbrite]`. In a proxied container set `NODE_USE_ENV_PROXY=1`.
+
+## interests and the monday digest
+
+Users write what they care about in plain english under settings → "what to watch for" (`User.interests`) and opt in to the
+monday email (`User.digest`). `src/lib/digest.ts` scores the coming week's events in their city against that text
+(keyword hits, exclusions like "skip crypto", weeknight/weekend hints, followed communities) and emails the top eight.
+With `ANTHROPIC_API_KEY` set, Claude re-ranks the shortlist and adds a one-line reason per pick.
+
+- cron: mondays 07:00 UTC → `GET /api/digest` (locked by `CRON_SECRET`).
+- `GET /api/digest?preview=<email>` renders one user's digest as html; `?dry=1` lists who would receive one without sending.
+
+## mcp server
+
+`GET|POST /api/mcp` is a streamable-http MCP server (`mcp-handler`) with `search_events`, `get_event`, `list_cities`,
+`list_communities` and a `whats_on` prompt. `/mcp` is the public how-to-connect page. Read-only, no auth.

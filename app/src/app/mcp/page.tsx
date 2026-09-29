@@ -10,7 +10,7 @@ export default async function McpPage() {
     <Shell current="/" user={user}><main>
       <span className="small">localhost/mcp</span>
       <h1>ask your ai what&apos;s on</h1>
-      <p className="dim keep" style={{ maxWidth: "60ch" }}>localhost is an mcp server. plug it into claude, cursor or any mcp client and ask &quot;what tech events are on in sf this week?&quot; it searches every event we index, including the ones hosted on luma.</p>
+      <p className="dim keep" style={{ maxWidth: "60ch" }}>localhost is an mcp server. plug it into claude, cursor or any mcp client and ask &quot;what tech events are on in sf this week?&quot; it searches every event we index: hosted here, and mirrored from luma, meetup and eventbrite.</p>
       <section className="sec"><h2>the url</h2><pre style={pre}>{url}</pre><p className="note">no key needed. read-only. streamable http.</p></section>
       <section className="sec"><h2>claude (web, desktop, mobile)</h2><p className="dim" style={{ marginTop: 6 }}>settings → connectors → add custom connector → paste the url. name it &quot;localhost&quot;.</p></section>
       <section className="sec"><h2>claude code</h2><pre style={pre}>{`claude mcp add --transport http localhost ${url}`}</pre></section>
