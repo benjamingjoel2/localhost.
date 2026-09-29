@@ -1,6 +1,6 @@
 // Plain query functions behind the MCP tools. Kept separate from the transport so they can be unit-tested and reused.
 import { prisma } from "@/lib/db";
-import { CITIES, cityName, money, baseUrl } from "@/lib/util";
+import { CITIES, cityName, money, baseUrl, sourceLabel } from "@/lib/util";
 import type { EventType, Prisma } from "@prisma/client";
 
 export const TYPE_NAMES: Record<string, EventType> = {
@@ -54,9 +54,9 @@ export function shape(e: Row) {
     price_minor: price ?? null,
     currency: e.currency,
     going: e.going ?? e._count.tickets,
-    source: e.source === "LUMA" ? "luma" : "localhost",
+    source: sourceLabel(e.source),
     url: `${baseUrl()}/${e.city}/${e.slug}`,
-    register_url: e.source === "LUMA" ? e.externalUrl : `${baseUrl()}/${e.city}/${e.slug}`,
+    register_url: e.source !== "LOCALHOST" ? e.externalUrl : `${baseUrl()}/${e.city}/${e.slug}`,
     description: e.description ? e.description.slice(0, 600) : null,
   };
 }
@@ -102,5 +102,5 @@ export async function listCommunities(a: { city?: string; query?: string; limit?
     include: { _count: { select: { followers: true, events: true } }, events: { where: { published: true, startsAt: { gte: new Date() } }, orderBy: { startsAt: "asc" }, take: 1, select: { title: true, startsAt: true } } },
     orderBy: { events: { _count: "desc" } }, take: Math.min(Math.max(a.limit ?? 25, 1), 100),
   });
-  return { count: rows.length, communities: rows.map((c) => ({ name: c.name, slug: c.slug, city: cityName(c.city), source: c.source === "LUMA" ? "luma" : "localhost", followers: c._count.followers, upcoming_events: c._count.events, next_event: c.events[0] ? { title: c.events[0].title, starts_at: c.events[0].startsAt.toISOString() } : null, url: `${baseUrl()}/c/${c.slug}`, external_url: c.externalUrl })) };
+  return { count: rows.length, communities: rows.map((c) => ({ name: c.name, slug: c.slug, city: cityName(c.city), source: sourceLabel(c.source), followers: c._count.followers, upcoming_events: c._count.events, next_event: c.events[0] ? { title: c.events[0].title, starts_at: c.events[0].startsAt.toISOString() } : null, url: `${baseUrl()}/c/${c.slug}`, external_url: c.externalUrl })) };
 }

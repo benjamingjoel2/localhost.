@@ -15,7 +15,7 @@ const handler = createMcpHandler(
       "search_events",
       {
         title: "Search tech events",
-        description: "Find upcoming tech events (meetups, hackathons, demo days, conferences, workshops, founder dinners) in a city. Covers events hosted on Localhost and events mirrored from Luma. Returns title, time, venue, host, price, headcount and a link to register. Use `when` for natural windows like today, tomorrow, this week, weekend, next week, or an ISO date.",
+        description: "Find upcoming tech events (meetups, hackathons, demo days, conferences, workshops, founder dinners) in a city. Covers events hosted on Localhost and events mirrored from Luma, Meetup and Eventbrite. Returns title, time, venue, host, price, headcount and a link to register. Use `when` for natural windows like today, tomorrow, this week, weekend, next week, or an ISO date.",
         inputSchema: z.object({
           city: z.string().optional().describe(cityHint),
           query: z.string().optional().describe("free-text keywords matched against title, description, host and venue, e.g. 'rust', 'ai agents', 'founders'"),
