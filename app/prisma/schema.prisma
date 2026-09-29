@@ -16,6 +16,8 @@ enum Currency {
 enum Source {
   LOCALHOST
   LUMA
+  MEETUP
+  EVENTBRITE
 }
 enum EventType {
   MEETUP
@@ -40,6 +42,9 @@ model User {
   city          String?   @default("berlin")
   onGuestList   Boolean   @default(true)
   badge         String?
+  interests     String?
+  digest        Boolean   @default(true)
+  digestSentAt  DateTime?
   accounts      Account[]
   sessions      Session[]
   communities   Community[]       @relation("owner")
