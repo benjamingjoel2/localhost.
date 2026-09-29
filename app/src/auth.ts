@@ -1,12 +1,17 @@
 import NextAuth from "next-auth";
 import Resend from "next-auth/providers/resend";
+import GitHub from "next-auth/providers/github";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/db";
+
+export const githubEnabled = () => Boolean(process.env.AUTH_GITHUB_ID && process.env.AUTH_GITHUB_SECRET);
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   trustHost: true,
   providers: [
+    // GitHub sign-in switches on when AUTH_GITHUB_ID and AUTH_GITHUB_SECRET are set. Same email as an earlier magic-link login links to that account.
+    ...(githubEnabled() ? [GitHub({ allowDangerousEmailAccountLinking: true })] : []),
     Resend({
       apiKey: process.env.RESEND_API_KEY || "re_dev_placeholder",
       from: process.env.EMAIL_FROM ?? "Localhost <onboarding@resend.dev>",
