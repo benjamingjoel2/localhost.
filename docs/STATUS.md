@@ -1,5 +1,31 @@
 # Localhost — status narrative
 
+## Update, 29 September 2026: live, with a city index
+
+Everything below the line is the 27 September snapshot. Since then:
+
+**Live.** Website at https://localhost-pearl.vercel.app, app at https://localhost-app-seven.vercel.app, Postgres on Neon, GitHub
+sign-in working (magic-link email works too once a Resend key and domain exist). Both deploy from `main`. The website's "log in"
+and "create event" buttons open the app.
+
+**The city index.** The app mirrors public tech listings from Luma, Meetup and Eventbrite for San Francisco, New York, London and
+Berlin (about 450 upcoming events on 29 September), on every deploy and daily at 05:00 UTC. A scored tech filter keeps meetups,
+hackathons, demo days, founder dinners and drops yoga, book clubs and festivals. Mirrored events carry an "on luma / meetup /
+eventbrite" badge and link out to register; each upstream host is a followable community with a "claim it" line.
+
+**Interests and the Monday email.** Users write what they care about in plain english under settings. Every Monday 07:00 UTC
+they get the week's eight best matches in their city. Followed communities rank higher. With an `ANTHROPIC_API_KEY` in Vercel,
+Claude re-ranks and adds a one-line reason per pick.
+
+**MCP server.** `https://localhost-app-seven.vercel.app/api/mcp` answers "what's on in sf this week" from inside Claude, Claude
+Code or Cursor. Tools: search_events, get_event, list_cities, list_communities. Connect instructions at `/mcp`.
+
+**Still open.** A domain (unlocks real email for everyone and a proper address). Stripe keys for paid tickets. Resend key.
+`CRON_SECRET` is set. Edit and cancel for hosted events, Stripe Connect payouts, CFP and sponsor slots, WhatsApp blasts are
+unchanged from the 27 September list. The YC draft in `docs/YC-APPLICATION.md` should now lead with discovery, not hosting.
+
+---
+
 Written 27 September 2026, end of the prototype phase. Tomorrow the platform build starts.
 
 ## The short version
