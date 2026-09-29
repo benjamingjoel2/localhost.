@@ -23,7 +23,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ c
       <div className="h"><div><h1>this week in {city === "all" ? "every city" : cityName(city)}</h1><p>{events.length} upcoming · tech only · from localhost, luma, meetup and eventbrite{follows.length ? ` · ${follows.length} communities you follow` : ""}</p></div>
         <div className="chips" style={{ gap: 8 }}>{CITIES.slice(0, 4).map((c) => <Link key={c.slug} className={"pill"} href={q({ city: c.slug })} style={city === c.slug ? { background: "var(--ink)", color: "var(--paper)" } : {}}>{c.name}</Link>)}<Link className="pill" href={q({ city: "all" })}>all cities</Link></div></div>
       <div className="seg" style={{ maxWidth: 720, marginBottom: 18 }}>{TYPES.map(([v, n]) => <Link key={v} href={q({ type: v })} aria-current={(sp.type ?? "all") === v ? "page" : undefined}>{n}</Link>)}</div>
-      {events.length === 0 && <p className="ok">nothing published here yet. <Link href="/create" style={{ textDecoration: "underline" }}>host the first one.</Link></p>}
+      {events.length === 0 && <p className="ok">nothing indexed for that filter yet. we check luma, meetup and eventbrite every morning. <Link href={q({ type: "all", q: undefined })} style={{ textDecoration: "underline" }}>show all types</Link>, <Link href={q({ city: "all" })} style={{ textDecoration: "underline" }}>try every city</Link>, or <Link href="/create" style={{ textDecoration: "underline" }}>host the first one</Link>.</p>}
       <div className="cardgrid">
         {events.map((e) => (
           <Link key={e.id} className="ecard" href={`/${e.city}/${e.slug}`}>

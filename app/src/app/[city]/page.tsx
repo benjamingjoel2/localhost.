@@ -19,7 +19,7 @@ export default async function City({ params }: { params: Promise<{ city: string 
       <h1>{cityName(city)}</h1>
       <section className="sec"><div className="split"><h2>upcoming</h2><Link className="arrow" href="/create">host one here</Link></div>
         <div className="list">
-          {events.length === 0 && <div><span className="dim">no events yet. be the first community to claim {cityName(city)}.</span></div>}
+          {events.length === 0 && <div><span className="dim">nothing indexed for {cityName(city)} yet. we add cities as people ask. <Link href="/create" style={{ textDecoration: "underline" }}>host the first one</Link> and it goes live today.</span></div>}
           {events.map((e) => <Link key={e.id} href={`/${city}/${e.slug}`}><div className="when">{fmtDate(e.startsAt)}</div><div className="what"><b>{e.title}</b><span>{e.venue ?? "venue tba"} / {e.community.name}</span></div><div className="chips"><span className="chip">{e.type.toLowerCase().replace("_", " ")}</span>{e.source !== "LOCALHOST" && <span className="chip src">{sourceLabel(e.source)}</span>}<span className="chip">{priceLabel(e)}</span></div></Link>)}
         </div>
       </section>
