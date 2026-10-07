@@ -4,38 +4,40 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Explore · Localhost</title>
-<meta name="description" content="Explore tech events by city and type.">
-<meta name="theme-color" content="#f5f4f0">
+<meta name="description" content="Explore every event in your city, by scene and type.">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='10' y='46' font-family='Helvetica,Arial,sans-serif' font-size='40' font-weight='700' fill='%23fff'%3E%3E_%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="fonts/manrope/manrope.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="assets/site.css">
-<style></style>
+<style>.banner{background:#ffd6ec;color:#0a0a0a;text-align:center;font-weight:600;font-size:13px;padding:8px 16px}</style>
 </head>
 <body>
+<div class="banner">🗺️ New! Every tech event in SF, NYC, London and Berlin, in one feed. From Luma, Meetup, Eventbrite and here</div>
 <header class="hdr">
-  <a class="logo" href="index.html">&gt;localhost</a>
-  <nav aria-label="Primary"><a href="explore.html">Explore</a><a href="cities.html">Cities</a><a href="community.html">Communities</a><a href="pricing.html">Pricing</a><a href="about.html">About</a></nav>
-  <div class="acts"><a class="btn ghost" href="https://localhost-app-seven.vercel.app/login">Log in</a><a class="btn" href="https://localhost-app-seven.vercel.app/create">Create event</a><button class="btn dark" id="menuBtn" aria-controls="menu" aria-expanded="false" style="border:1px solid #0d0d0d">Menu</button></div>
+  <a class="logo" href="index.html">localhost</a>
+  <nav aria-label="Primary"><a href="explore.html">Explore</a><a href="cities.html">Cities</a><a href="community.html">Communities</a><a href="pricing.html">Sell tickets</a><a href="about.html">About</a></nav>
+  <div class="acts"><a class="btn ghost" href="https://localhost-app-seven.vercel.app/login">Login</a><a class="btn" href="https://localhost-app-seven.vercel.app/create">Create</a><button class="btn dark" id="menuBtn" aria-controls="menu" aria-expanded="false">Menu</button></div>
 </header>
 <div class="menu" id="menu" aria-label="Site menu">
-  <button class="btn dark close" id="menuClose" style="border:1px solid #0d0d0d">Close</button>
+  <button class="btn dark close" id="menuClose">Close</button>
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="explore.html">Explore events</a></li>
     <li><a href="cities.html">Cities</a></li>
     <li><a href="community.html">Communities</a></li>
-    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="pricing.html">Sell tickets</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li><a href="careers.html">Careers</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="https://localhost-app-seven.vercel.app/login">Log in</a></li>
   </ul>
-  <div class="foot"><a class="btn" href="https://localhost-app-seven.vercel.app/create">Create event</a><a class="btn ghost" href="event.html">Sample event</a></div>
+  <div class="foot"><a class="btn" href="https://localhost-app-seven.vercel.app/create">Create event</a><a class="btn ghost" href="https://localhost-app-seven.vercel.app/">See what's on</a></div>
 </div>
 <main>
 
-<div class="page-title page-hero"><div><h1>Explore</h1><p>Every tech event in 15 cities, and nothing else. Filter by city and type. Follow a community to get pinged when they post.</p></div><div class="hero-photo"><img src="img/crowd.jpg" alt="A tech conference audience"></div></div>
+<div class="page-title page-hero"><div><h1>Explore</h1><p>Every event in your city, by scene: tech, music, nightlife, comedy, church. From Luma, Meetup, Eventbrite and the ones sold here. Follow a community to get pinged when they post.</p></div><div class="hero-photo"><img src="img/crowd.jpg" alt="A tech conference audience"></div></div>
 <div class="sec" style="padding-top:28px">
   <div class="two" style="gap:12px;margin-bottom:20px">
     <div class="seg" data-seg id="cityFilter"><button aria-pressed="true" data-v="all">All cities</button><button aria-pressed="false" data-v="sf">SF</button><button aria-pressed="false" data-v="nyc">NYC</button><button aria-pressed="false" data-v="london">London</button><button aria-pressed="false" data-v="berlin">Berlin</button><button aria-pressed="false" data-v="kigali">Kigali</button><button aria-pressed="false" data-v="capetown">Cape Town</button></div>
@@ -43,7 +45,7 @@
   </div>
   <div class="row" style="margin-bottom:12px"><span class="small mute" id="count">12 events · October</span><a class="arrow" href="https://localhost-app-seven.vercel.app/create">Host one</a></div>
   <div class="list" id="evList"><a href="event.html" data-city="london" data-type="meetup"><div class="when">Tue 7 Oct<br><span class="mute">19:00</span></div><div class="what"><b>London Rust Meetup — inference servers in Rust</b><span>London / Rust London</span></div><div class="chips"><span class="chip">Meetup</span><span class="chip">Free</span></div></a><a href="event.html" data-city="berlin" data-type="demo"><div class="when">Thu 9 Oct<br><span class="mute">18:30</span></div><div class="what"><b>Demo Night #12 — AI agents in production</b><span>Berlin / Berlin Builders</span></div><div class="chips"><span class="chip">Demo day</span><span class="chip">Free</span></div></a><a href="event.html" data-city="sf" data-type="demo"><div class="when">Thu 9 Oct<br><span class="mute">18:00</span></div><div class="what"><b>SF Demo Night — hardware edition</b><span>San Francisco / SF Demo Night</span></div><div class="chips"><span class="chip">Demo day</span><span class="chip">$15</span></div></a><a href="event.html" data-city="berlin" data-type="hackathon"><div class="when">Sat 11 Oct<br><span class="mute">10:00</span></div><div class="what"><b>Agents Hack Night — build an agent that ships</b><span>Berlin / Berlin Builders</span></div><div class="chips"><span class="chip">Hackathon</span><span class="chip">€12</span></div></a><a href="event.html" data-city="kigali" data-type="meetup"><div class="when">Sat 11 Oct<br><span class="mute">09:00</span></div><div class="what"><b>Kigali Devs Build Night #23</b><span>Kigali / Kigali Devs</span></div><div class="chips"><span class="chip">Meetup</span><span class="chip">Free</span></div></a><a href="event.html" data-city="berlin" data-type="meetup"><div class="when">Tue 14 Oct<br><span class="mute">19:00</span></div><div class="what"><b>AI Tinkerers Berlin — Show & Tell #14</b><span>Berlin / AI Tinkerers Berlin</span></div><div class="chips"><span class="chip">Meetup</span><span class="chip">€15</span></div></a><a href="event.html" data-city="nyc" data-type="dinner"><div class="when">Wed 15 Oct<br><span class="mute">18:30</span></div><div class="what"><b>Fintech Founders Dinner</b><span>New York / NYC Fintech Circle</span></div><div class="chips"><span class="chip">Founder dinner</span><span class="chip">$40</span></div></a><a href="event.html" data-city="capetown" data-type="conference"><div class="when">Fri 17 Oct<br><span class="mute">09:00</span></div><div class="what"><b>Fintech & Payments Summit</b><span>Cape Town / Cape Town Fintech</span></div><div class="chips"><span class="chip">Conference</span><span class="chip">$120</span></div></a><a href="event.html" data-city="london" data-type="workshop"><div class="when">Sat 18 Oct<br><span class="mute">10:00</span></div><div class="what"><b>Postgres Workshop — queues, vectors, and no Kafka</b><span>London / Rust London</span></div><div class="chips"><span class="chip">Workshop</span><span class="chip">£45</span></div></a><a href="event.html" data-city="nyc" data-type="conference"><div class="when">Tue 21 Oct<br><span class="mute">09:00</span></div><div class="what"><b>AI Infra Summit — two tracks, 40 speakers</b><span>New York / AI Infra Collective</span></div><div class="chips"><span class="chip">Conference</span><span class="chip">$290</span></div></a><a href="event.html" data-city="sf" data-type="launch"><div class="when">Thu 23 Oct<br><span class="mute">18:00</span></div><div class="what"><b>v1.0 Launch Party — Kelvin Labs</b><span>San Francisco / Kelvin Labs</span></div><div class="chips"><span class="chip">Launch party</span><span class="chip">Free</span></div></a><a href="event.html" data-city="capetown" data-type="hackathon"><div class="when">Sat 25 Oct<br><span class="mute">10:00</span></div><div class="what"><b>48h Hack Weekend — climate data</b><span>Cape Town / Cape Town Fintech</span></div><div class="chips"><span class="chip">Hackathon</span><span class="chip">Free</span></div></a></div>
-  <p class="note" id="empty" hidden style="padding:20px;border:1px solid #0d0d0d;border-top:0">Nothing yet for that filter. <a href="https://localhost-app-seven.vercel.app/create" style="text-decoration:underline">Host the first one.</a></p>
+  <p class="note" id="empty" hidden style="padding:20px;border:1px solid #0a0a0a;border-top:0">Nothing yet for that filter. <a href="https://localhost-app-seven.vercel.app/create" style="text-decoration:underline">Host the first one.</a></p>
 </div>
 <div class="sec" style="padding-top:0">
   <div class="head2"><h2>Our</h2><h2>Cities</h2></div>
@@ -66,10 +68,10 @@
     <ul><li>Company</li><li><a href="about.html">About</a></li><li><a href="partners.html">Partners</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li></ul>
   </div>
   <div class="pad fsub">
-    <p>Join 75,000 builders and get this week's tech events in your city</p>
+    <p>Get this week's events in your city, every Monday 📬</p>
     <form data-subscribe><input type="email" placeholder="Enter your e-mail" aria-label="E-mail" required><button class="btn" type="submit">Subscribe</button></form>
     <label><input type="checkbox" required> I agree with the <a href="privacy.html">Privacy Policy</a>.</label>
-    <div class="fbot"><span>Copyright © 2026 <b>Localhost</b> · prototype: events, people and numbers are sample data</span><a href="privacy.html"><b>Privacy Policy</b></a></div>
+    <div class="fbot"><span>© 2026 <b>Localhost</b> · tickets by CrowdBuzz · prototype: events, people and numbers are sample data</span><a href="privacy.html"><b>Privacy Policy</b></a></div>
   </div>
 </footer>
 <script src="assets/site.js"></script>
