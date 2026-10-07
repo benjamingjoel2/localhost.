@@ -3,404 +3,320 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Localhost — tech events, irl</title>
-<meta name="description" content="every tech event in your city, in one feed. luma, meetup, eventbrite and the ones hosted here. tell it what you care about, or ask your ai.">
-<meta name="theme-color" content="#f5f4f0">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0d0d'/%3E%3Ctext x='10' y='46' font-family='Helvetica,Arial,sans-serif' font-size='40' font-weight='800' fill='%23fff'%3E%3E_%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="fonts/manrope/manrope.css">
+<title>Localhost — every event in your city</title>
+<meta name="description" content="Every event in your city, in one feed. Tech, music, nightlife, comedy, church, from Luma, Meetup, Eventbrite and the ones sold here. Tickets by CrowdBuzz: 4.7% a ticket, capped.">
+<meta property="og:title" content="Localhost — every event in your city">
+<meta property="og:description" content="One feed, every scene. From Luma, Meetup, Eventbrite and the events sold here. Tell it what you're into, or ask your AI.">
+<meta property="og:image" content="https://localhost-pearl.vercel.app/img/crowd.jpg">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230a0a0a'/%3E%3Ctext x='13' y='42' font-family='Helvetica,Arial,sans-serif' font-size='26' font-weight='800' fill='%23fff'%3E%3E_%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-:root{--bg:#0d0d0d;--fg:#fff;--dim:rgba(255,255,255,.6);--dim2:rgba(255,255,255,.35);--line:#242424;--sans:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:dark}
+/* home page: partiful language, scoped to this page */
+body{overflow-x:hidden}
+
+/* Partiful's language, Localhost's content: dark gradient hero over a crowd photo, white pill buttons, pastel-blob light sections,
+   emoji headings, an event-page preview card with Going/Maybe/Can't go bubbles, scattered rotated cards. */
+:root{
+  --bg:#ffffff; --fg:#0a0a0a; --mute:#6b6b70; --card:#ffffff; --line:#e9e7ef;
+  --night:#0a0a0a; --blue:#3b5bff; --violet:#9b5cf6; --pink:#ff8bd1; --peach:#ffb48a; --mint:#7ee7d6;
+  --display:"Inter Tight",Inter,system-ui,sans-serif; --body:"Inter",system-ui,sans-serif;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0d12;--fg:#f4f2f8;--mute:#a7a4b2;--card:#17161d;--line:#2a2833;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e0d12;--fg:#f4f2f8;--mute:#a7a4b2;--card:#17161d;--line:#2a2833;color-scheme:dark}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:clip}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;position:relative}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
-p{margin:0}
-img{display:block;max-width:100%}
-h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.03em;line-height:1.05}
-h1{font-size:clamp(2.6rem,6vw,4.4rem)}
-h2{font-size:clamp(1.7rem,3.4vw,2.6rem)}
-h3{font-size:1.15rem;letter-spacing:-.01em}
-.giant{font-size:clamp(2.6rem,6vw,4.4rem);letter-spacing:-.03em;line-height:1.05}
-.dim{color:var(--dim)}
-.kick{font-size:13px;font-weight:700;color:var(--dim2);letter-spacing:.02em}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#000;font-weight:700;font-size:17px;padding:14px 26px;min-height:52px}
-.btn.ghost{background:transparent;color:#fff;border:1px solid #3a3a3a}
-.btn.ghost:hover{border-color:#fff}
-.btn:hover{opacity:.92}
-.chip{display:inline-block;background:#fff;color:#000;font-weight:700;font-size:12.5px;padding:3px 7px;line-height:1.3}
-.chips{display:flex;gap:4px;flex-wrap:wrap}
-.arrow{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;white-space:nowrap}
-.arrow::after{content:"→"}
-.arrow:hover{text-decoration:underline;text-underline-offset:5px}
-.wrap{width:auto;margin:0;padding-inline:clamp(16px,2.6vw,40px)}
-section{padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--line)}
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
-.reveal.in{opacity:1;transform:none}
-.split{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
-.head2{display:flex;justify-content:flex-start;align-items:baseline;gap:.28em;margin-bottom:32px}
-.head2 h2{font-size:clamp(2.6rem,6vw,4.4rem);letter-spacing:-.03em;line-height:1.05}
+img{max-width:100%}
+.wrap{padding-inline:var(--gutter);padding-block:0;max-width:1320px;margin-inline:auto}
+.pbtn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid transparent;white-space:nowrap;cursor:pointer;font-family:var(--body)}
+.pbtn.white{background:#fff;color:#0a0a0a}
+.pbtn.dark{background:#0a0a0a;color:#fff}
+.pbtn.glass{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.18);backdrop-filter:blur(8px)}
+.pbtn.soft{background:#f1f0f5;color:#0a0a0a}
+.pbtn.soft[aria-pressed="true"]{background:#0a0a0a;color:#fff}
+@media(prefers-reduced-motion:no-preference){.pbtn{transition:transform .15s ease}.pbtn:hover{transform:translateY(-1px)}}
+/* banner */
+.banner{background:#ffd6ec;color:#0a0a0a;text-align:center;font-weight:600;font-size:13px;padding:8px 16px}
+/* dark hero */
+.hero{position:relative;background:var(--night);color:#fff;isolation:isolate;overflow:hidden}
+.hero .bgimg{position:absolute;inset:0;z-index:-2}
+.hero .bgimg img{width:100%;height:100%;object-fit:cover;object-position:70% 30%;display:block}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#1b2fd6 0%,#6a3df0 22%,rgba(150,70,220,.75) 45%,rgba(255,110,190,.25) 70%,rgba(10,10,10,0) 100%)}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;z-index:-1;background:linear-gradient(180deg,rgba(10,10,10,0),rgba(10,10,10,.45))}
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em}
+.logo i{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#fff;color:#0a0a0a;font-style:normal;font-size:13px;font-weight:800}
+nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;font-weight:600;font-size:15px}
+nav ul li:nth-child(n+3){display:none}@media(min-width:960px){nav ul li:nth-child(n+3){display:block}}
+nav ul li:first-child{color:var(--peach)}
+.hero .in{display:grid;grid-template-columns:1fr 1fr;min-height:560px;align-items:center;padding-block:40px 56px}
+@media(max-width:860px){.hero .in{grid-template-columns:1fr;min-height:0;padding-bottom:230px}}
+.rating{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600}
+.rating b{color:#ffd166;letter-spacing:.08em}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(56px,8.4vw,120px);line-height:.92;letter-spacing:-.045em;margin:16px 0 14px;text-wrap:balance}
+.hero p{font-size:clamp(17px,1.5vw,21px);font-weight:500;max-width:34ch;margin:0 0 22px;color:rgba(255,255,255,.92)}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+.notif{position:absolute;right:clamp(12px,4vw,56px);bottom:40px;background:rgba(255,255,255,.92);color:#0a0a0a;border-radius:16px;padding:12px 14px;display:flex;gap:12px;align-items:center;box-shadow:0 20px 60px rgba(0,0,0,.35);transform:rotate(-4deg);max-width:min(360px,calc(100% - 32px))}
+@media(max-width:860px){.notif{right:16px;bottom:24px}}
+.notif img{width:56px;height:56px;border-radius:10px;object-fit:cover}
+.notif b{display:block;font-size:14px}
+.notif span{display:block;font-size:12px;color:#6b6b70}
+.notif .open{margin-left:auto;background:#3b5bff;color:#fff;font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px}
+/* light gradient sections */
+.soft{position:relative;overflow:hidden;background:var(--bg)}
+.soft::before{content:"";position:absolute;inset:-20% -10%;z-index:0;background:
+  radial-gradient(40% 50% at 15% 20%,rgba(59,91,255,.22),transparent 60%),
+  radial-gradient(35% 45% at 85% 25%,rgba(255,139,209,.28),transparent 60%),
+  radial-gradient(45% 50% at 60% 90%,rgba(126,231,214,.26),transparent 60%),
+  radial-gradient(30% 40% at 30% 80%,rgba(155,92,246,.2),transparent 60%);filter:blur(10px)}
+.soft>*{position:relative;z-index:1}
+section{padding-block:72px}
+.center{text-align:center}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,4vw,48px);letter-spacing:-.035em;line-height:1.05;margin:0;text-wrap:balance}
+.sub{color:var(--mute);font-size:clamp(16px,1.3vw,19px);margin:10px auto 0;max-width:52ch;font-weight:500}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:26px 0 28px}
+/* event page preview card */
+.preview{background:linear-gradient(135deg,#dfe6ff 0%,#f6dcff 35%,#ffe3f0 60%,#dff7f4 100%);border-radius:28px;padding:clamp(20px,3vw,40px);display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;max-width:980px;margin-inline:auto;color:#0a0a0a;box-shadow:0 30px 80px rgba(80,60,160,.18)}
+@media(max-width:860px){.preview{grid-template-columns:1fr}}
+.preview h3{font-family:var(--display);font-weight:800;font-size:clamp(30px,3.6vw,46px);letter-spacing:-.04em;line-height:1;margin:0 0 10px}
+.preview .when{font-weight:700;font-size:18px}.preview .when small{display:block;font-weight:500;color:#5b5b63;font-size:14px}
+.preview .meta{display:flex;flex-direction:column;gap:8px;margin:14px 0;font-size:14px;font-weight:600}
+.preview .meta span i{font-style:normal;margin-right:6px}
+.preview .desc{font-size:14px;color:#3a3a42;margin:0 0 14px}
+.guests b{display:block;font-size:14px}.guests small{display:block;color:#5b5b63;font-size:12px;margin-bottom:8px}
+.avs{display:flex}.avs i{width:36px;height:36px;border-radius:50%;border:2px solid #fff;margin-left:-10px;display:grid;place-items:center;font-size:11px;font-weight:800;font-style:normal;color:#fff;background:#3b5bff}
+.avs i:first-child{margin-left:0}.avs i:nth-child(2){background:#9b5cf6}.avs i:nth-child(3){background:#ff6fb5}.avs i:nth-child(4){background:#ffa54a}.avs i:nth-child(5){background:#2fc4a8}.avs i.more{background:#fff;color:#0a0a0a;border-color:#e3e1ea}
+.poster{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.poster img{width:100%;height:100%;object-fit:cover;display:block}
+.poster .price{position:absolute;top:12px;left:12px;background:#0a0a0a;color:#fff;font-weight:700;font-size:13px;padding:6px 10px;border-radius:999px}
+.poster .src{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.9);color:#0a0a0a;font-weight:700;font-size:12px;padding:6px 10px;border-radius:999px}
+.rsvp{display:flex;gap:12px;justify-content:center;margin-top:16px}
+.rsvp button{flex:1;max-width:120px;aspect-ratio:1;border-radius:50%;border:0;background:rgba(255,255,255,.75);box-shadow:0 10px 30px rgba(80,60,160,.15);font:inherit;font-weight:700;font-size:13px;display:grid;place-items:center;gap:2px;cursor:pointer;color:#0a0a0a}
+.rsvp button span{font-size:28px;line-height:1}
+.rsvp button[aria-pressed="true"]{background:#0a0a0a;color:#fff}
+/* quotes */
+.quotes{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:26px}
+.quotes .track{display:flex;gap:56px;width:max-content;animation:q 36s linear infinite;padding-inline:28px}
+@keyframes q{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.quotes .track{animation:none}}
+.quotes div{text-align:center;white-space:nowrap}
+.quotes div b{display:block;font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-.01em}
+.quotes div span{color:var(--mute);font-size:16px}
+/* scatter */
+.scatter{display:grid;grid-template-columns:1fr 1.3fr;gap:24px;align-items:center}
+@media(max-width:860px){.scatter{grid-template-columns:1fr}}
+.pile{position:relative;height:420px;min-width:0}
+@media(max-width:860px){.pile{height:320px}}
+.pile a{position:absolute;width:150px;aspect-ratio:3/4;border-radius:12px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.25);background:var(--card)}
+@media(max-width:860px){.pile a{width:110px}}
+.pile a img{width:100%;height:100%;object-fit:cover;display:block}
+.pile a span{position:absolute;left:0;right:0;bottom:0;padding:8px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-weight:700;font-size:12px;line-height:1.2}
+.pile a:nth-child(1){left:4%;top:18%;transform:rotate(-12deg)}.pile a:nth-child(2){left:22%;top:4%;transform:rotate(6deg)}.pile a:nth-child(3){left:40%;top:26%;transform:rotate(-4deg)}.pile a:nth-child(4){left:58%;top:2%;transform:rotate(10deg)}.pile a:nth-child(5){left:76%;top:20%;transform:rotate(-8deg)}.pile a:nth-child(6){left:32%;top:52%;transform:rotate(14deg)}.pile a:nth-child(7){left:66%;top:50%;transform:rotate(-14deg)}
+@media(prefers-reduced-motion:no-preference){.pile a{transition:transform .3s ease}.pile a:hover{transform:rotate(0) scale(1.06);z-index:2}}
+/* feature rows */
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;padding-block:40px}
+@media(max-width:860px){.feat{grid-template-columns:1fr}}
+.feat.flip>div:first-child{order:2}@media(max-width:860px){.feat.flip>div:first-child{order:0}}
+.feat h2{font-size:clamp(28px,3.4vw,42px)}
+.feat p{color:var(--mute);font-size:17px;max-width:44ch;margin:10px 0 18px;font-weight:500}
+.shot{border-radius:24px;overflow:hidden;background:var(--card);border:1px solid var(--line);box-shadow:0 30px 70px rgba(60,40,120,.15);min-width:0}
+.shot .top{padding:14px 16px;border-bottom:1px solid var(--line);font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.shot .top span{color:var(--mute);font-weight:500;font-size:12px}
+.shot .body{padding:16px}
+.rowx{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.rowx:last-child{border:0}
+.rowx b{font-family:var(--display);font-size:16px;letter-spacing:-.01em}
+.rowx .ok{color:#1aa37a;font-weight:700}
+.bubble{display:inline-block;background:#3b5bff;color:#fff;border-radius:16px 16px 4px 16px;padding:10px 14px;font-size:14px;max-width:85%;margin:6px 0}
+.bubble.in{background:#f1f0f5;color:#0a0a0a;border-radius:16px 16px 16px 4px}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .bubble.in{background:#24222c;color:#f4f2f8}}
+:root[data-theme="dark"] .bubble.in{background:#24222c;color:#f4f2f8}
+.calc input[type=range]{width:100%;accent-color:#3b5bff}
+.cur{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.cur button{font:inherit;font-weight:700;font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.cur button[aria-pressed="true"]{background:#0a0a0a;color:#fff;border-color:#0a0a0a}
+/* feature cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+@media(max-width:860px){.cards{grid-template-columns:1fr}}
+.cardx{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;min-width:0}
+.cardx .emo{font-size:30px;line-height:1}
+.cardx h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.02em;margin:12px 0 6px}
+.cardx p{color:var(--mute);font-size:15px;margin:0 0 12px}
+.cardx a{font-weight:700;font-size:14px;color:#3b5bff}
+.store{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;color:var(--mute);font-weight:600;padding-block:28px}
+.store b{color:#ffd166;letter-spacing:.08em}
+footer{border-top:1px solid var(--line);padding-block:28px 48px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--mute);font-size:13px}
+:focus-visible{outline:3px solid #3b5bff;outline-offset:2px}
 
-/* top */
-.top{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:22px clamp(16px,2.6vw,40px);mix-blend-mode:difference}
-@media (max-width:600px){.top{padding:18px 16px}}
-.logo{font-weight:800;font-size:1.3rem;letter-spacing:-.04em}
-.logo i{font-style:normal;display:inline-block;width:.5em;height:1em;background:#fff;vertical-align:-.15em;margin-left:2px;animation:blink 1.1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-.top nav{display:flex;gap:26px;font-weight:600;font-size:15px;color:#fff}
-.top nav a:hover{text-decoration:underline;text-underline-offset:5px}
-@media (max-width:800px){.top nav{display:none}}
-
-/* hero (design C, unchanged) */
-.hero{min-height:100svh;display:grid;grid-template-columns:500px 1fr;position:relative}
-@media (max-width:900px){.hero{grid-template-columns:1fr;min-height:0}}
-.hero .copy{border-right:1px solid var(--line);padding:40px 40px 56px;display:flex;flex-direction:column;justify-content:flex-end;gap:22px}
-@media (max-width:900px){.hero .copy{border-right:0;border-bottom:1px solid var(--line);padding:120px 24px 40px;order:2}}
-@media (max-width:600px){.hero .copy{padding:110px 16px 40px}}
-.hero .copy p{max-width:36ch}
-.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
-.hero .ph{position:relative;overflow:hidden;background:#111;min-height:420px}
-.hero .ph img{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover;will-change:transform}
-.hero .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(23,22,15,.38) 0%,rgba(23,22,15,.12) 18%,transparent 36%)}
-.hero .ph .tag{position:absolute;right:28px;bottom:24px;z-index:1;font-size:13px;font-weight:600;color:var(--dim)}
-@media (max-width:900px){.hero .ph{min-height:56svh;order:1}.hero .ph::after{background:linear-gradient(0deg,#0d0d0d 0%,transparent 50%)}}
-.ticker{font-size:13px;color:var(--dim2);font-weight:600}
-
-/* this week: A's photo grid, C's voice; pictures colorize on hover */
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
-@media (max-width:1000px){.grid4{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:520px){.grid4{grid-template-columns:1fr}}
-.ev{display:block}
-.ev .ph{aspect-ratio:3/2;background:#161616;overflow:hidden;position:relative}
-.ev .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.01);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.ev:hover .ph img{transform:scale(1.06)}
-.ev .ph .type{position:absolute;left:10px;top:10px}
-.ev .ph .go{position:absolute;right:10px;bottom:10px;background:#fff;color:#000;font-weight:700;font-size:13px;padding:6px 10px;transform:translateY(8px);opacity:0;transition:.3s}
-.ev:hover .ph .go{transform:none;opacity:1}
-.ev .ph.solid{display:flex;align-items:flex-end;padding:14px;font-weight:800;letter-spacing:-.04em;font-size:clamp(1.6rem,2.4vw,2.2rem);line-height:.95;background:#fff;color:#000}
-.ev h3{margin-top:10px;font-size:15px;font-weight:700;line-height:1.25}
-.ev .meta{font-size:12px;margin-top:6px;color:var(--dim)}
-.ev .meta b{color:#fff;margin-right:6px}
-
-/* statement (A) */
-.statement p{font-weight:800;font-size:clamp(1.5rem,2.8vw,2.2rem);letter-spacing:-.03em;line-height:1.2;max-width:34ch}
-.statement p span{color:var(--dim2)}
-
-/* photo strip: auto-scrolls, pauses on hover, colorizes tile under cursor */
-.strip{overflow:hidden;border-block:1px solid var(--line);padding:18px 0}
-.strip .track{display:flex;gap:14px;width:max-content;animation:slide 60s linear infinite}
-.strip:hover .track{animation-play-state:paused}
-@keyframes slide{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.strip .track{animation:none}}
-.strip figure{margin:0;width:300px;flex:none;position:relative}
-.strip img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .6s}
-.strip figure:hover img{transform:scale(1.04)}
-.strip figcaption{position:absolute;left:10px;bottom:10px;font-size:12px;font-weight:700;background:#fff;color:#000;padding:3px 7px}
-
-/* cities (A split heading + photo tiles; tile reveals its next event) */
-.cities{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
-@media (max-width:900px){.cities{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.cities{grid-template-columns:1fr}}
-.cities .lead{font-size:16px;font-weight:500;color:var(--dim);max-width:34ch;line-height:1.4}
-.cities .lead .arrow{display:inline-flex;margin-top:20px;color:#fff}
-.city{position:relative;aspect-ratio:4/3;background:#161616;overflow:hidden;display:block}
-.city img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
-.city:hover img{transform:scale(1.05)}
-.city .tag{position:absolute;left:10px;bottom:10px}
-.city .tag small{display:block;font-size:11px;font-weight:500;opacity:.8}
-.city .next{position:absolute;inset:auto 0 0 0;padding:52px 12px 12px;background:linear-gradient(transparent,rgba(0,0,0,.85));color:#fff;font-size:13px;transform:translateY(100%);transition:transform .35s ease}
-.city .next b{display:block;font-size:14px}
-.city:hover .next{transform:none}
-.city:hover .tag{opacity:0}
-
-/* tools (A outlined cells, invert on hover, with a live bit inside each) */
-.tools{display:grid;grid-template-columns:1fr 2fr;gap:24px;align-items:start}
-@media (max-width:900px){.tools{grid-template-columns:1fr}}
-.tools .lead{font-size:16px;color:var(--dim);max-width:36ch;line-height:1.4}
-.cells{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
-@media (max-width:520px){.cells{grid-template-columns:1fr}.cell .thumb{right:0;top:0;width:110px;height:110px}}
-
-.cell{border:1px solid var(--line);margin:-.5px;min-height:260px;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;position:relative;transition:background .2s,color .2s;overflow:hidden}
-.cell:hover{background:#fff;color:#000}
-.cell:hover .chip{background:#000;color:#fff}
-.cell:hover .idx,.cell:hover .live{color:#000}
-.cell h3{font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-.03em}
-.cell .idx{position:absolute;top:18px;left:22px;font-size:12px;font-weight:700;color:var(--dim2)}
-.cell .live{position:absolute;top:18px;right:22px;font-size:12px;font-weight:700;color:var(--dim);font-variant-numeric:tabular-nums}
-.cell .thumb{position:absolute;right:-30px;top:-30px;width:150px;height:150px;object-fit:cover;opacity:.22;transform:rotate(6deg);transition:.4s}
-.cell:hover .thumb{opacity:.35;transform:rotate(0) scale(1.05)}
-
-/* event types: list on the left swaps the picture on the right */
-.types{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-.types>*{min-width:0;max-width:100%}
-@media (max-width:900px){.types{grid-template-columns:1fr}}
-.types ul{list-style:none;margin:28px 0 0;padding:0}
-.types li button{display:block;font-weight:800;font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-.03em;line-height:1.3;text-align:left;color:#fff;opacity:.35;transition:opacity .2s}
-.types li button[aria-selected="true"],.types li button:hover{opacity:1}
-.types .frame{position:sticky;top:90px;aspect-ratio:4/3;background:#161616;overflow:hidden;position:relative}
-@media (max-width:900px){.types .frame{position:relative;top:auto}}
-.types .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .5s ease,transform 1.2s ease}
-.types .frame img.on{opacity:1;transform:none}
-.types .frame .cap{position:absolute;left:14px;right:14px;bottom:14px;background:#fff;color:#000;padding:10px 12px;font-size:14px;font-weight:600;line-height:1.35}
-.types .frame .cap .chips{margin-top:8px}
-.types .frame .cap .chip{background:#000;color:#fff}
-
-/* hosts + faq (C) */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-@media (max-width:860px){.grid2{grid-template-columns:1fr;gap:28px}}
-.list{display:grid;gap:14px;color:var(--dim);font-size:16px;margin:0;padding:0}
-.list li{list-style:none}
-.list li::before{content:"→ ";color:#fff}
-.faq details{border-bottom:1px solid var(--line);padding:16px 0}
-.faq details:first-child{border-top:1px solid var(--line)}
-.faq summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between}
-.faq summary::after{content:"+";color:var(--accent)}
-.faq details[open] summary::after{content:"–"}
-.faq p{color:var(--dim);margin-top:10px;max-width:60ch;font-size:16px}
-
-/* footer (A columns, C voice) */
-footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--panel)}
-footer ul li:first-child{color:var(--dim2)}
-@view-transition{navigation:auto}
-::view-transition-old(root){animation:vt-out .22s ease both}
-::view-transition-new(root){animation:vt-in .32s ease both}
-@keyframes vt-out{to{opacity:0;transform:translateY(-8px)}}
-@keyframes vt-in{from{opacity:0;transform:translateY(10px)}}
-html.is-leaving body{opacity:0;transform:translateY(-8px);transition:opacity .22s ease,transform .22s ease}
-html.js-enter body{animation:page-in .38s ease both}
-@keyframes page-in{from{opacity:0;transform:translateY(10px)}}
-.reveal{transition-delay:var(--d,0s)}
-@media (prefers-reduced-motion:reduce){html.is-leaving body,html.js-enter body{animation:none;transition:none;opacity:1;transform:none}}
-.fcols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px}
-@media (max-width:800px){.fcols{grid-template-columns:1fr 1fr}}
-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:15px;font-weight:600}
-footer ul li:first-child{color:var(--dim2)}
-footer a:hover{text-decoration:underline;text-underline-offset:4px}
-.sub{display:flex;gap:8px;margin-top:16px;max-width:380px;flex-wrap:wrap}
-.sub input{flex:1 1 160px;min-width:0;background:transparent;border:1px solid #3a3a3a;color:#fff;font:inherit;font-size:15px;padding:12px 14px}
-.sub input::placeholder{color:#777}
-.fbot{margin-top:40px;font-size:12px;color:var(--dim2);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-/* daylight variant */
-:root{--bg:#f4f1ea;--fg:#17160f;--paper:#f4f1ea;--ink:#17160f;--accent:#c8471d;--accent-deep:#a53812;--accent-soft:#f3e3d9;--yellow:#ffd23f;--green:#19a56a;--pink:#ff5c8a;--panel:#eae6dc;--dim:rgba(23,22,15,.62);--dim2:rgba(23,22,15,.42);--line:#d9d4c7;color-scheme:light}
-body::before{opacity:.05;mix-blend-mode:multiply}
-.btn{background:var(--accent);color:#fff;border:1px solid var(--accent);transition:transform .18s,background .2s,box-shadow .2s}
-.btn:hover{background:var(--accent-deep);transform:translateY(-1px);box-shadow:0 8px 20px rgba(200,71,29,.22);opacity:1}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:var(--paper);box-shadow:none}
-.chip{background:var(--ink);color:var(--paper)}
-.chips .chip:nth-child(2){background:transparent;color:var(--ink);border:1px solid var(--ink);padding:2px 6px}
-.chips .chip:nth-child(3){background:var(--yellow);color:var(--ink)}
-.chips .chip:nth-child(4){background:var(--panel);color:var(--ink)}
-.hero .ph{background:var(--panel)}
-.hero .ph img{filter:saturate(1.08) contrast(1.02)}
-.hero .ph::after{background:linear-gradient(0deg,rgba(23,22,15,.38) 0%,rgba(23,22,15,.12) 18%,transparent 36%)}
-@media (max-width:900px){.hero .ph::after{background:linear-gradient(0deg,rgba(23,22,15,.38) 0%,rgba(23,22,15,.12) 18%,transparent 36%)}}
-.hero .ph .tag{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.5)}
-.ev .ph{background:var(--panel)}
-.ev .ph img{filter:saturate(1.05)}
-.ev .ph.solid{background:var(--ink);color:var(--paper)}
-.ev .ph.solid .chip{background:var(--paper)!important;color:var(--ink)!important}
-.ev .ph .go{background:var(--paper);color:var(--ink)}
-.ev .meta b{color:var(--ink)}
-.strip img{filter:saturate(1.05)}
-.strip figcaption{background:var(--paper);color:var(--ink)}
-.city{background:var(--panel)}
-.city img{filter:saturate(1.05)}
-.city::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(transparent,rgba(23,22,15,.45));pointer-events:none}
-.cities .lead .arrow{color:var(--accent)}
-.cell:hover{background:var(--ink);color:var(--paper);transform:translateY(-3px);box-shadow:0 16px 36px rgba(23,22,15,.18)}
-.cell:hover .chip{background:var(--paper);color:var(--ink)}
-.cell:hover .idx,.cell:hover .live{color:rgba(255,255,255,.85)}
-.cell .thumb{opacity:.22;filter:saturate(1)}
-.types li button{color:var(--ink)}
-.types li button[aria-selected="true"]{color:var(--ink)}
-.types .frame{background:var(--panel)}
-.types .frame img{filter:saturate(1.05)}
-.types .frame .cap{background:var(--paper);color:var(--ink)}
-.types .frame .cap .chip{background:var(--ink);color:var(--paper)}
-.list li::before{color:var(--accent)}
-.sub input{border-color:#c6c5bf;color:#0d0d0d}
-.sub input::placeholder{color:#8a8a86}
-.logo i{background:#fff}
-.top{color:#fff}
-.top nav a{position:relative}
-.top nav a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s}
-.top nav a:hover{text-decoration:none}
-.top nav a:hover::after{transform:scaleX(1)}
+.hero nav .pbtn.glass#menuBtn{display:none}
+@media (max-width:960px){.hero nav .pbtn.glass#menuBtn{display:inline-flex}.hero nav ul{display:none}}
 </style>
 </head>
 <body>
-<header class="top">
-  <a class="logo" href="index.html">&gt;localhost<i aria-hidden="true"></i></a>
-  <nav><a href="explore.html">explore</a><a href="cities.html">cities</a><a href="community.html">communities</a><a href="pricing.html">pricing</a><a href="about.html">about</a><a href="https://localhost-app-seven.vercel.app/login">log in</a></nav>
+<div class="menu" id="menu" aria-label="Site menu">
+  <button class="btn dark close" id="menuClose">Close</button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="explore.html">Explore events</a></li>
+    <li><a href="cities.html">Cities</a></li>
+    <li><a href="community.html">Communities</a></li>
+    <li><a href="pricing.html">Sell tickets</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://localhost-app-seven.vercel.app/login">Log in</a></li>
+  </ul>
+  <div class="foot"><a class="btn" href="https://localhost-app-seven.vercel.app/create">Create event</a><a class="btn ghost" href="https://localhost-app-seven.vercel.app/">See what's on</a></div>
+</div>
+
+
+<div class="banner">🗺️ New! Every tech event in SF, NYC, London and Berlin, in one feed. From Luma, Meetup, Eventbrite and here 🗺️</div>
+<header class="hero">
+  <div class="bgimg"><img src="img/crowd.jpg" alt=""></div>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="index.html"><i>&gt;_</i>localhost</a>
+      <ul><li><a href="explore.html">Explore</a></li><li><a href="cities.html">Cities</a></li><li><a href="community.html">Communities</a></li><li><a href="pricing.html">Sell tickets</a></li><li><a href="about.html">About</a></li><li><a href="blog.html">Blog</a></li></ul>
+      <div style="display:flex;gap:8px"><a class="pbtn glass" href="https://localhost-app-seven.vercel.app/login">Login</a><a class="pbtn white" href="https://localhost-app-seven.vercel.app/create">Create</a><button class="pbtn glass" id="menuBtn" aria-controls="menu" aria-expanded="false">Menu</button></div>
+    </nav>
+    <div class="in">
+      <div>
+        <span class="rating"><b>★★★★★</b> 450+ events this week</span>
+        <h1>Nights<br>are back</h1>
+        <p>Every event in your city, every scene, in one feed. Tell it what you're into, or ask your AI.</p>
+        <div class="cta"><a class="pbtn white" href="https://localhost-app-seven.vercel.app/">See what's on</a><a class="pbtn glass" href="pricing.html">Host an event</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="notif" aria-hidden="true"><img src="img/crowd2.jpg" alt=""><div><b>You're in: Afrobeats til late 🎉</b><span>Fri 3 Oct · Dalston · ticket on WhatsApp</span></div><span class="open">Open</span></div>
 </header>
 
-<main>
-<div class="hero">
-  <div class="copy">
-    <div class="kick">tech events, irl.</div>
-    <h1>every tech event<br>in your city.</h1>
-    <p class="dim">one feed. meetups, hackathons, demo days, founder dinners, from luma, meetup, eventbrite and the ones hosted here. tell it what you care about, or just ask your ai. hosting is free if the event is free.</p>
-    <div class="cta"><a class="btn" href="https://localhost-app-seven.vercel.app/">see what's on</a><a class="btn ghost" href="https://localhost-app-seven.vercel.app/create">host an event</a></div>
-    <p class="ticker" id="tick">demo night #12 · berlin · thu 9 oct · 212 going</p>
+<div class="soft">
+<section class="wrap center" id="feed">
+  <h2>One feed, every scene 🗺️</h2>
+  <p class="sub">Luma, Meetup, Eventbrite and the events sold here, side by side. 100% free to browse, no account needed.</p>
+  <div class="tabs" id="tabs"><button class="pbtn soft" aria-pressed="true" data-k="tech">💻 Tech</button><button class="pbtn soft" data-k="music">🎧 Music</button><button class="pbtn soft" data-k="night">🪩 Nightlife</button><button class="pbtn soft" data-k="comedy">🎤 Comedy</button><button class="pbtn soft" data-k="church">⛪ Church</button></div>
+  <div class="preview" style="text-align:left">
+    <div>
+      <h3 id="pvTitle">Stripe × Briefcase: AI FinTech Hackathon</h3>
+      <div class="when" id="pvWhen">Saturday, October 4<small>10:00am · Briefcase, Shoreditch</small></div>
+      <div class="meta"><span><i>👑</i>Hosted by <span id="pvHost">Briefcase</span></span><span><i>📍</i>RSVP to see the exact address</span></div>
+      <p class="desc" id="pvDesc">Build an AI fintech product in a day. Stripe credits, mentors on the floor, demos at six. Pizza, obviously.</p>
+      <div class="guests"><b>Guest list</b><small id="pvGoing">216 going · 31 maybe</small><div class="avs"><i>AO</i><i>JK</i><i>TM</i><i>RS</i><i>LB</i><i class="more">+211</i></div></div>
+    </div>
+    <div>
+      <div class="poster"><img id="pvImg" src="img/hack.jpg" alt=""><span class="price" id="pvPrice">Free</span><span class="src" id="pvSrc">sells on Luma</span></div>
+      <div class="rsvp" id="rsvp"><button aria-pressed="true"><span>👍</span>Going</button><button><span>🤔</span>Maybe</button><button><span>😢</span>Can't go</button></div>
+    </div>
   </div>
-  <div class="ph"><img src="img/crowd.jpg" alt="" id="heroImg"><span class="tag">photo: techcrunch, cc by 2.0</span></div>
+</section>
 </div>
 
-<section id="week">
-  <div class="wrap">
-    <div class="split reveal"><h2 class="giant">this week</h2><a class="arrow" href="explore.html">view all events</a></div>
-    <div class="grid4">
-      <a class="ev reveal" href="event.html"><div class="ph"><img src="img/hack.jpg" alt="" loading="lazy"><span class="chip type">hackathon</span><span class="go">get ticket →</span></div><h3>agents hack night — build an agent that ships</h3><div class="meta"><b>berlin</b>sat 11 oct · berlin builders · €12</div></a>
-      <a class="ev reveal" href="event.html"><div class="ph solid"><span class="chip type" style="background:#000;color:#fff">meetup</span>london<br>rust<br>meetup</div><h3>london rust meetup — inference servers in rust</h3><div class="meta"><b>london</b>tue 7 oct · rust london · free</div></a>
-      <a class="ev reveal" href="event.html"><div class="ph"><img src="img/sf.jpg" alt="" loading="lazy"><span class="chip type">demo day</span><span class="go">get ticket →</span></div><h3>sf demo night — hardware edition</h3><div class="meta"><b>san francisco</b>thu 9 oct · sf demo night · $15</div></a>
-      <a class="ev reveal" href="event.html"><div class="ph"><img src="img/nyc.jpg" alt="" loading="lazy"><span class="chip type">conference</span><span class="go">get ticket →</span></div><h3>ai infra summit — two tracks, 40 speakers</h3><div class="meta"><b>new york</b>oct 21–22 · ai infra collective · $290</div></a>
+<div class="quotes" aria-hidden="true"><div class="track">
+  <div><b>Simon, Berlin</b><span>"I really really love the name hahaha"</span></div>
+  <div><b>Meetup host, SF</b><span>"Discovery on Luma is annoying, manual."</span></div>
+  <div><b>Meetup host, SF</b><span>"Ideally as MCP."</span></div>
+  <div><b>Simon, Berlin</b><span>"The idea is great!!"</span></div>
+  <div><b>Simon, Berlin</b><span>"I really really love the name hahaha"</span></div>
+  <div><b>Meetup host, SF</b><span>"Discovery on Luma is annoying, manual."</span></div>
+  <div><b>Meetup host, SF</b><span>"Ideally as MCP."</span></div>
+  <div><b>Simon, Berlin</b><span>"The idea is great!!"</span></div>
+</div></div>
+
+<div class="soft">
+<section class="wrap">
+  <div class="scatter">
+    <div><h2>For every scene,<br>every city 🎉</h2><p class="sub" style="margin-left:0">No more six apps and a group chat.</p><div style="margin-top:20px"><a class="pbtn dark" href="explore.html">See what's on</a></div></div>
+    <div class="pile" aria-hidden="true">
+      <a href="explore.html"><img src="img/hack.jpg" alt=""><span>AI FinTech Hackathon · Sat</span></a>
+      <a href="explore.html"><img src="img/crowd2.jpg" alt=""><span>Afrobeats til late · Fri</span></a>
+      <a href="explore.html"><img src="img/london.jpg" alt=""><span>Rust London · Thu</span></a>
+      <a href="explore.html"><img src="img/sf.jpg" alt=""><span>SF Demo Night · Thu</span></a>
+      <a href="explore.html"><img src="img/berlin.jpg" alt=""><span>Nebius Build Week · Sat</span></a>
+      <a href="explore.html"><img src="img/kigali.jpg" alt=""><span>Harvest Sunday · Sun</span></a>
+      <a href="explore.html"><img src="img/nyc.jpg" alt=""><span>Open mic · Thu</span></a>
     </div>
   </div>
 </section>
-
-<section class="statement">
-  <div class="wrap"><p class="reveal"><span>localhost is the event platform</span><br>built only for tech: meetups, hackathons, conferences and demo days, and the communities behind them, in the cities where people build.</p></div>
-</section>
-
-<div class="strip" aria-hidden="true">
-  <div class="track">
-    <figure><img src="img/hack.jpg" alt=""><figcaption>hack night, 2am</figcaption></figure>
-    <figure><img src="img/crowd2.jpg" alt=""><figcaption>front row</figcaption></figure>
-    <figure><img src="img/berlin.jpg" alt=""><figcaption>berlin</figcaption></figure>
-    <figure><img src="img/sf.jpg" alt=""><figcaption>san francisco</figcaption></figure>
-    <figure><img src="img/nyc.jpg" alt=""><figcaption>new york</figcaption></figure>
-    <figure><img src="img/london.jpg" alt=""><figcaption>london</figcaption></figure>
-    <figure><img src="img/kigali.jpg" alt=""><figcaption>kigali</figcaption></figure>
-    <figure><img src="img/capetown.jpg" alt=""><figcaption>cape town</figcaption></figure>
-    <figure><img src="img/hack.jpg" alt=""><figcaption>hack night, 2am</figcaption></figure>
-    <figure><img src="img/crowd2.jpg" alt=""><figcaption>front row</figcaption></figure>
-    <figure><img src="img/berlin.jpg" alt=""><figcaption>berlin</figcaption></figure>
-    <figure><img src="img/sf.jpg" alt=""><figcaption>san francisco</figcaption></figure>
-    <figure><img src="img/nyc.jpg" alt=""><figcaption>new york</figcaption></figure>
-    <figure><img src="img/london.jpg" alt=""><figcaption>london</figcaption></figure>
-    <figure><img src="img/kigali.jpg" alt=""><figcaption>kigali</figcaption></figure>
-    <figure><img src="img/capetown.jpg" alt=""><figcaption>cape town</figcaption></figure>
-  </div>
 </div>
 
-<section id="cities" style="border-top:0">
-  <div class="wrap">
-    <div class="head2 reveal"><h2>our</h2><h2>cities</h2></div>
-    <div class="cities">
-      <div class="lead reveal">a city opens when a community claims it. every city has a page, a monday email, and the communities behind it. hover a city for what's next.<br><a class="arrow" href="cities.html">all 15 cities</a></div>
-      <a class="city reveal" href="explore.html"><img src="img/sf.jpg" alt="san francisco" loading="lazy"><span class="chip tag">san francisco<small>184 events this month</small></span><div class="next"><b>sf demo night — hardware edition</b>thu 9 oct · 18:00 · sf demo night</div></a>
-      <a class="city reveal" href="explore.html"><img src="img/nyc.jpg" alt="new york" loading="lazy"><span class="chip tag">new york<small>151 events this month</small></span><div class="next"><b>fintech founders dinner</b>wed 15 oct · 18:30 · nyc fintech circle</div></a>
-      <a class="city reveal" href="explore.html"><img src="img/london.jpg" alt="london" loading="lazy"><span class="chip tag">london<small>139 events this month</small></span><div class="next"><b>london rust meetup</b>tue 7 oct · 19:00 · rust london</div></a>
-      <a class="city reveal" href="city.html"><img src="img/berlin.jpg" alt="berlin" loading="lazy"><span class="chip tag">berlin<small>97 events this month</small></span><div class="next"><b>demo night #12 — ai agents in production</b>thu 9 oct · 18:30 · berlin builders</div></a>
-      <a class="city reveal" href="explore.html"><img src="img/kigali.jpg" alt="kigali" loading="lazy"><span class="chip tag">kigali<small>23 events this month</small></span><div class="next"><b>kigali devs build night #23</b>sat 11 oct · 09:00 · kigali devs</div></a>
-      <a class="city reveal" href="explore.html"><img src="img/capetown.jpg" alt="cape town" loading="lazy"><span class="chip tag">cape town<small>41 events this month</small></span><div class="next"><b>fintech &amp; payments summit</b>fri 17 oct · 09:00 · cape town fintech</div></a>
-      <a class="city reveal" href="cities.html" style="display:flex;align-items:center;padding:16px;aspect-ratio:auto;min-height:120px"><span class="chip">amsterdam · paris · lisbon · austin · toronto · lagos · nairobi · bangalore · singapore<small style="display:block;font-weight:500;opacity:.8">cities open when a community claims them</small></span></a>
-    </div>
+<section class="wrap" id="sell">
+  <h2 class="center">We're not like other invites</h2>
+  <div class="feat">
+    <div><h2>New! Sell tickets, keep what you earn 🎟️</h2><p>Ticket tiers, discount codes, merch at checkout, QR check-in on any phone. 4.7% a ticket, capped, free under the floor. Every sale goes straight to your bank as it happens. No wallet, no payout button.</p><a class="pbtn dark" href="https://localhost-app-seven.vercel.app/create">Get started</a></div>
+    <div class="shot calc"><div class="top">What a night pays you <span id="capNote">capped at ₦3,500</span></div><div class="body">
+      <div class="cur" id="cur"><button aria-pressed="true" data-c="NGN">₦</button><button data-c="USD">$</button><button data-c="GBP">£</button><button data-c="EUR">€</button><button data-c="KES">KSh</button></div>
+      <input id="pr" type="range" min="0" max="100" value="30" aria-label="ticket price">
+      <div class="rowx"><span>Ticket</span><b id="pv">₦5,000</b></div><div class="rowx"><span>Localhost</span><b id="fv">₦235</b></div><div class="rowx"><span>To your bank</span><b class="ok" id="nv">₦4,765</b></div></div></div>
+  </div>
+  <div class="feat flip">
+    <div><h2>See who's going 👀</h2><p>The guest list shows role and company, who's hiring and who's looking. Follow a community and get pinged the moment they post.</p><a class="pbtn dark" href="https://localhost-app-seven.vercel.app/create">Create event</a></div>
+    <div class="shot"><div class="top">Guest list <span>216 going</span></div><div class="body">
+      <div class="rowx"><div><b>Amara Okafor</b><br><span style="color:var(--mute);font-size:13px">staff engineer · Monzo · hiring</span></div><span class="ok">Going</span></div>
+      <div class="rowx"><div><b>Tobi Adeyemi</b><br><span style="color:var(--mute);font-size:13px">founder · stealth · looking</span></div><span class="ok">Going</span></div>
+      <div class="rowx"><div><b>Lena M.</b><br><span style="color:var(--mute);font-size:13px">design engineer · Granola</span></div><span style="color:var(--mute)">Maybe</span></div></div></div>
+  </div>
+  <div class="feat">
+    <div><h2>Blast your guests 📣</h2><p>Running late, door moved, 10 people asking how to get in? One message to everyone on WhatsApp, text and email. Tickets arrive the same way the moment payment clears.</p><a class="pbtn dark" href="https://localhost-app-seven.vercel.app/create">Create event</a></div>
+    <div class="shot"><div class="top">WhatsApp <span>to 216 guests</span></div><div class="body"><span class="bubble">doors moved to 7:30, come hungry 🍕</span><br><span class="bubble in">on my way!!</span><br><span class="bubble in">can my +1 still come?</span><br><span class="bubble">yes, forward them the link 🎟️</span></div></div>
+  </div>
+  <div class="feat flip">
+    <div><h2>Or just ask your AI 🤖</h2><p>Localhost is an MCP server. Plug it into Claude or Cursor and ask what's on. Real listings, real links, your saved interests already applied.</p><a class="pbtn dark" href="https://localhost-app-seven.vercel.app/mcp">Connect it</a></div>
+    <div class="shot"><div class="top">Claude <span>localhost connected</span></div><div class="body"><span class="bubble">free hardware or robotics events in berlin this weekend?</span><br><span class="bubble in"><b>2 found.</b> Sat 10:00 Nebius Build Week Hackathon with NVIDIA (free, 96 spots, on Luma). Sun 14:00 Physical AI Hack (free). Want the links?</span></div></div>
   </div>
 </section>
 
-<section id="tools">
-  <div class="wrap">
-    <div class="head2 reveal"><h2>our</h2><h2>tools</h2></div>
-    <div class="tools">
-      <div class="lead reveal">everything a tech host needs and nothing a wedding does. free for free events. paid tickets in usd, eur or gbp with one flat fee and no surprise service charges.<br><br><a class="btn" href="https://localhost-app-seven.vercel.app/create" style="margin-top:8px">create an event</a></div>
-      <div class="cells reveal">
-        <div class="cell"><img class="thumb" src="img/hero.jpg" alt=""><span class="idx">01</span><span class="live" data-count="4930" data-prefix="$">$4,930 sold</span><h3>tickets</h3><div class="chips"><span class="chip">usd · eur · gbp</span><span class="chip">tiers &amp; promo codes</span><span class="chip">qr check-in</span></div></div>
-        <div class="cell"><img class="thumb" src="img/hack.jpg" alt=""><span class="idx">02</span><span class="live">3 cfp slots open</span><h3>speakers &amp; agenda</h3><div class="chips"><span class="chip">multi-track</span><span class="chip">call for proposals</span><span class="chip">personal agenda</span></div></div>
-        <div class="cell"><img class="thumb" src="img/berlin.jpg" alt=""><span class="idx">03</span><span class="live" data-count="212">212 going</span><h3>who's in the room</h3><div class="chips"><span class="chip">role &amp; company</span><span class="chip">hiring / looking</span><span class="chip">scan to connect</span></div></div>
-        <div class="cell"><img class="thumb" src="img/nyc.jpg" alt=""><span class="idx">04</span><span class="live">sent to 187 · 3 channels</span><h3>blasts</h3><div class="chips"><span class="chip">text</span><span class="chip">whatsapp</span><span class="chip">slack &amp; discord</span><span class="chip">calendar sync</span></div></div>
-        <div class="cell"><img class="thumb" src="img/sf.jpg" alt=""><span class="idx">05</span><span class="live">1 slot open · €1,200</span><h3>sponsors</h3><div class="chips"><span class="chip">slots with prices</span><span class="chip">paid on the page</span><span class="chip">sponsor dashboard</span></div></div>
-        <div class="cell"><img class="thumb" src="img/london.jpg" alt=""><span class="idx">06</span><span class="live">201 created</span><h3>api</h3><div class="chips"><span class="chip">rest</span><span class="chip">webhooks</span><span class="chip">ical</span><span class="chip">embed widget</span></div></div>
-      </div>
-    </div>
+<div class="soft">
+<section class="wrap center">
+  <h2>Powerful features, easy events</h2>
+  <div class="cards" style="text-align:left">
+    <div class="cardx"><div class="emo">📱</div><h3>Scan on any phone</h3><p>No hardware to hire. The door keeps working offline and syncs when the wifi is back.</p><a href="pricing.html">Try it ↗</a></div>
+    <div class="cardx"><div class="emo">🏷️</div><h3>Discount codes &amp; merch</h3><p>Early birds, partners, last year's crowd. The tee in the same basket as the ticket.</p><a href="pricing.html">Try it ↗</a></div>
+    <div class="cardx"><div class="emo">📬</div><h3>Monday email</h3><p>Write what you care about once. Every Monday, the week's eight best matches in your city.</p><a href="pricing.html">Try it ↗</a></div>
   </div>
+  <div class="store"><b>★★★★★</b> 5.0 · tickets by CrowdBuzz · London · Berlin · New York · San Francisco · Lagos · Nairobi</div>
 </section>
+</div>
 
-<section id="types">
-  <div class="wrap">
-    <h2 class="giant reveal">event types</h2>
-    <div class="types">
-      <ul class="reveal" role="tablist" aria-label="event types">
-        <li><button role="tab" aria-selected="true" data-img="berlin" data-cap="monthly, the same 200 people, zero budget. free page, free tickets, followers get pinged when you post." data-c="free forever,recurring,followers">meetups</button></li>
-        <li><button role="tab" aria-selected="false" data-img="hack" data-cap="team formation, submissions, judging rubric, live leaderboard, demo-slot picker. prizes paid from the same page." data-c="teams,submissions,judging,prizes">hackathons</button></li>
-        <li><button role="tab" aria-selected="false" data-img="hero" data-cap="multi-track agenda, speaker pages, a call for proposals, sponsor slots sold on the page, a real door with badges." data-c="tracks,cfp,sponsors,badges">conferences</button></li>
-        <li><button role="tab" aria-selected="false" data-img="sf" data-cap="invite-only with approvals. founders pick a slot, investors see who's presenting, the guest list shows role and fund." data-c="approvals,slot picker,guest list">demo days</button></li>
-        <li><button role="tab" aria-selected="false" data-img="london" data-cap="small paid sessions with capacity limits, a materials drop and a recording after. receipts carry company and vat." data-c="capacity,materials,receipts">workshops</button></li>
-        <li><button role="tab" aria-selected="false" data-img="nyc" data-cap="a launch page with a countdown, rich previews everywhere, and a blast when the doors open." data-c="countdown,previews,blasts">launch parties</button></li>
-        <li><button role="tab" aria-selected="false" data-img="kigali" data-cap="ten people, one table, approvals on. dietary questions up front, location revealed to confirmed guests only." data-c="approvals,questions,private">founder dinners</button></li>
-      </ul>
-      <div class="frame reveal" id="frame">
-        <img src="img/berlin.jpg" alt="" class="on" data-k="berlin"><img src="img/hack.jpg" alt="" data-k="hack" loading="lazy"><img src="img/hero.jpg" alt="" data-k="hero" loading="lazy"><img src="img/sf.jpg" alt="" data-k="sf" loading="lazy"><img src="img/london.jpg" alt="" data-k="london" loading="lazy"><img src="img/nyc.jpg" alt="" data-k="nyc" loading="lazy"><img src="img/kigali.jpg" alt="" data-k="kigali" loading="lazy">
-        <div class="cap"><span id="capText">monthly, the same 200 people, zero budget. free page, free tickets, followers get pinged when you post.</span><div class="chips" id="capChips"><span class="chip">free forever</span><span class="chip">recurring</span><span class="chip">followers</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section id="hosts">
-  <div class="wrap grid2">
-    <div class="reveal"><div class="kick">for hosts</div><h2 style="margin-top:12px">free if it's free.<br>3.5% + €0.30 if it isn't.</h2><p class="dim" style="margin-top:14px;max-width:34ch">no plan to buy, no service-fee page for your attendees, no surprise at checkout. payouts two days after the event.</p><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px"><a class="btn" href="https://localhost-app-seven.vercel.app/create">create an event</a><a class="btn ghost" href="https://localhost-app-seven.vercel.app/create">claim a community</a></div></div>
-    <div class="faq reveal">
-      <details open><summary>is it really free?</summary><p>yes. free events cost you nothing, forever, with unlimited attendees. we make money on paid tickets and sponsor slots.</p></details>
-      <details><summary>why tech only?</summary><p>because discovery only works when the feed isn't polluted. a city page with 97 events is useful when all 97 are for builders.</p></details>
-      <details><summary>what about luma and partiful?</summary><p>great tools, made for everything. neither knows what a speaker, a sponsor or a hackathon team is. we do.</p></details>
-      <details><summary>do you have an app?</summary><p>web first, installable on any phone. tickets and qr work offline. native apps for the scanner and wallet passes come next.</p></details>
-    </div>
-  </div>
-</section>
-</main>
 
 <footer>
-  <div class="wrap">
-    <div class="fcols">
-      <div><a class="logo" href="index.html">&gt;localhost</a><p class="dim" style="margin-top:10px;max-width:28ch;font-size:15px">the event platform built only for tech.</p><form class="sub" data-subscribe><input type="email" placeholder="you@company.com" aria-label="email"><button class="btn" type="submit" style="min-height:0;padding:12px 18px;font-size:15px">get monday's email</button></form></div>
-      <ul><li>product</li><li><a href="explore.html">events</a></li><li><a href="cities.html">cities</a></li><li><a href="pricing.html">tickets &amp; pricing</a></li><li><a href="community.html">communities</a></li><li><a href="api.html">api</a></li></ul>
-      <ul><li>company</li><li><a href="about.html">about</a></li><li><a href="blog.html">blog</a></li><li><a href="careers.html">careers</a></li><li><a href="contact.html">contact</a></li><li><a href="press.html">press</a></li><li><a href="faq.html">faq</a></li></ul>
-      <ul><li>social</li><li><a href="https://x.com/localhostevents" target="_blank" rel="noopener">x</a></li><li><a href="https://instagram.com/localhost.events" target="_blank" rel="noopener">instagram</a></li><li><a href="https://www.linkedin.com/company/localhost-events" target="_blank" rel="noopener">linkedin</a></li><li><a href="https://www.youtube.com/@localhostevents" target="_blank" rel="noopener">youtube</a></li><li><a href="terms.html">terms</a></li><li><a href="privacy.html">privacy</a></li></ul>
-    </div>
-    <div class="fbot"><span>© 2026 localhost · prototype, sample data · photos via wikimedia commons: techcrunch (cc by 2.0), leonhard lenz (cc0), gaelle berton (cc by-sa 3.0), e bailey (cc by-sa 4.0), christian david (cc by-sa 4.0), it's no game (cc by 2.0), dietmar rabich (cc by-sa 4.0), adrien k (cc by 2.0), daniel case (cc by-sa 3.0)</span><a href="privacy.html">privacy</a></div>
+  <div class="fcols">
+    <ul><li>Members</li><li><a href="https://localhost-app-seven.vercel.app/login">Members portal</a></li><li><a href="press.html">Press</a></li><li><a href="event-policy.html">Event policy</a></li><li><a href="sitemap.html">Sitemap</a></li></ul>
+    <ul><li>Media</li><li><a href="blog.html">Blog</a></li><li><a href="https://instagram.com/localhost.events" rel="noopener" target="_blank">Instagram</a></li><li><a href="https://www.linkedin.com/company/localhost-events" rel="noopener" target="_blank">LinkedIn</a></li><li><a href="https://www.youtube.com/@localhostevents" rel="noopener" target="_blank">YouTube</a></li><li><a href="https://x.com/localhostevents" rel="noopener" target="_blank">X</a></li></ul>
+    <ul><li>Product</li><li><a href="index.html">Home</a></li><li><a href="cities.html">Cities</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="explore.html">Events</a></li><li><a href="api.html">API</a></li></ul>
+    <ul><li>Company</li><li><a href="about.html">About</a></li><li><a href="partners.html">Partners</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li></ul>
+  </div>
+  <div class="pad fsub">
+    <p>Get this week's events in your city, every Monday 📬</p>
+    <form data-subscribe><input type="email" placeholder="Enter your e-mail" aria-label="E-mail" required><button class="btn" type="submit">Subscribe</button></form>
+    <label><input type="checkbox" required> I agree with the <a href="privacy.html">Privacy Policy</a>.</label>
+    <div class="fbot"><span>© 2026 <b>Localhost</b> · tickets by CrowdBuzz · prototype: events, people and numbers are sample data</span><a href="privacy.html"><b>Privacy Policy</b></a></div>
   </div>
 </footer>
-
 <script src="assets/site.js"></script>
 <script>
-(() => {
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .1 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // hero: gentle parallax on scroll
-  const hero = document.getElementById('heroImg');
-  if (!reduce) addEventListener('scroll', () => { const y = Math.min(scrollY, 900); hero.style.transform = 'translateY(' + (y * .12) + 'px)'; }, { passive: true });
-
-  // ticker
-  const m = ['demo night #12 · berlin · thu 9 oct · 212 going', 'agents hack night · berlin · sat 11 oct · 96 going', 'kigali devs build night #23 · sat 11 oct · 118 going', 'london rust meetup · tue 7 oct · 140 going'];
-  let i = 0; const t = document.getElementById('tick');
-  if (!reduce) setInterval(() => { i = (i + 1) % m.length; t.textContent = m[i]; }, 3500);
-
-  // event types: hover or click swaps the picture
-  const frame = document.getElementById('frame'), cap = document.getElementById('capText'), chips = document.getElementById('capChips');
-  document.querySelectorAll('.types [role=tab]').forEach(b => {
-    const pick = () => {
-      document.querySelectorAll('.types [role=tab]').forEach(x => x.setAttribute('aria-selected', 'false')); b.setAttribute('aria-selected', 'true');
-      frame.querySelectorAll('img').forEach(im => im.classList.toggle('on', im.dataset.k === b.dataset.img));
-      cap.textContent = b.dataset.cap; chips.innerHTML = b.dataset.c.split(',').map(c => '<span class="chip">' + c + '</span>').join('');
-    };
-    b.addEventListener('mouseenter', pick); b.addEventListener('click', pick); b.addEventListener('focus', pick);
-  });
-
-  // live counters in the tools cells tick up when they scroll into view
-  const cio = new IntersectionObserver(es => es.forEach(e => {
-    if (!e.isIntersecting) return; cio.unobserve(e.target);
-    const el = e.target, target = Number(el.dataset.count), prefix = el.dataset.prefix || '', suffix = el.textContent.replace(/^[^a-z]*/, ' ').trimEnd();
-    if (reduce) return; let n = 0; const t0 = performance.now();
-    const step = now => { const p = Math.min(1, (now - t0) / 1400); n = Math.round(target * (1 - Math.pow(1 - p, 3))); el.textContent = prefix + n.toLocaleString('en-US') + ' ' + suffix.trim(); if (p < 1) requestAnimationFrame(step); };
-    requestAnimationFrame(step);
-  }), { threshold: .5 });
-  document.querySelectorAll('.cell .live[data-count]').forEach(el => cio.observe(el));
+(function(){
+  var data={
+    tech:{t:'Stripe × Briefcase: AI FinTech Hackathon',w:'Saturday, October 4',s:'10:00am · Briefcase, Shoreditch',h:'Briefcase',d:'Build an AI fintech product in a day. Stripe credits, mentors on the floor, demos at six. Pizza, obviously.',g:'216 going · 31 maybe',img:'img/hack.jpg',p:'Free',src:'sells on Luma'},
+    music:{t:'Sunday Listening Party',w:'Sunday, October 5',s:'6:00pm · Peckham',h:'Amara',d:'New records, one speaker, no phones out. Early bird is nearly gone.',g:'40 going · 7 early birds left',img:'img/crowd2.jpg',p:'£12',src:'sold here'},
+    night:{t:'Afrobeats til late',w:'Friday, October 3',s:'11:00pm · Dalston',h:'Tobi & friends',d:'Cap the room at 210. Door sales on the night, scanner on a phone.',g:'63 in · 147 to go',img:'img/crowd.jpg',p:'£15',src:'sold here'},
+    comedy:{t:'Open mic, free entry',w:'Thursday, October 2',s:'8:00pm · Camden',h:'Camden Laughs',d:'Twelve slots, five minutes each. Sign up at the door.',g:'88 going',img:'img/nyc.jpg',p:'Free',src:'sold here'},
+    church:{t:'Harvest Sunday, counted entry',w:'Sunday, October 12',s:'10:00am · Lewisham',h:'Grace House',d:'Free entry, real tickets. Know your numbers before the doors open.',g:'412 tickets issued',img:'img/kigali.jpg',p:'Free',src:'sold here'}};
+  var tabs=document.querySelectorAll('#tabs button');
+  tabs.forEach(function(b){b.addEventListener('click',function(){tabs.forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');var d=data[b.dataset.k];
+    document.getElementById('pvTitle').textContent=d.t;document.getElementById('pvWhen').innerHTML=d.w+'<small>'+d.s+'</small>';document.getElementById('pvHost').textContent=d.h;document.getElementById('pvDesc').textContent=d.d;document.getElementById('pvGoing').textContent=d.g;document.getElementById('pvImg').src=d.img;document.getElementById('pvPrice').textContent=d.p;document.getElementById('pvSrc').textContent=d.src})});
+  var rs=document.querySelectorAll('#rsvp button');rs.forEach(function(b){b.addEventListener('click',function(){rs.forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true')})});
+  var fx={NGN:{cap:3500,floor:2000,max:200000,step:100,f:function(n){return '₦'+Math.round(n).toLocaleString('en-NG')}},USD:{cap:2.3,floor:1.3,max:130,step:.5,f:function(n){return '$'+n.toLocaleString('en-US',{maximumFractionDigits:2})}},GBP:{cap:1.8,floor:1,max:100,step:.5,f:function(n){return '£'+n.toLocaleString('en-GB',{maximumFractionDigits:2})}},EUR:{cap:2.1,floor:1.2,max:120,step:.5,f:function(n){return '€'+n.toLocaleString('de-DE',{maximumFractionDigits:2})}},KES:{cap:300,floor:170,max:17000,step:10,f:function(n){return 'KSh '+Math.round(n).toLocaleString('en-KE')}}};
+  var cur='NGN',r=document.getElementById('pr');
+  function render(){var f=fx[cur],v=r.value/100,p=Math.round((f.max*v*v)/f.step)*f.step,fee=p<f.floor?0:Math.min(p*0.047,f.cap);fee=Math.round(fee*100)/100;document.getElementById('pv').textContent=p===0?'Free':f.f(p);document.getElementById('fv').textContent=fee===0?'Nothing':f.f(fee)+(fee>=f.cap?' (cap)':'');document.getElementById('nv').textContent=f.f(Math.round((p-fee)*100)/100);document.getElementById('capNote').textContent='capped at '+f.f(f.cap)}
+  r.addEventListener('input',render);
+  var cb=document.querySelectorAll('#cur button');cb.forEach(function(b){b.addEventListener('click',function(){cb.forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');cur=b.dataset.c;render()})});render();
 })();
 </script>
 </body>

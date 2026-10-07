@@ -5,33 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Checkout · Localhost</title>
 <meta name="description" content="Ticket checkout on Localhost.">
-<meta name="theme-color" content="#f5f4f0">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='10' y='46' font-family='Helvetica,Arial,sans-serif' font-size='40' font-weight='700' fill='%23fff'%3E%3E_%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="fonts/manrope/manrope.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="assets/site.css">
-<style></style>
+<style>.banner{background:#ffd6ec;color:#0a0a0a;text-align:center;font-weight:600;font-size:13px;padding:8px 16px}</style>
 </head>
 <body>
+<div class="banner">🗺️ New! Every tech event in SF, NYC, London and Berlin, in one feed. From Luma, Meetup, Eventbrite and here</div>
 <header class="hdr">
-  <a class="logo" href="index.html">&gt;localhost</a>
-  <nav aria-label="Primary"><a href="explore.html">Explore</a><a href="cities.html">Cities</a><a href="community.html">Communities</a><a href="pricing.html">Pricing</a><a href="about.html">About</a></nav>
-  <div class="acts"><a class="btn ghost" href="https://localhost-app-seven.vercel.app/login">Log in</a><a class="btn" href="https://localhost-app-seven.vercel.app/create">Create event</a><button class="btn dark" id="menuBtn" aria-controls="menu" aria-expanded="false" style="border:1px solid #0d0d0d">Menu</button></div>
+  <a class="logo" href="index.html">localhost</a>
+  <nav aria-label="Primary"><a href="explore.html">Explore</a><a href="cities.html">Cities</a><a href="community.html">Communities</a><a href="pricing.html">Sell tickets</a><a href="about.html">About</a></nav>
+  <div class="acts"><a class="btn ghost" href="https://localhost-app-seven.vercel.app/login">Login</a><a class="btn" href="https://localhost-app-seven.vercel.app/create">Create</a><button class="btn dark" id="menuBtn" aria-controls="menu" aria-expanded="false">Menu</button></div>
 </header>
 <div class="menu" id="menu" aria-label="Site menu">
-  <button class="btn dark close" id="menuClose" style="border:1px solid #0d0d0d">Close</button>
+  <button class="btn dark close" id="menuClose">Close</button>
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="explore.html">Explore events</a></li>
     <li><a href="cities.html">Cities</a></li>
     <li><a href="community.html">Communities</a></li>
-    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="pricing.html">Sell tickets</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li><a href="careers.html">Careers</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="https://localhost-app-seven.vercel.app/login">Log in</a></li>
   </ul>
-  <div class="foot"><a class="btn" href="https://localhost-app-seven.vercel.app/create">Create event</a><a class="btn ghost" href="event.html">Sample event</a></div>
+  <div class="foot"><a class="btn" href="https://localhost-app-seven.vercel.app/create">Create event</a><a class="btn ghost" href="https://localhost-app-seven.vercel.app/">See what's on</a></div>
 </div>
 <main>
 
@@ -79,10 +81,10 @@
       <div style="font-size:13px;margin-top:4px">Tue 14 Oct · 19:00 · Factory Berlin</div>
       <div class="stack tight" style="margin-top:18px;font-size:14px">
         <div class="row"><span id="l1">1 × General</span><span id="s1">€15.00</span></div>
-        <div class="row" style="color:#8a8a86"><span>Platform fee (included)</span><span id="fee">€0.83</span></div>
-        <div class="row" style="border-top:1px solid #f5f4f0;padding-top:10px;font-weight:700;font-size:18px"><span>Total</span><span id="total">€15.00</span></div>
+        <div class="row" style="color:#8a8a90"><span>Platform fee (included)</span><span id="fee">€0.71</span></div>
+        <div class="row" style="border-top:1px solid #ffffff;padding-top:10px;font-weight:700;font-size:18px"><span>Total</span><span id="total">€15.00</span></div>
       </div>
-      <p style="font-size:12px;color:#8a8a86;margin-top:14px">Charged in <span id="curName">EUR</span>. Rates shown are indicative.</p>
+      <p style="font-size:12px;color:#8a8a90;margin-top:14px">Charged in <span id="curName">EUR</span>. Rates shown are indicative.</p>
     </div>
   </aside>
 </div>
@@ -95,16 +97,16 @@
     <ul><li>Company</li><li><a href="about.html">About</a></li><li><a href="partners.html">Partners</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li></ul>
   </div>
   <div class="pad fsub">
-    <p>Join 75,000 builders and get this week's tech events in your city</p>
+    <p>Get this week's events in your city, every Monday 📬</p>
     <form data-subscribe><input type="email" placeholder="Enter your e-mail" aria-label="E-mail" required><button class="btn" type="submit">Subscribe</button></form>
     <label><input type="checkbox" required> I agree with the <a href="privacy.html">Privacy Policy</a>.</label>
-    <div class="fbot"><span>Copyright © 2026 <b>Localhost</b> · prototype: events, people and numbers are sample data</span><a href="privacy.html"><b>Privacy Policy</b></a></div>
+    <div class="fbot"><span>© 2026 <b>Localhost</b> · tickets by CrowdBuzz · prototype: events, people and numbers are sample data</span><a href="privacy.html"><b>Privacy Policy</b></a></div>
   </div>
 </footer>
 <script src="assets/site.js"></script>
 <script>
 (() => { let q = 1, r = 1, sym = '€', cur = 'EUR'; const price = 15;
-  const paint = () => { const t = q * price * r; document.getElementById('q1').textContent = q; document.getElementById('l1').textContent = q + ' × General'; document.getElementById('p1').textContent = sym + Math.round(price * r); document.getElementById('s1').textContent = sym + t.toFixed(2); document.getElementById('fee').textContent = sym + (t * 0.035 + 0.3 * r * q).toFixed(2); document.getElementById('total').textContent = sym + t.toFixed(2); document.getElementById('pay').textContent = 'Pay ' + sym + t.toFixed(2); document.getElementById('curName').textContent = cur; };
+  const paint = () => { const t = q * price * r; document.getElementById('q1').textContent = q; document.getElementById('l1').textContent = q + ' × General'; document.getElementById('p1').textContent = sym + Math.round(price * r); document.getElementById('s1').textContent = sym + t.toFixed(2); document.getElementById('fee').textContent = sym + Math.min(t * 0.047, 2.1 * r * q).toFixed(2); document.getElementById('total').textContent = sym + t.toFixed(2); document.getElementById('pay').textContent = 'Pay ' + sym + t.toFixed(2); document.getElementById('curName').textContent = cur; };
   document.querySelectorAll('.qty button').forEach(b => b.addEventListener('click', () => { q = Math.max(1, Math.min(10, q + Number(b.dataset.d))); paint(); }));
   document.querySelectorAll('#cur button').forEach(b => b.addEventListener('click', () => { r = Number(b.dataset.r); sym = b.dataset.s; cur = b.dataset.c; paint(); }));
   paint(); })();</script>
