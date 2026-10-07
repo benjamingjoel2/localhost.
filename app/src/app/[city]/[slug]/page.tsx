@@ -46,7 +46,7 @@ export default async function EventPage({ params }: { params: Promise<{ city: st
               <div className="stack">
                 <div className="tier"><div><b>{e.priceMinor === 0 ? "free" : e.priceMinor != null ? money(e.priceMinor, e.currency) : `see ${sourceLabel(e.source)} for price`}</b><small>{goingCount(e)} going</small></div></div>
                 <a className="btn" href={e.externalUrl ?? "#"} target="_blank" rel="noopener noreferrer">register on {sourceLabel(e.source)} ↗</a>
-                <p className="note">this event is hosted on {sourceLabel(e.source)}. we list it so you can find every tech event in {cityName(e.city)} in one place. registration and tickets happen there. run this event? <Link href="/create" style={{ textDecoration: "underline" }}>claim it on localhost</Link>.</p>
+                <p className="note">this event is hosted on {sourceLabel(e.source)}. we list it so you can find every event in {cityName(e.city)} in one place. registration and tickets happen there. run this event? <Link href="/create" style={{ textDecoration: "underline" }}>claim it on localhost</Link>.</p>
               </div>
             ) : (
             <RsvpForm eventId={e.id} currency={e.currency} stripeOn={stripeEnabled()} defaultEmail={user?.email ?? ""} defaults={{ name: user?.name ?? "", company: user?.company ?? "", role: user?.role ?? "" }} tiers={e.tiers.map((t) => ({ id: t.id, name: t.name, priceMinor: t.priceMinor, left: t.capacity == null ? null : Math.max(0, t.capacity - t._count.tickets), label: money(t.priceMinor, e.currency) }))} />
