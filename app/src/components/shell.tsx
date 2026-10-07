@@ -13,7 +13,7 @@ export function Shell({ children, current, user }: { children: React.ReactNode; 
   return (
     <div className="app">
       <aside className="side">
-        <Link className="logo" href="/">&gt;localhost</Link>
+        <Link className="logo" href="/">localhost</Link>
         {NAV.map(([h, n, i]) => <Link key={h} className="nav" href={h} aria-current={current === h ? "page" : undefined}><i>{i}</i>{n}</Link>)}
         <div className="grow" />
         <Link className="btn" href="/create" style={{ margin: "0 8px 12px" }}>create event</Link>
