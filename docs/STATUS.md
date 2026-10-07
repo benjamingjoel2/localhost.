@@ -1,5 +1,23 @@
 # Localhost — status narrative
 
+## Update, 7 October 2026: one product, Partiful's language
+
+**The merge.** CrowdBuzz (general ticketing, Nigeria-first, 4.7% a ticket capped at ₦3,500, money straight to the host's bank,
+WhatsApp tickets, offline scanner) and Localhost (the tech city feed, interests, MCP) are now one product under the Localhost
+name, "tickets by CrowdBuzz". The feed covers every scene: tech first, then music, nightlife, comedy, church, weddings.
+The fee everywhere is 4.7% capped; the old 3.5% + 0.30 line is gone from the site, pricing, FAQ, terms and the checkout math.
+
+**The design.** After six previews the chosen direction duplicates Partiful's visual language: white ground, Inter Tight and
+Inter, blue accent, pastel gradient blobs, pill buttons, rounded cards, sentence case on the site. The home page mirrors
+Partiful section for section with our content: pink announcement banner, dark gradient hero over the crowd photo with a
+"you're in" notification card, scene tabs driving an event-page preview with Going / Maybe / Can't go, a quotes marquee
+(real lines from the WhatsApp feedback), a pile of rotated event cards, feature rows (sell tickets with the fee calculator,
+who's going, WhatsApp blasts, ask your AI), three feature cards. All 26 inner pages are regenerated on the same system.
+The app shell matches: pill nav, rounded cards, gradient wallet, same fonts. Both verified at desktop and phone width.
+
+**Still open.** A domain. Resend key for email to everyone (GitHub sign-in works without it). Stripe keys for paid tickets
+on Localhost-hosted events. The app's copy stays lowercase for now; the site is sentence case.
+
 ## Update, 29 September 2026: live, with a city index
 
 Everything below the line is the 27 September snapshot. Since then:
